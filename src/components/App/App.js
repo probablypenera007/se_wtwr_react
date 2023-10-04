@@ -14,7 +14,7 @@ function App() {
      <WeatherCard day={false} type="cloudynight"/>
     <section className='card__section'>
       {defaultClothingItems.map((item) => {
-        <ItemCard item = {item} />
+       return <ItemCard item = {item} />
       })}
 
     </section>
