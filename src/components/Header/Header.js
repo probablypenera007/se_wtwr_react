@@ -1,4 +1,5 @@
 import './Header.css';
+import wtwrlogo from "../../images/wtwrlogo.svg";
 
 const Header = ({onCreateModal}) => {
     const currentDate = new Date().toLocaleString('default',
@@ -9,7 +10,7 @@ const Header = ({onCreateModal}) => {
         <header className='header'>
         <div className='header__logo'>
 <div>
-    <img src={require("/Users/firefighterpenera/Desktop/TripleTen Files/se_wtwr_react/src/images/wtwrlogo.svg").default} alt='logo' />
+    <img src={wtwrlogo} alt='logo' />
     </div>
     <div>{currentDate}, Seattle</div>
         </div>

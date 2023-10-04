@@ -5,8 +5,13 @@ function App() {
   return (
     <div className="App">
      <Header/>
+    <section className='weather'>
 
-     
+    </section>
+    <section className='card__section'>
+
+    </section>
+
     </div>
   );
 }
