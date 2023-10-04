@@ -1,0 +1,19 @@
+.weather__section{
+    background-color: pink;
+    position: relative;
+  }
+  
+  .weather__temp{
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    color: white;
+    font-size: 36px;
+    width: 100%;
+    height: 100%;
+    font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  }
+  
+  .weather__image{
+    width: 100%;
+  }
