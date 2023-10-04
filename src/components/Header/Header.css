@@ -1,0 +1,33 @@
+
+.header{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+    padding: 0 20px;
+    font-family: "CabinetGrotesk-Bold",Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+  }
+  
+  .header__logo{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .header__button-addClothes{
+    background-color: transparent;
+    border: none;
+    font-size: 20px;;
+    font-family:  "CabinetGrotesk-Bold",Arial, sans-serif;
+  
+  }
+  
+  .header__avatar-logo{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
