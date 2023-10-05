@@ -1,16 +1,22 @@
 
 .card__section{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  
+    margin-top: 20px;
     }
     
-    .card__item-image{
+.card__item-image{
     height: 328px;
     width: 328px;
     border-radius: 10px;
     }
     
-    .card__item-name{
+.card__item-name{
       text-align: center;
     }
+
+.card__items{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

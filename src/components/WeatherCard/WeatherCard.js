@@ -19,7 +19,7 @@ const weatherOptions = [
 
 
 
-const WeatherCard = ({day, type}) => {
+const WeatherCard = ({day, type, weatherTemp=''}) => {
     console.log("Weather Me Softly");
     const imageSrc = weatherOptions.filter((i) => {
         console.log(i)
@@ -33,7 +33,7 @@ const WeatherCard = ({day, type}) => {
 
     return (
         <section className="weather__section">
-            <div className="weather__temp">75ºF</div>
+            <div className="weather__temp">{weatherTemp}</div>
             <img src={imageSrcUrl} className="weather__iamge" alt="weather img" />
         </section>
     )
