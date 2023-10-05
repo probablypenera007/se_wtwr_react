@@ -1,31 +1,27 @@
 import Header from '../Header/Header';
-import WeatherCard from '../WeatherCard/WeatherCard';
-import defaultClothingItems from '../../utils/DefaultClothing';
-import ItemCard from '../ItemCard/ItemCard';
+//import WeatherCard from '../WeatherCard/WeatherCard';
+//import defaultClothingItems from '../../utils/DefaultClothing';
+//import ItemCard from '../ItemCard/ItemCard';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 import "./App.css"
 
 
 
 function App() {
-  const weatherTemp = `${1564151165+"ºF"}`;
+  const weatherTemp = 121541512 +"ºF";
   return (
     <div className="App">
      <Header/>
-     <main className='main'>
-     <WeatherCard day={false} type="cloudynight" weatherTemp={weatherTemp} />
-    <section className='card__section'>
-     Today is {weatherTemp}ºF / You may want to wear: 
-     <div className='card__items'> 
-      {defaultClothingItems.map((item) => {
-       return <ItemCard item = {item} />
-      })}</div>
-
-    </section>
-</main>
+     <Main  weatherTemp = {weatherTemp}/>
+    <Footer />
     </div>
   );
+
+
 
 
 }
 
 export default App;
+    
