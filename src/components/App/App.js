@@ -13,6 +13,7 @@ import "./App.css"
 function App() {
   const weatherTemp = "121541512 ºF";
   const [activeModal, setActiveModal] = useState('')
+  const [selectedCard, setSelectedCard] = useState({})
 
   const handleCreateModal = () => {
     setActiveModal('create')
@@ -22,10 +23,15 @@ function App() {
     setActiveModal('')
   };
 
+  const handleSelectedCard = (card) => {
+    setSelectedCard(card);
+  }
+console.log("i'm selected card",selectedCard);
+
   return (
     <div className="App">
      <Header onCreateModal={handleCreateModal}/>
-     <Main  weatherTemp = {weatherTemp}/> 
+     <Main  weatherTemp = {weatherTemp} onSelectCard={handleSelectedCard} /> 
     <Footer />
     {activeModal === 'create'&&  (
     <ModalWithForm title="New Garment" onClose={handleCloseModal}>
@@ -52,9 +58,18 @@ function App() {
       </div>
     </ModalWithForm>
     )}
+     {activeModal === 'preview' && (<div className={`modal`}>
+            <div className="modal__content">
+              <img/> 
+              <div>item name</div>
+              <div>weather type</div>
+      </div>
+     </div>
+     )}
     </div>
   );
 }
 
-export default App;
+
+export default App; 
     
