@@ -1,5 +1,5 @@
-//import cloudyday from "../../images/day/cloudy-day.svg";
 import "./WeatherCard.css";
+import "../App/App";
 
 
 const weatherOptions = [
@@ -31,7 +31,7 @@ const WeatherCard = ({day, type, weatherTemp=''}) => {
     return (
         <section className="weather__section">
             <div className="weather__temp">{weatherTemp}ºF</div>
-            <img src={imageSrcUrl} className="weather__iamge" alt="weather img" />
+            <img src={imageSrcUrl} className="weather__image" alt="weather img" />
         </section>
     )
 }
