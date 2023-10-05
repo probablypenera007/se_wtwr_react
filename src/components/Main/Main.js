@@ -12,9 +12,9 @@ function Main({weatherTemp}) {
         </p>
         <div className='card__items'>
           {defaultClothingItems.map((item) => {
-            return <ItemCard item={item} />;
-          })}</div>
-
+            return <ItemCard item={item} />
+          })}
+          </div>
       </section>
     </main>;
   }
