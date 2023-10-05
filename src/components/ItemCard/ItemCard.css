@@ -2,20 +2,38 @@
 .card__section{
     margin-top: 20px;
     }
+
+.card__section-title{
+    margin: 0px;
+    font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
     
-.card__item-image{
-    height: 328px;
-    width: 328px;
-    border-radius: 10px;
-    }
-    
-.card__item-name{
-      text-align: center;
-    }
+}
 
 .card__items{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 17px;
     justify-content: center;
+    margin-top: 34px;
 }
+
+.card__elements{
+    position: relative;
+}
+    
+.card__item-image{
+    height: 328px;
+    width: 328px;
+    border-radius: 30px;
+    cursor: pointer;
+    }
+    
+.card__item-name{
+    position: absolute;
+    text-align: center;
+    font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
+    font-size: 16px;
+    }
+

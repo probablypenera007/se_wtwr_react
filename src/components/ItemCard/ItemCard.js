@@ -2,12 +2,12 @@ import "./ItemCard.css";
 
 const ItemCard = ({item}) => {
     return <div>
-      <div>
+      <div className="card__elements">
         <img src={item.link} alt="clothing" className='card__item-image' />
       </div>
-      <div className='card__item-name'>
+      <h2 className='card__item-name'>
         {item.name}
-      </div>
+      </h2>
     </div>;
   }
 

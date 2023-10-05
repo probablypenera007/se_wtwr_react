@@ -1,12 +1,11 @@
 .weather__section{
-    background-color: pink;
     position: relative;
+    height: 80px;
   }
   
   .weather__temp{
     position: absolute;
-    top: 12px;
-    left: 16px;
+    padding: 15px 18px 15px 18px;
     color: white;
     font-size: 36px;
     width: 100%;
