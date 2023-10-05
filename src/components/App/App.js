@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Header from '../Header/Header';
 //import WeatherCard from '../WeatherCard/WeatherCard';
 //import defaultClothingItems from '../../utils/DefaultClothing';
