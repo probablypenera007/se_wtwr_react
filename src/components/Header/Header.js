@@ -16,7 +16,7 @@ const Header = ({onCreateModal}) => {
         </div>
         <div className='header__avatar-logo'>
         <div>
-          <button className='header__button-addClothes' type='text'> + Add Clothes</button>
+          <button className='header__button-addClothes' type='text'onClick={onCreateModal}> + Add Clothes</button>
         </div>
         <div className='header__name'>Terrence Tegegne</div>
         <div>

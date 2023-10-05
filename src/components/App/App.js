@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from '../Header/Header';
 //import WeatherCard from '../WeatherCard/WeatherCard';
 //import defaultClothingItems from '../../utils/DefaultClothing';
@@ -10,13 +11,24 @@ import "./App.css"
 
 
 function App() {
-  const weatherTemp = 121541512 +"ºF";
+  const weatherTemp = "121541512 ºF";
+  const [activeModal, setActiveModal] = useState('')
+
+  const handleCreateModal = () => {
+    setActiveModal('create')
+  };
+
+  const handleCloseModal= () => {
+    setActiveModal('')
+  };
+
   return (
     <div className="App">
-     <Header/>
-     <Main  weatherTemp = {weatherTemp}/>
+     <Header onCreateModal={handleCreateModal}/>
+     <Main  weatherTemp = {weatherTemp}/> 
     <Footer />
-    <ModalWithForm title="New Garment">
+    {activeModal === 'create'&&  (
+    <ModalWithForm title="New Garment" onClose={handleCloseModal}>
       <label>
         name<input type="text" name="name" minlength="1" maxLength="30"/>
       </label>
@@ -39,6 +51,7 @@ function App() {
          </div>
       </div>
     </ModalWithForm>
+    )}
     </div>
   );
 }
