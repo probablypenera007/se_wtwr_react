@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 //import ItemCard from '../ItemCard/ItemCard';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import "./App.css"
 
 
@@ -15,12 +16,9 @@ function App() {
      <Header/>
      <Main  weatherTemp = {weatherTemp}/>
     <Footer />
+    <ModalWithForm />
     </div>
   );
-
-
-
-
 }
 
 export default App;
