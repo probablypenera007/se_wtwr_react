@@ -1,24 +1,24 @@
-
-
-
-.card__elements{
+.card__elements {
+    position: relative;
+  }
   
-    background-color: lightgreen;
-}
-    
-.card__item-image{
-
+  .card__item-image {
     height: 328px;
     width: 328px;
     border-radius: 30px;
     cursor: pointer;
-    }
-    
-.card__item-name{
+  }
+  
+  .card__item-name {
     position: absolute;
-    align-items: center;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    text-align: center;
+    padding: 0 12px;
+    border-radius: 4px;
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
     font-size: 16px;
     background-color: blueviolet;
-    }
-
+  }

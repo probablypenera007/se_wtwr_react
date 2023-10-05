@@ -12,7 +12,7 @@ const Header = ({onCreateModal}) => {
 <div>
     <img src={wtwrlogo} alt='logo' />
     </div>
-    <div>{currentDate}, Seattle</div>
+    <div className='header__date'>{currentDate}, Seattle</div>
         </div>
         <div className='header__avatar-logo'>
         <div>

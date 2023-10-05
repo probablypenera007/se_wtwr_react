@@ -3,7 +3,8 @@ import "./ItemCard.css";
 const ItemCard = ({item, onSelectCard}) => {
     return <div>
       <div className="card__elements">
-        <img src={item.link}  className='card__item-image' onClick= {() =>  onSelectCard(item)} alt="clothing"/>
+        <img src={item.link}  className='card__item-image' 
+        onClick= {() =>  onSelectCard(item)} alt="clothing"/>
       </div>
       <h2 className='card__item-name'>
         {item.name}

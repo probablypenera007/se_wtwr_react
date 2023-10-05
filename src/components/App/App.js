@@ -41,7 +41,7 @@ function App() {
   console.log(temp, "this is set temp")
 
   return (
-    <div className="App">
+    <div className="page">
      <Header onCreateModal={handleCreateModal} /> 
      <Main  weatherTemp={temp} onSelectCard={handleSelectedCard}/> 
     <Footer />
