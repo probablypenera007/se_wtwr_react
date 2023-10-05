@@ -13,7 +13,7 @@ import {getForecastWeather, parseWeatherData} from '../../utils/weatherApi';
 
 
 function App() {
-  const weatherTemp = "121541512 ºF";
+  //const weatherTemp = "121541512 ºF";
   const [activeModal, setActiveModal] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
