@@ -21,7 +21,7 @@ function Main({weatherTemp, onSelectCard}) {
       <WeatherCard day={false} type="cloudynight" weatherTemp={weatherTemp} />
       <section className='card__section'>
         <p className="card__section-title">
-        Today is {weatherTemp} / You may want to wear:
+        Today is {weatherTemp}ºF / You may want to wear:
         </p>
         <div className='card__items'>
           {defaultClothingItems.map((item) => {
@@ -32,4 +32,4 @@ function Main({weatherTemp, onSelectCard}) {
     </main>;
   }
 
-  export default Main;  
+  export default Main;   
