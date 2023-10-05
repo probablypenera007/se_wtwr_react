@@ -2,11 +2,12 @@
 
 
 .card__elements{
-    position: relative;
+  
     background-color: lightgreen;
 }
     
 .card__item-image{
+    position: relative;
     height: 328px;
     width: 328px;
     border-radius: 30px;
@@ -15,7 +16,7 @@
     
 .card__item-name{
     position: absolute;
-    text-align: center;
+    align-items: center;
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
     font-size: 16px;
     background-color: blueviolet;

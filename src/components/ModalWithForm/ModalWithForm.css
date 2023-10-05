@@ -1,4 +1,43 @@
 .modal{
-    background-color: pink;
-    
+    background-color: pink transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal__content{
+    background-color: white;
+    max-width: 440px;
+    max-height: 380px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 28px 28px;
+}
+
+.button__close-modal{
+    position: absolute;
+    background-image: url(../../images/group-119-gray-close-button.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}   
+
+.modal__form{
+
+}
+
+.button__submit-modal{
+
 }
