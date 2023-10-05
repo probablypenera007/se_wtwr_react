@@ -3,6 +3,7 @@
 
 .card__elements{
     position: relative;
+    background-color: lightgreen;
 }
     
 .card__item-image{
@@ -17,5 +18,6 @@
     text-align: center;
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
     font-size: 16px;
+    background-color: blueviolet;
     }
 

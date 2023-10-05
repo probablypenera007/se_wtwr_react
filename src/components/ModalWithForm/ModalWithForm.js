@@ -2,7 +2,7 @@ const ModalWithForm = () => {
 
     console.log("This is ModalWithForms")
     return (
-        <div> ModalWithForm</div>
+        <div className="modal"> ModalWithForm</div>
     )
 }
 
