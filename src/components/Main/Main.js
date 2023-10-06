@@ -34,6 +34,6 @@ function Main({weatherTemp, onSelectCard}) {
           </div>
       </section>
     </main>;
-  }
+  }  
 
   export default Main;   

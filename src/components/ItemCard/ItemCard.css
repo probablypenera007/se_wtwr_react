@@ -1,24 +1,28 @@
-.card__elements {
+.card{
+    display: grid;
     position: relative;
-  }
-  
-  .card__item-image {
-    height: 328px;
-    width: 328px;
-    border-radius: 30px;
-    cursor: pointer;
-  }
-  
-  .card__item-name {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
+
+}
+
+.card__item-image {
+  height: 328px;
+  width: 328px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.card__item-name {
+    position:absolute; 
+    top: 1px;
+    left: 113px;
+    right: 105px;
     text-align: center;
-    padding: 0 12px;
-    border-radius: 4px;
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
-    font-size: 16px;
-    background-color: blueviolet;
-  }
+    font-size: 16px;;
+    background-color: #FFF;
+    border-radius: 4px;
+    font-style: normal;
+    font-weight: 700;
+    color:rgba(0, 0, 0, 0.60);
+
+}
