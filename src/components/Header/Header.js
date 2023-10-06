@@ -20,12 +20,12 @@ const Header = ({onCreateModal, weatherLocation}) => {
         </div>
         <div className='header__name'>Terrence Tegegne</div>
         <div>
-          <img src={require("/Users/firefighterpenera/Desktop/TripleTen Files/se_wtwr_react/src/images/avatar.svg").default} alt="avatar"/>
+          <img src={require("../../images/avatar.svg").default} alt="avatar"/>
         </div>
         </div>   
       </header> 
     )
-}//{require("/Users/firefighterpenera/Desktop/TripleTen Files/se_wtwr_react/src/images/wtwrlogo.svg").default}
+}
 
 export default Header;
     
