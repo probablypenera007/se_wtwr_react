@@ -9,8 +9,8 @@ const ItemModal = ({selectedCard, onClose}) => {
             <button className="button__close-modal-white" type='button'onClick={onClose}></button>
               <img src={selectedCard.link}
               className="modal__image-preview"
-               alt="selected-card"/> 
-              <div className="modal__preview-name">{selectedCard.name}</div>
+               alt={selectedCard.name}/> 
+              <h3 className="modal__preview-name">{selectedCard.name}</h3>
               <div className="modal__preview-weather">Weather: {selectedCard.weather}</div>
       </div>
      </div>

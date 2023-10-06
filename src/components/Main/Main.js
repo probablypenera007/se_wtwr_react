@@ -21,7 +21,8 @@ function Main({weatherTemp, onSelectCard}) {
     return item.weather.toLowerCase() === weatherType
   })
 
-    return <main className='main'>
+    return (
+    <main className='main'>
       <WeatherCard day={false} type="cloudynight" weatherTemp={weatherTemp} />
       <section className='card__section'>
         <p className="card__section-title">
@@ -33,7 +34,8 @@ function Main({weatherTemp, onSelectCard}) {
           })}
           </div>
       </section>
-    </main>;
+    </main>
+    )
   }  
 
   export default Main;   

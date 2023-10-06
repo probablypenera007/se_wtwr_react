@@ -1,5 +1,6 @@
 import './Header.css';
 import wtwrlogo from "../../images/wtwrlogo.svg";
+import avatar from "../../images/avatar.svg";
 
 const Header = ({onCreateModal, weatherLocation}) => {
     const currentDate = new Date().toLocaleString('default',
@@ -18,9 +19,9 @@ const Header = ({onCreateModal, weatherLocation}) => {
         <div>
           <button className='header__button-addClothes' type='text'onClick={onCreateModal}> + Add Clothes</button>
         </div>
-        <div className='header__name'>Terrence Tegegne</div>
+        <h3 className='header__name'>Terrence Tegegne</h3>
         <div>
-          <img src={require("../../images/avatar.svg").default} alt="avatar"/>
+          <img src={avatar} alt="avatar"/>
         </div>
         </div>   
       </header> 
