@@ -11,7 +11,7 @@ const WeatherCard = ({day, type, weatherTemp=''}) => {
     return (
         <section className="weather__section">
             <div className="weather__temp">{weatherTemp}ºF</div>
-            <img src={imageSrcUrl} className="weather__image" alt="weather img" />
+            <img src={imageSrcUrl} className="weather__image" alt={type} />
         </section>
     )
 }
