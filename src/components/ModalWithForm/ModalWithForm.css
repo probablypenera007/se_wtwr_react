@@ -11,10 +11,11 @@
     background-color: rgba(0,0,0,0.5);
 }
 
+
 .modal__content{
     background-color: white;
     max-width: 440px;
-    max-height: 380px;
+    max-height: 436px;
     width: 100%;
     height: 100%;
     border-radius: 20px;
@@ -32,9 +33,16 @@
     height: 20px;
     border: none;
     cursor: pointer;
+    left: 930px;
+    top: 186px;
+
 }   
 
 .modal__title{
-    
+font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
+top: 20px;
+font-size: 16px;
+margin: 0;
+
 }
 

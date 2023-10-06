@@ -25,6 +25,11 @@ export const parseWeatherData = (data) => {
     return Math.ceil(temperature);
 }
 
+export const parseLocationData = (data) => {
+    const currentLocation = data.name;
+    console.log(currentLocation, "this is current location");
+    return currentLocation;
+}
 
 //export default weatherApi
 

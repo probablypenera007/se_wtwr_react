@@ -1,7 +1,7 @@
 import './Header.css';
 import wtwrlogo from "../../images/wtwrlogo.svg";
 
-const Header = ({onCreateModal}) => {
+const Header = ({onCreateModal, weatherLocation}) => {
     const currentDate = new Date().toLocaleString('default',
      { month: 'long', day: 'numeric' });
     console.log('Header Here!');
@@ -12,7 +12,7 @@ const Header = ({onCreateModal}) => {
 <div>
     <img src={wtwrlogo} alt='logo' />
     </div>
-    <div className='header__date'>{currentDate}, Seattle</div>
+    <div className='header__date'>{currentDate}, {weatherLocation}</div>
         </div>
         <div className='header__avatar-logo'>
         <div>
