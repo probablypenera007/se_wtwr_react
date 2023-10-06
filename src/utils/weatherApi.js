@@ -31,6 +31,38 @@ export const parseLocationData = (data) => {
     return currentLocation;
 }
 
+//export const weatherForecastData = (data) => {
+//    const currentForecast = data.weather;
+//    console.log(currentForecast, "this is current forecast");
+//    return currentForecast;
+//}
+
+//export
+
+//    "weather": [
+//    {
+//        "id": 500,
+//        "main": "Rain",
+//        "description": "light rain",
+//        "icon": "10n"
+//    }
+// ],
+
+
+//"dt": 1661870592,
+//"sys": {
+//    "type": 2,
+//    "id": 2075663,
+//    "country": "IT",
+//    "sunrise": 1661834187,
+//    "sunset": 1661882248
+//  },
+
+//For determining the time of day, you can compare Date.now() 
+//to the sunrise and sunset fields returned by the API. 
+//But be careful: Date.now() returns the time elapsed since January 1, 1970 in milliseconds. 
+//The weather API returns the time elapsed since January 1, 1970 in seconds.
+
 //export default weatherApi
 
 
