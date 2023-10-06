@@ -66,6 +66,7 @@
     white-space: nowrap;
     overflow: hidden;
     border-bottom: 1px solid rgba(0, 0, 0, 1);
+    font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
 
 }
 
@@ -89,4 +90,10 @@
     color: #fff;
     border-radius: 4px;
     background-color: #000;
+    transition: opacity linear 0.3s 0.1s;
+    cursor:pointer;
+}
+
+.button__submit-modal:hover{
+    opacity:0.3;
 }
