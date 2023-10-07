@@ -1,4 +1,4 @@
-.modal{
+.modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -7,11 +7,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
-.modal__content{
+.modal__content {
     position: relative;
     background-color: white;
     max-width: 412px;
@@ -25,7 +25,7 @@
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
 }
 
-.button__close-modal{
+.button__close-modal {
     position: absolute;
     background-image: url(../../images/group-119-gray-close-button.svg);
     background-size: contain;
@@ -38,15 +38,16 @@
     right: 23px;
     top: 16px;
 
-}   
+}
 
-.modal__title{
-    margin-top: 20px;;
+.modal__title {
+    margin-top: 20px;
+    ;
     font-size: 16px;
     margin: 0;
 }
 
-.modal__label{
+.modal__label {
     display: flex;
     margin-top: 24px;
     flex-direction: column;
@@ -54,7 +55,7 @@
 
 }
 
-.modal__input-text{
+.modal__input-text {
     margin-top: 8px;
     margin-bottom: 12px;
     box-sizing: border-box;
@@ -70,7 +71,7 @@
 
 }
 
-.modal__input-radio{
+.modal__input-radio {
     margin-top: 8px;
     margin-right: 10px;
     color: rgba(0, 0, 0, 0.5);
@@ -78,11 +79,11 @@
     gap: 8px;
 }
 
-.modal__label-radio{
+.modal__label-radio {
     padding-bottom: 10px;
 }
 
-.button__submit-modal{
+.button__submit-modal {
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
     margin-top: 34px;
     width: 124px;
@@ -91,9 +92,9 @@
     border-radius: 4px;
     background-color: #000;
     transition: opacity linear 0.3s 0.1s;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.button__submit-modal:hover{
-    opacity:0.3;
+.button__submit-modal:hover {
+    opacity: 0.3;
 }

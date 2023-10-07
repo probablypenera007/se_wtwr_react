@@ -1,22 +1,19 @@
-.weather__section{
-    position: relative;
+.weather__section {
+  position: relative;
+  align-content: center;
+}
 
-    
-    align-content: center;
+.weather__temp {
+  position: absolute;
+  padding: 20px 18px 20px 16px;
+  color: white;
+  font-size: 36px;
+  width: 100%;
+  height: 100%;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+}
 
-  }
-  
-  .weather__temp{
-    position: absolute;
-    padding: 20px 18px 20px 16px;
-    color: white;
-    font-size: 36px;
-    width: 100%;
-    height: 100%;
-    font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
-  }
-  
-  .weather__image{
-    width: 100%;
-    height: 100%;
-  }
+.weather__image {
+  width: 100%;
+  height: 100%;
+}

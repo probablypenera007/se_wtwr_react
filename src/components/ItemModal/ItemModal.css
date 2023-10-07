@@ -1,4 +1,4 @@
-.modal__content-preview{
+.modal__content-preview {
     max-width: 498px;
     max-height: 610px;
     position: relative;
@@ -7,36 +7,34 @@
     border-radius: 16px;
 }
 
-.button__close-modal-white{
+.button__close-modal-white {
     background-image: url(../../images/Group\ 119itemmodalwhiteclosebutton.svg);
     position: absolute;
     background-repeat: no-repeat;
     background-color: transparent;
     right: 28px;
-    top:20px;
+    top: 20px;
     width: 20px;
     height: 20px;
-    border:none;
+    border: none;
     cursor: pointer;
 }
 
-.modal__image-preview{
+.modal__image-preview {
     background-color: rgba(0, 0, 0, 0.822);
     max-width: 498px;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    
+
 }
 
-.modal__preview-name{
+.modal__preview-name {
     margin-top: 12px;
     margin-left: 32px;
 }
 
-.modal__preview-weather{
+.modal__preview-weather {
     margin-top: 12px;
     margin-bottom: 28px;
     margin-left: 32px;
 }
-   
-
