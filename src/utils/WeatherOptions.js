@@ -2,61 +2,61 @@ export const weatherOptions = [
   {
     url: require("../images/day/cloudy-day.svg").default,
     day: true,
-    type: "cloudyday",
+    type: "cloudy",
   },
   {
     url: require("../images/day/perfect-day.svg").default,
     day: true,
-    type: "perfday",
+    type: "sunny",
   },
   {
     url: require("../images/day/rainy-day.svg").default,
     day: true,
-    type: "rainyday",
+    type: "rain",
   },
   {
     url: require("../images/day/stormy-day.svg").default,
     day: true,
-    type: "stormyday",
+    type: "storm",
   },
   {
     url: require("../images/day/snowy-day.svg").default,
     day: true,
-    type: "snowyday",
+    type: "snow",
   },
   {
     url: require("../images/day/foggy-day.svg").default,
     day: true,
-    type: "foggyday",
+    type: "fog",
   },
   {
     url: require("../images/night/perfect-night.svg").default,
     day: false,
-    type: "perfnight",
+    type: "clear",
   },
   {
     url: require("../images/night/cloudy-night.svg").default,
     day: false,
-    type: "cloudynight",
+    type: "cloudy",
   },
   {
     url: require("../images/night/foggy-night.svg").default,
     day: false,
-    type: "foggynight",
+    type: "fog",
   },
   {
     url: require("../images/night/rainy-night.svg").default,
     day: false,
-    type: "rainynight",
+    type: "rain",
   },
   {
     url: require("../images/night/snowy-night.svg").default,
     day: false,
-    type: "snowynight",
+    type: "snow",
   },
   {
     url: require("../images/night/stormy-night.svg").default,
     day: false,
-    type: "stormynight",
+    type: "storm",
   },
 ];

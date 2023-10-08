@@ -12,6 +12,8 @@ import {
   getForecastWeather,
   parseWeatherData,
   parseLocationData,
+  parseWeatherForecastData,
+  parseTimeOfDay,
 } from "../../utils/weatherApi";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [weatherLocation, setWeatherLocation] = useState("");
+  const [weatherForecast, setWeatherForecast] = useState("");
+  const [isDay, setIsDay] = useState(true);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -42,6 +46,12 @@ function App() {
 
         const location = parseLocationData(data);
         setWeatherLocation(location);
+
+        const weatherForecast = parseWeatherForecastData(data);
+        setWeatherForecast(weatherForecast,"what is the weatherForecast");
+
+        const isDay = parseTimeOfDay(data);
+        setIsDay(isDay);
       })
       .catch(console.error);
     //   .cactch((err) => {
@@ -50,6 +60,8 @@ function App() {
   }, []);
   console.log(temp, "this is set temp");
   console.log(weatherLocation, "this is APP.js current location");
+  console.log(weatherForecast, "this is current weather forecast");
+  console.log(isDay, "this is App.js is it day time???");
 
   return (
     <div className="page">
@@ -57,7 +69,7 @@ function App() {
         weatherLocation={weatherLocation}
         onCreateModal={handleCreateModal}
       />
-      <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+      <Main weatherTemp={temp} onSelectCard={handleSelectedCard} isDay={isDay} weatherForecast={weatherForecast}/>
       <Footer />
       {activeModal === "create" && (
         <ModalWithForm title="New Garment" onClose={handleCloseModal}>
