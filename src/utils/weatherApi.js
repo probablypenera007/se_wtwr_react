@@ -33,10 +33,10 @@ export const parseLocationData = (data) => {
 };
 
 export const parseWeatherForecastData = (data) => {
-    const weather = data.weather;
-    const forecast = weather && weather[0].main.toLowerCase();
-    console.log( "this is current forecast", weather);
-    return forecast;
+  const weather = data.weather;
+  const forecast = weather && weather[0].main.toLowerCase();
+  console.log("this is current forecast", weather);
+  return forecast;
 };
 
 export const parseTimeOfDay = (data) => {
@@ -46,8 +46,7 @@ export const parseTimeOfDay = (data) => {
   const sunset = timeOfDay.sunset * 1000;
   console.log(sunrise, "this is sunrise");
   console.log(sunset, "this is sunset");
-  console.log(timeOfDay, "is this time of day converted??? ")
-
+  console.log(timeOfDay, "is this time of day converted??? ");
 
   if (currentTime > sunrise && currentTime < sunset) {
     return true;
@@ -56,7 +55,7 @@ export const parseTimeOfDay = (data) => {
   }
 };
 
-//export 
+//export
 
 //    "weather": [
 //    {
