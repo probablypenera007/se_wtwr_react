@@ -1,5 +1,5 @@
-const latitude = 14.59;
-const longitude = 120.98;
+const latitude = 47.6061;
+const longitude = -122.33;
 const APIkey = `830c7046b70053a5bb6012f04397d976`;
 
 export const getForecastWeather = () => {
@@ -44,6 +44,10 @@ export const parseTimeOfDay = (data) => {
   const timeOfDay = data.sys;
   const sunrise = timeOfDay.sunrise * 1000;
   const sunset = timeOfDay.sunset * 1000;
+  console.log(sunrise, "this is sunrise");
+  console.log(sunset, "this is sunset");
+  console.log(timeOfDay, "is this time of day converted??? ")
+
 
   if (currentTime > sunrise && currentTime < sunset) {
     return true;
