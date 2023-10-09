@@ -21,7 +21,7 @@ function App() {
   //const weatherTemp = "121541512 ºF";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState(null);
   const [weatherLocation, setWeatherLocation] = useState("");
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
@@ -48,8 +48,8 @@ console.log(currentTempUnit, "app.js current temp")
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
-        const temperature = parseWeatherData(data);
-        setTemp(temperature);
+        const currentWeather = parseWeatherData(data);
+        setTemp(currentWeather);
 
         const location = parseLocationData(data);
         setWeatherLocation(location);
