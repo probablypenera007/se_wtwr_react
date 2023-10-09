@@ -44,7 +44,7 @@ const handleToggleSwitchChange = () => {
   if (currentTempUnit === "C") setCurrentTempUnit("F");
   if (currentTempUnit === "F") setCurrentTempUnit("C");
 }
-console.log(currentTempUnit, "app.js current temp unit")
+console.log(currentTempUnit, "app.js current temp")
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
@@ -70,12 +70,13 @@ console.log(currentTempUnit, "app.js current temp unit")
   console.log(weatherForecast, "this is current weather forecast");
   console.log(isDay, "this is App.js is it day time???");
 
-  return (  
+  return ( 
     <div className="page">
       <CurrentTemperatureUnitContext.Provider value={{currentTempUnit, handleToggleSwitchChange}}>
       <Header
         weatherLocation={weatherLocation}
         onCreateModal={handleCreateModal}
+        temp={temp}
       />
       <Main weatherTemp={temp} onSelectCard={handleSelectedCard} isDay={isDay} weatherForecast={weatherForecast}/>
       <Footer />

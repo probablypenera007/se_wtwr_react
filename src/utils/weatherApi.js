@@ -17,12 +17,16 @@ export const getForecastWeather = () => {
   return weatherApi;
 };
 
+
 export const parseWeatherData = (data) => {
   console.log(data);
   const main = data.main;
-
   const temperature = main && main.temp;
-  console.log("this temperature data", Math.ceil(temperature));
+  const currentWeather ={temperature: {F: Math.round(temperature), C: Math.round((temperature - 32) * 5/9)}}
+  
+// weather.temperature.F = `${Math.round(data.main.temp)}°F`;
+// weather.temperature.C = `${Math.round((data.main.temp - 32) * 5/9)}°C`;
+console.log(currentWeather, "this is current weather celsius and fahrenheit")
   return Math.ceil(temperature);
 };
 
@@ -38,6 +42,8 @@ export const parseWeatherForecastData = (data) => {
   console.log("this is current forecast", weather);
   return forecast;
 };
+
+
 
 export const parseTimeOfDay = (data) => {
   const currentTime = Date.now();
