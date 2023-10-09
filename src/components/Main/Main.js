@@ -21,8 +21,8 @@ function Main({ weatherTemp, onSelectCard, isDay, weatherForecast }) {
     } else if (temp <= 65) {
       return "cold";
     }
-  }, [weatherTemp, temp, currentTempUnit]);
-  console.log(weatherType, "I'm weather type");
+  }, [weatherTemp]);
+  console.log(weatherType, "I'm weather type clothes");
 
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;

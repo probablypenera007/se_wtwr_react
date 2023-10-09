@@ -21,7 +21,7 @@ function App() {
   //const weatherTemp = "121541512 ºF";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [temp, setTemp] = useState(null);
+  const [temp, setTemp] = useState(0);
   const [weatherLocation, setWeatherLocation] = useState("");
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
@@ -44,7 +44,7 @@ const handleToggleSwitchChange = () => {
   if (currentTempUnit === "C") setCurrentTempUnit("F");
   if (currentTempUnit === "F") setCurrentTempUnit("C");
 }
-console.log(currentTempUnit, "app.js current temp")
+console.log(currentTempUnit, "app.js current temp unit")
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
