@@ -15,6 +15,7 @@ import {
   parseWeatherForecastData,
   parseTimeOfDay,
 } from "../../utils/weatherApi";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
   //const weatherTemp = "121541512 ºF";
@@ -24,6 +25,7 @@ function App() {
   const [weatherLocation, setWeatherLocation] = useState("");
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
+ const [currentTempUnit, setCurrentTempUnit] = useState('F');
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -38,6 +40,11 @@ function App() {
     setSelectedCard(card);
   };
 
+const handleToggleSwitchChange = () => {
+  if (currentTempUnit === "C") setCurrentTempUnit("F");
+  if (currentTempUnit === "F") setCurrentTempUnit("C");
+}
+console.log(currentTempUnit, "app.js current temp unit")
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
@@ -63,8 +70,9 @@ function App() {
   console.log(weatherForecast, "this is current weather forecast");
   console.log(isDay, "this is App.js is it day time???");
 
-  return (
+  return (  
     <div className="page">
+      <CurrentTemperatureUnitContext.Provider value={{currentTempUnit, handleToggleSwitchChange}}>
       <Header
         weatherLocation={weatherLocation}
         onCreateModal={handleCreateModal}
@@ -141,6 +149,7 @@ function App() {
       {activeModal === "preview" && (
         <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
       )}
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
