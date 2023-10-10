@@ -48,9 +48,9 @@ console.log(currentTempUnit, "app.js current temp unit")
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
-        const temp = parseWeatherData(data);
-        console.log(temp,"current temperatre in app.js previosuly current weather") 
-        setTemp(temp);
+        const parsedTemp = parseWeatherData(data);
+        console.log(parsedTemp,"current temperatre in app.js previosuly current weather, debug parsedTemp") 
+        setTemp(parsedTemp);
 
         const location = parseLocationData(data);
         setWeatherLocation(location);
