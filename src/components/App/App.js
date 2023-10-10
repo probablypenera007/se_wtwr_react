@@ -44,7 +44,7 @@ function App() {
 
   const onAddItem = (e, values) => {
     e.preventDefault();
-    console.log(e, "Add Item e testing in app.js");
+   // console.log(e, "Add Item e testing in app.js");
     console.log(values, "add item values testing in app.js")
     // console.log(e.target.value, "Add Item test target value")
     //logic for taking the data from the form
