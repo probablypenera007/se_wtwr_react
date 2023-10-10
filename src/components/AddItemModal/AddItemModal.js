@@ -1,9 +1,34 @@
+import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-
 const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
+
+  const handleAddItemNameChange = (e) => {
+    //console.log(e, "this is handle add item name change in additemmodal")
+    console.log(e.target.value, "Add Item test target value");
+    setName(e.target.value);
+  };
+
+  const handleAddItemLinkChange = (e) => {
+    //console.log(e, "this is handle add item name change in additemmodal")
+    console.log(e.target.value, "Add Item test target value");
+    setLink(e.target.value);
+  };
+
+  const handleAddItemSubmit = (e) => {
+    e.preventDefault();
+    onAddItem(e, { name, link });
+  };
+
   return (
-    <ModalWithForm title="New Garment" onClose={handleCloseModal} isOpen={isOpen} onSubmit={onAddItem}>
+    <ModalWithForm
+      title="New Garment"
+      onClose={handleCloseModal}
+      isOpen={isOpen}
+      onSubmit={handleAddItemSubmit}
+    >
       <label className="modal__label">
         Name
         <input
@@ -13,6 +38,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           name="name"
           minLength="1"
           maxLength="30"
+          value={name}
+          onChange={handleAddItemNameChange}
           required
         />
       </label>
@@ -25,6 +52,8 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           name="link"
           minLength="1"
           maxLength="30"
+          value={link}
+          onChange={handleAddItemLinkChange}
           required
         />
       </label>

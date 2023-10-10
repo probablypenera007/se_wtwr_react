@@ -42,9 +42,11 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (e) => {
+  const onAddItem = (e, values) => {
     e.preventDefault();
-    console.log(e, "Add Item success LOOK AT ME!");
+    console.log(e, "Add Item e testing in app.js");
+    console.log(values, "add item values testing in app.js")
+    // console.log(e.target.value, "Add Item test target value")
     //logic for taking the data from the form
   };
 
@@ -52,22 +54,19 @@ function App() {
     if (currentTempUnit === "C") setCurrentTempUnit("F");
     if (currentTempUnit === "F") setCurrentTempUnit("C");
   };
-  console.log(currentTempUnit, "app.js current temp unit");
+
   useEffect(() => {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeatherData(data);
-        console.log(
-          temperature,
-          "current temperatre in app.js previosuly current weather, debug parsedTemp"
-        );
+
         setTemp(temperature);
 
         const location = parseLocationData(data);
         setWeatherLocation(location);
 
         const weatherForecast = parseWeatherForecastData(data);
-        setWeatherForecast(weatherForecast, "what is the weatherForecast");
+        setWeatherForecast(weatherForecast);
 
         const isDay = parseTimeOfDay(data);
         setIsDay(isDay);
@@ -77,10 +76,10 @@ function App() {
     //     console.error("Error:", err);
     //   })
   }, []);
-  console.log(temp, "this is set temp");
-  console.log(weatherLocation, "this is APP.js current location");
-  console.log(weatherForecast, "this is current weather forecast");
-  console.log(isDay, "this is App.js is it day time???");
+  // console.log(temp, "this is set temp");
+  // console.log(weatherLocation, "this is APP.js current location");
+  // console.log(weatherForecast, "this is current weather forecast");
+  // console.log(isDay, "this is App.js is it day time???");
 
   return (
     <div className="page">

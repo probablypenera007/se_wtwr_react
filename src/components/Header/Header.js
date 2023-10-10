@@ -9,14 +9,13 @@ const Header = ({ onCreateModal, weatherLocation }) => {
     month: "long",
     day: "numeric",
   });
-  console.log("Header Here!");
 
   return (
     <header className="header">
       <div className="header__logo">
         <div>
-          <Link to="/" >
-          <img src={wtwrlogo} alt="logo" />
+          <Link to="/">
+            <img src={wtwrlogo} alt="logo" />
           </Link>
         </div>
         <div className="header__date">

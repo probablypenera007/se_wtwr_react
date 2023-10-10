@@ -29,15 +29,8 @@ function Main({ weatherTemp, onSelectCard, isDay, weatherForecast }) {
   }, [currentTempUnit, temp]);
 
   const filteredCards = defaultClothingItems.filter((item) => {
-    console.log(weatherType, "I'm weather type clothes");
     return item.weather.toLowerCase() === weatherType;
   });
-
-  console.log(
-    defaultClothingItems,
-    "check default clothing items value after filter"
-  );
-  console.log(filteredCards, "checking filtered cards after useMemo");
 
   return (
     <main className="main">
