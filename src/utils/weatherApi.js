@@ -1,33 +1,30 @@
-const latitude = 47.6061;
-const longitude = -122.33;
+const latitude = 14.59;
+const longitude = 120.98;
 const APIkey = `830c7046b70053a5bb6012f04397d976`;
 
 export const getForecastWeather = () => {
   const weatherApi = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {
-    if (res.ok) {
+  ).then((res) => {  
       if (res.ok) {
         return res.json();
       } else {
         return Promise.reject(`Error: ${res.status}`);
-      }
-    }
+      }    
   });
-  return weatherApi;
+  return weatherApi; 
 };
 
 
 export const parseWeatherData = (data) => {
-  console.log(data);
   const main = data.main;
   const temperature = main && main.temp;
-  const currentWeather ={temperature: {F: `${Math.round(temperature)}ºF`, C: `${Math.round((temperature - 32) * 5/9)}ºC`}}
+  const weather = {temperature: {F: `${Math.round(temperature)}ºF`, C: `${Math.round((temperature - 32) * 5/9)}ºC`}}
   
 // weather.temperature.F = `${Math.round(data.main.temp)}°F`;
 // weather.temperature.C = `${Math.round((data.main.temp - 32) * 5/9)}°C`;
-console.log(currentWeather, "this is current weather celsius and fahrenheit")
-  return currentWeather;
+console.log(weather, "this is current weather celsius and fahrenheit")
+  return weather;
 };
 
 export const parseLocationData = (data) => {
@@ -39,7 +36,7 @@ export const parseLocationData = (data) => {
 export const parseWeatherForecastData = (data) => {
   const weather = data.weather;
   const forecast = weather && weather[0].main.toLowerCase();
-  console.log("this is current forecast", weather);
+  console.log("this is current forecast", forecast);
   return forecast;
 };
 
