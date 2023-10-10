@@ -12,7 +12,6 @@ function Main({ weatherTemp, onSelectCard, isDay, weatherForecast }) {
   console.log(temp, "check value of temp in main.js before useMemo");
 console.log(defaultClothingItems,"this is default clothing items")
   const weatherType = useMemo(() => {
-    if (currentTempUnit === "F") {
       if (temp >= 86) {
         return "hot";
       } else if (temp >= 66 && temp <= 85) {
@@ -20,18 +19,7 @@ console.log(defaultClothingItems,"this is default clothing items")
       } else if (temp <= 65) {
         return "cold";
       }
-    } else if (currentTempUnit === "C") {
-      if (temp >= 30) {
-        return "hot";
-      } else if (temp >= 18 && temp < 30) {
-        return "warm";
-      } else if (temp < 18) {
-        return "cold";
-      }
-    }
-
-    return "unknown"
-  }, [currentTempUnit, temp]);
+}, [currentTempUnit]);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     console.log(weatherType, "I'm weather type clothes");
