@@ -27,7 +27,7 @@ export const weatherOptions = [
   {
     url: require("../images/day/foggy-day.svg").default,
     day: true,
-    type: "fog",
+    type: "mist",
   },
   {
     url: require("../images/night/perfect-night.svg").default,
