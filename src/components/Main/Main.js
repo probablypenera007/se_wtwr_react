@@ -7,11 +7,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 
 function Main({ weatherTemp, onSelectCard, isDay, weatherForecast }) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log(currentTempUnit, "inside main.js before usememo");
-  console.log(weatherTemp,"weather temp value before temp || 1000, hoping this is not 1000")
   const temp = weatherTemp?.temperature?.[currentTempUnit] || 1000;
-  console.log(temp, "check value of temp in main.js before useMemo");
-console.log(defaultClothingItems,"this is default clothing items")
   const weatherType = useMemo(() => {
       if (temp >= 86) {
         return "hot";
@@ -21,7 +17,7 @@ console.log(defaultClothingItems,"this is default clothing items")
         return "cold";
       }
 
-}, [currentTempUnit]);
+}, [weatherTemp]);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     console.log(weatherType, "I'm weather type clothes");

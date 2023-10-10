@@ -23,7 +23,7 @@ export const parseWeatherData = (data) => {
   
 // weather.temperature.F = `${Math.round(data.main.temp)}°F`;
 // weather.temperature.C = `${Math.round((data.main.temp - 32) * 5/9)}°C`;
-console.log(weather, "this is current weather celsius and fahrenheit")
+console.log(weather, "this is current weather celsius and fahrenheit in weatherApi parse weather data")
   return weather;
 };
 
