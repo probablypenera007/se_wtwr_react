@@ -1,4 +1,3 @@
-
 import { weatherOptions } from "../../utils/WeatherOptions";
 import "./WeatherCard.css";
 import "../App/App";

@@ -1,29 +1,36 @@
-const latitude = 47.60;
+const latitude = 47.6;
 const longitude = -122.33;
 const APIkey = `830c7046b70053a5bb6012f04397d976`;
 
 export const getForecastWeather = () => {
   const weatherApi = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {  
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Error: ${res.status}`);
-      }    
+  ).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Error: ${res.status}`);
+    }
   });
-  return weatherApi; 
+  return weatherApi;
 };
-
 
 export const parseWeatherData = (data) => {
   const main = data.main;
   const temperature = main && main.temp;
-  const weather = {temperature: {F: `${Math.round(temperature)}ºF`, C: `${Math.round((temperature - 32) * 5/9)}ºC`}}
-  
-// weather.temperature.F = `${Math.round(data.main.temp)}°F`;
-// weather.temperature.C = `${Math.round((data.main.temp - 32) * 5/9)}°C`;
-console.log(weather, "this is current weather celsius and fahrenheit in weatherApi parse weather data")
+  const weather = {
+    temperature: {
+      F: `${Math.round(temperature)}ºF`,
+      C: `${Math.round(((temperature - 32) * 5) / 9)}ºC`,
+    },
+  };
+
+  // weather.temperature.F = `${Math.round(data.main.temp)}°F`;
+  // weather.temperature.C = `${Math.round((data.main.temp - 32) * 5/9)}°C`;
+  console.log(
+    weather,
+    "this is current weather celsius and fahrenheit in weatherApi parse weather data"
+  );
   return weather;
 };
 
@@ -39,8 +46,6 @@ export const parseWeatherForecastData = (data) => {
   console.log("this is current forecast", forecast);
   return forecast;
 };
-
-
 
 export const parseTimeOfDay = (data) => {
   const currentTime = Date.now();
