@@ -16,6 +16,8 @@ import {
   parseTimeOfDay,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { Switch, Route } from "react-router-dom/cjs/react-router-dom";
+
 
 function App() {
   //const weatherTemp = "121541512 ºF";
@@ -84,12 +86,17 @@ function App() {
           onCreateModal={handleCreateModal}
           temp={temp}
         />
-        <Main
-          weatherTemp={temp}
-          onSelectCard={handleSelectedCard}
-          isDay={isDay}
-          weatherForecast={weatherForecast}
-        />
+        <Switch>
+          <Route exact path="/">
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              isDay={isDay}
+              weatherForecast={weatherForecast}
+            />
+          </Route>
+          <Route path="/profile">Profile</Route>
+        </Switch>
         <Footer />
         {activeModal === "create" && (
           <ModalWithForm title="New Garment" onClose={handleCloseModal}>
