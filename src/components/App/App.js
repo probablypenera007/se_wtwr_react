@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 //import WeatherCard from '../WeatherCard/WeatherCard';
-import defaultClothingItems from "../../utils/DefaultClothing";
+//import defaultClothingItems from "../../utils/DefaultClothing";
 //import ItemCard from '../ItemCard/ItemCard';
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -29,7 +29,7 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState([defaultClothingItems]);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -37,10 +37,6 @@ function App() {
 
   const handleCloseModal = () => {
     setActiveModal("");
-  };
-
-  const handleOpenModal = () => {
-    setActiveModal("open");
   };
 
   const handleSelectedCard = (card) => {
@@ -56,7 +52,7 @@ function App() {
     };
     //logic for taking the data from the form
     //const setClothingItems = (values);
-
+    
     setClothingItems([newClothes, ...clothingItems]);
 
     handleCloseModal();
@@ -121,8 +117,8 @@ function App() {
             <Profile
               clothingItems={clothingItems}
               onSelectCard={handleSelectedCard}
-              openModal={handleOpenModal}
-            />{" "}
+              onCreateModal={handleCreateModal}
+            />
             hello i'm profile in App.js
           </Route>
         </Switch>
