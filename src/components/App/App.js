@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 //import WeatherCard from '../WeatherCard/WeatherCard';
-//import defaultClothingItems from '../../utils/DefaultClothing';
+import defaultClothingItems from "../../utils/DefaultClothing";
 //import ItemCard from '../ItemCard/ItemCard';
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -18,6 +18,7 @@ import {
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
 
 function App() {
   //const weatherTemp = "121541512 ºF";
@@ -28,7 +29,7 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState([]);
+  const [clothingItems, setClothingItems] = useState([defaultClothingItems]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -38,22 +39,25 @@ function App() {
     setActiveModal("");
   };
 
+  const handleOpenModal = () => {
+    setActiveModal("open");
+  };
+
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   };
 
-  const handleAddItemSubmit = (e, values) => {
-    e.preventDefault();
+  const handleAddItemSubmit = (values) => {
     const newClothes = {
       name: values.name,
       link: values.link,
       weather: values.weather,
-    }
+    };
     //logic for taking the data from the form
     //const setClothingItems = (values);
-    
-    setClothingItems([newClothes, ...clothingItems])
+
+    setClothingItems([newClothes, ...clothingItems]);
 
     handleCloseModal();
   };
@@ -63,9 +67,9 @@ function App() {
     if (currentTempUnit === "F") setCurrentTempUnit("C");
   };
 
-useEffect(() => {
-  console.log(clothingItems, "add item setclothing items testing in app.js")
-}, [clothingItems])
+  useEffect(() => {
+    console.log(clothingItems, "add item setclothing items testing in app.js");
+  }, [clothingItems]);
 
   useEffect(() => {
     getForecastWeather()
@@ -113,7 +117,14 @@ useEffect(() => {
               clothingItems={clothingItems}
             />
           </Route>
-          <Route path="/profile">Profile</Route>
+          <Route path="/profile">
+            <Profile
+              clothingItems={clothingItems}
+              onSelectCard={handleSelectedCard}
+              openModal={handleOpenModal}
+            />{" "}
+            hello i'm profile in App.js
+          </Route>
         </Switch>
         <Footer />
         {activeModal === "create" && (

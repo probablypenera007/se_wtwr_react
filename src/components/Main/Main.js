@@ -28,6 +28,12 @@ function Main({ weatherTemp, onSelectCard, isDay, weatherForecast, clothingItems
     }
   }, [currentTempUnit, temp]);
 
+ // const allClothingItems = [...defaultClothingItems, ...clothingItems];
+
+  // const filteredCards = allClothingItems.filter((item) => {
+  //   return item.weather.toLowerCase() === weatherType;
+  // });
+
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });

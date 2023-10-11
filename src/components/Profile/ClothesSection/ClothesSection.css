@@ -1,0 +1,12 @@
+.clothes__section{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.clothes__section_add-button{
+    background-color: skyblue;
+}
+
+.clothes__section-gallery{
+    display: grid;
+}
