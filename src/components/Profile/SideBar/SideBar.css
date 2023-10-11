@@ -2,9 +2,13 @@
     display: flex;
     margin: 20x;
     font-family: "Cabinet Grotesk",Arial,sans-serif;
+    background-color: lightblue;
 }
 
 .sidebar__content{
+  display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar__name {
@@ -17,5 +21,7 @@
   }
   
   .sidebar__avatar {
-    margin-right: 16px;
+    width: 56px;
+    height: 56px;
+    padding-right: 20px;
   }

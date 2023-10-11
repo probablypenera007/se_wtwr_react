@@ -7,11 +7,13 @@ function Profile({ clothingItems, onSelectCard, onCreateModal }) {
   return (
     <section className="profile">
       <SideBar />
+      <div>
       <ClothesSection
         clothingItems={clothingItems}
         onSelectCard={onSelectCard}
         onCreateModal={onCreateModal}
       />
+      </div>
     </section>
   );
 }
