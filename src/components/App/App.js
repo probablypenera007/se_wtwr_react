@@ -19,6 +19,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
+import * as api from "../../utils/Api";
 
 function App() {
   //const weatherTemp = "121541512 ºF";
@@ -66,8 +67,16 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(clothingItems, "add item setclothing items testing in app.js");
-  }, [clothingItems]);
+    api.getItems()
+    .then((items) => {
+      console.log(items, "mock up server items")
+      setClothingItems(items); 
+    })
+    .catch((err) => {
+      console.error("Error:", err)
+    })
+    //console.log(clothingItems, "add item setclothing items testing in app.js");
+  }, []);
 
   useEffect(() => {
     getForecastWeather()
