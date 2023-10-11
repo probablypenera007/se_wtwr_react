@@ -21,7 +21,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleAddItemRadioWeatherType = (e) => {
     console.log(e.target.value, "Add Item RADIO BUTTON test target value");
-    setSelectedWeatherType(e.taget.value);
+    setSelectedWeatherType(e.target.value);
   }
 
   const handleAddItemSubmit = (e) => {
