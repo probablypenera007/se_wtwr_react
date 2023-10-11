@@ -44,17 +44,19 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddItemSubmit = (values) => {
-    const newClothes = {
-      name: values.name,
-      imageUrl: values.imageUrl,
-      weather: values.weather,
-    };
+  const handleAddItemSubmit = (e, values) => {
+    e.preventDefault();
+    console.log(values, "checking value in app.js add item")
+    // const newClothes = {
+    //   name: values.name,
+    //   imageUrl: values.imageUrl,
+    //   weather: values.weather,
+    // };
     //logic for taking the data from the form
     //const setClothingItems = (values);
     
-    setClothingItems([newClothes, ...clothingItems]);
-
+    //setClothingItems([newClothes, ...clothingItems]);
+    
     handleCloseModal();
   };
 
