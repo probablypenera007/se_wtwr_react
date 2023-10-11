@@ -47,7 +47,7 @@ function App() {
   const handleAddItemSubmit = (values) => {
     const newClothes = {
       name: values.name,
-      link: values.link,
+      imageUrl: values.imageUrl,
       weather: values.weather,
     };
     //logic for taking the data from the form
