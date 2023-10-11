@@ -28,6 +28,7 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -42,18 +43,29 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (e, values) => {
+  const handleAddItemSubmit = (e, values) => {
     e.preventDefault();
-   // console.log(e, "Add Item e testing in app.js");
-    console.log(values, "add item values testing in app.js")
-    // console.log(e.target.value, "Add Item test target value")
+    const newClothes = {
+      name: values.name,
+      link: values.link,
+      weather: values.weather,
+    }
     //logic for taking the data from the form
+    //const setClothingItems = (values);
+    
+    setClothingItems([newClothes, ...clothingItems])
+
+    handleCloseModal();
   };
 
   const handleToggleSwitchChange = () => {
     if (currentTempUnit === "C") setCurrentTempUnit("F");
     if (currentTempUnit === "F") setCurrentTempUnit("C");
   };
+
+useEffect(() => {
+  console.log(clothingItems, "add item setclothing items testing in app.js")
+}, [clothingItems])
 
   useEffect(() => {
     getForecastWeather()
@@ -98,6 +110,7 @@ function App() {
               onSelectCard={handleSelectedCard}
               isDay={isDay}
               weatherForecast={weatherForecast}
+              clothingItems={clothingItems}
             />
           </Route>
           <Route path="/profile">Profile</Route>
@@ -107,7 +120,7 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
           />
         )}
         {activeModal === "preview" && (
