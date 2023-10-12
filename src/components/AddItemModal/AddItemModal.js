@@ -28,7 +28,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     e.preventDefault();
     const newItem = { name, imageUrl, weather };
     onAddItem(newItem);
-    handleCloseModal();
+
   };
 
   return (
