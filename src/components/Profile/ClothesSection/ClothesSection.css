@@ -5,16 +5,19 @@
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
-    margin-left: 116px;
+   /* margin-left: 116px;
+    padding-left: 20px; */
+    margin-left: 20px;
 }
 
 .clothes__section-title {
-    margin-left: 20px;
+    margin-left: 4px;
     color: #000;
     font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
     font-size: 20px;
     font-weight: 700;
-    margin-top: 17px;
+    margin-top: 16px;
+    position: relative;
 }
 
 .clothes__section_add-button {
@@ -25,8 +28,11 @@
     font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
     transition: opacity linear 0.2s 0.1s;
     cursor: pointer;
-    margin-top: -26px;
-    margin-left: -671px;
+   /* margin-top: -26px;
+    margin-left: -671px; */
+    margin-top: 15px;
+    margin-left: 101px;
+    position: absolute;
 }
 
 .clothes__section_add-button:hover {
