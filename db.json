@@ -107,6 +107,12 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0",
       "weather": "cold",
       "_id": 20
+    },
+    {
+      "name": "loafers test",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Loafers.png?etag=dc2d6e1ca7b297597406e35c40aef030",
+      "weather": "hot",
+      "_id": 21
     }
   ]
 }
