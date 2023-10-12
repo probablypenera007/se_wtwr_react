@@ -29,6 +29,13 @@ export function addItem(item) {
   }).then(checkResponse);
 }
 
+
+// function request(url, options) {
+//   return fetch(url, options).then(checkResponse)
+// }
+
+
+
 export function deleteItem(itemId) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",

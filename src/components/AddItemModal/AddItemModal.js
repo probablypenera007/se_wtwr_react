@@ -5,7 +5,22 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setimageUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
-  //  const []
+  
+  // export function useForm(inputValues) { WILL UPDATE
+  //   const [values, setValues] = useState(inputValues);
+  
+  //   const handleChange = (event) => {
+  //     const {value, name} = event.target;
+  //     setValues({...values, [name]: value});
+  //   };
+  //   return {values, handleChange, setValues};
+  // }
+
+
+//const {values, handleChange, setValues} = useForm({})
+
+
+  
 
   const handleAddItemNameChange = (e) => {
     //console.log(e, "this is handle add item name change in additemmodal")

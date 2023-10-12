@@ -47,6 +47,23 @@ function App() {
     setActiveModal("");
   };
 
+  // useEffect(() => {
+
+  //   if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+
+  //   const handleEscClose = (e) => {  // define the function inside useEffect not to lose the reference on rerendering
+  //     if (e.key === "Escape") {
+  //       handleCloseModal();
+  //     }
+  //   };
+
+  //   document.addEventListener("keydown", handleEscClose);
+
+  //   return () => {  // don't forget to add a clean up function for removing the listener
+  //     document.removeEventListener("keydown", handleEscClose);
+  //   };
+  // }, [activeModal]);  // watch activeModal here
+
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
@@ -55,6 +72,12 @@ function App() {
 
   const handleAddItemSubmit = (newItem) => {
     // e.preventDefault();
+
+  //  const [isLoading, setIsLoading] = React.useState(false);
+
+  //buttonText={isLoading? 'Saving...' : 'Save'}
+
+
     api
       .addItem(newItem)
       .then((addedItem) => {
@@ -70,6 +93,31 @@ function App() {
         console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
       });
   };
+
+  // function handleSubmit(request) {  WILL UPDATE
+  //   // start loading
+  //   setIsLoading(true);
+  //   request()
+  //     // we need to close only in `then`
+  //     .then(closeAllPopups)
+  //     // we need to catch possible errors
+  //     // console.error is used to handle errors if you don’t have any other ways for that
+  //     .catch(console.error)
+  //     // and in finally we need to stop loading
+  //     .finally(() => setIsLoading(false));
+  // }
+
+ // here is an example
+//  function handleProfileFormSubmit(inputValues) {
+//   // here we create a function that returns a promise 
+//   function makeRequest() {
+//     // `return` lets us use a promise chain `then, catch, finally`
+//     return api.editProfile(inputValues).then(setCurrentUser);
+//   }
+//   // here we call handleSubmit passing the request
+//   handleSubmit(makeRequest);
+// }
+
 
   const handleDeleteCard = (card) => {
     api
