@@ -29,7 +29,7 @@ function App() {
   const [weatherLocation, setWeatherLocation] = useState("");
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([
     {
       _id: 0,
@@ -89,8 +89,8 @@ function App() {
   };
 
   const handleToggleSwitchChange = () => {
-    if (currentTempUnit === "C") setCurrentTempUnit("F");
-    if (currentTempUnit === "F") setCurrentTempUnit("C");
+    if (currentTemperatureUnit === "C") setCurrentTempUnit("F");
+    if (currentTemperatureUnit === "F") setCurrentTempUnit("C");
   };
 
   useEffect(() => {
@@ -135,7 +135,7 @@ function App() {
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
-        value={{ currentTempUnit, handleToggleSwitchChange }}
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header
           weatherLocation={weatherLocation}
