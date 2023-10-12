@@ -1,28 +1,27 @@
-.sidebar{
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    font-family: "Cabinet Grotesk",Arial,sans-serif;
-    background-color: lightblue;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
 }
 
-.sidebar__content{
+.sidebar__content {
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar__name {
-    font-family: "Cabinet Grotesk", sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    margin: 0;
-    white-space: nowrap;
-  }
-  
-  .sidebar__avatar {
-    width: 56px;
-    height: 56px;
-    padding-right: 20px;
-  }
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  padding-right: 20px;
+}

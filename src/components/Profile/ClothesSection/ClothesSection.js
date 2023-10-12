@@ -10,8 +10,9 @@ const ClothesSection = ({ clothingItems, onSelectCard, onCreateModal }) => {
         type="button"
         onClick={onCreateModal}
       >
-        + add items
+        + Add items
       </button>
+
       <ul className="clothes__section-gallery">
         {clothingItems.map((item) => {
           return (

@@ -36,7 +36,7 @@ function App() {
       name: "",
       weather: "",
       imageUrl: "",
-    }
+    },
   ]);
 
   const handleCreateModal = () => {
@@ -50,15 +50,14 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log(card, "check value of card if ID is present")
+    console.log(card, "check value of card if ID is present");
   };
 
   const handleAddItemSubmit = (newItem) => {
     // e.preventDefault();
-     api
+    api
       .addItem(newItem)
       .then((addedItem) => {
-
         if (addedItem) {
           //logic for taking the data from the form
           //const setClothingItems = (values);
@@ -70,24 +69,24 @@ function App() {
       .catch((err) => {
         console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
       });
- };
+  };
 
-
-const handleDeleteCard = (card) => {
-  api.deleteItem(card._id) 
-    .then(() => {
-      console.log(card._id, "card.id value check DELETE CARD")
-      const updatedItems = clothingItems.filter(item => item._id !== card._id);
-      setClothingItems(updatedItems);
-      setSelectedCard({});
-      handleCloseModal();
-    })
-    .catch(err => {
-      console.error("Error: DELETE ITEM IS NOT WORKING!!!", err);
-    });
-};
-
-
+  const handleDeleteCard = (card) => {
+    api
+      .deleteItem(card._id)
+      .then(() => {
+        console.log(card._id, "card.id value check DELETE CARD");
+        const updatedItems = clothingItems.filter(
+          (item) => item._id !== card._id
+        );
+        setClothingItems(updatedItems);
+        setSelectedCard({});
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error("Error: DELETE ITEM IS NOT WORKING!!!", err);
+      });
+  };
 
   const handleToggleSwitchChange = () => {
     if (currentTempUnit === "C") setCurrentTempUnit("F");
@@ -95,14 +94,15 @@ const handleDeleteCard = (card) => {
   };
 
   useEffect(() => {
-    api.getItems()
-    .then((items) => {
-      console.log(items, "mock up server items")
-      setClothingItems(items); 
-    })
-    .catch((err) => {
-      console.error("Error:", err)
-    })
+    api
+      .getItems()
+      .then((items) => {
+        console.log(items, "mock up server items");
+        setClothingItems(items);
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
     //console.log(clothingItems, "add item setclothing items testing in app.js");
   }, []);
 
@@ -130,7 +130,7 @@ const handleDeleteCard = (card) => {
   // console.log(temp, "this is set temp");
   // console.log(weatherLocation, "this is APP.js current location");
   // console.log(weatherForecast, "this is current weather forecast");
-   console.log(isDay, "this is App.js is it day time???");
+  console.log(isDay, "this is App.js is it day time???");
 
   return (
     <div className="page">
@@ -158,7 +158,6 @@ const handleDeleteCard = (card) => {
               onSelectCard={handleSelectedCard}
               onCreateModal={handleCreateModal}
             />
-  
           </Route>
         </Switch>
         <Footer />
@@ -170,7 +169,11 @@ const handleDeleteCard = (card) => {
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} onDeleteCard={handleDeleteCard} />
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            onDeleteCard={handleDeleteCard}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

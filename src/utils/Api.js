@@ -1,25 +1,22 @@
 // import React from "react";
 
-const baseUrl = 'http://localhost:3001';
+const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
-    if(res.ok) {
-        return res.json();
-    } else {
-        return Promise.reject(`Error: ${res.status}`)
-    } 
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(`Error: ${res.status}`);
+  }
 }
-
 
 // GET https://localhost:3001/items
 export function getItems() {
-    return fetch(`${baseUrl}/items`)
-    .then(checkResponse);
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
-// Export the contents of api.js to the App component. 
+// Export the contents of api.js to the App component.
 // Modify the corresponding Effect hook to add the items
 //  to the application state from the server
-
 
 // POST https://localhost:3001/items
 export function addItem(item) {
@@ -28,24 +25,22 @@ export function addItem(item) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(item)
-    
+    body: JSON.stringify(item),
   }).then(checkResponse);
 }
 
 export function deleteItem(itemId) {
-    return fetch(`${baseUrl}/items/${itemId}`, {
-      method: 'DELETE',
-    })
-      .then(checkResponse)
-      .catch((err) => {
-        console.error(`Error DELETING: ${itemId}`, err);
-      });
-  }
+  return fetch(`${baseUrl}/items/${itemId}`, {
+    method: "DELETE",
+  })
+    .then(checkResponse)
+    .catch((err) => {
+      console.error(`Error DELETING: ${itemId}`, err);
+    });
+}
 
-// Pass name, imageUrl, and weather to the request body. 
+// Pass name, imageUrl, and weather to the request body.
 // Modify the corresponding handler for adding a new item in App.js.
-
 
 // DELETE https://localhost:3001/items/:id
 
@@ -69,19 +64,19 @@ export function deleteItem(itemId) {
 //       return Promise.reject(`'Error:' ${res.status}`)
 //     }
 //   }
-  
+
 //     getUserInfo() {
 //       return fetch(`${this._baseUrl}/users/me`, {
 //         headers: this._headers,
 //         }).then(this._checkResponse);
 //       }
-  
+
 //    getInitialCards() {
 //       return fetch(`${this._baseUrl}/cards`, {
 //         headers: this._headers,
 //         }).then(this._checkResponse);
 //       }
-  
+
 //     createCard({ name, link }) {
 //       return fetch(`${this._baseUrl}/cards`, {
 //         method: "POST",
@@ -89,8 +84,7 @@ export function deleteItem(itemId) {
 //         headers: this._headers,
 //       }).then(this._checkResponse);
 //     }
-  
-  
+
 //     updateEditProfile({ name, about }) {
 //       return fetch(`${this._baseUrl}/users/me`, {
 //         method: "PATCH",
@@ -98,28 +92,28 @@ export function deleteItem(itemId) {
 //         headers: this._headers,
 //         }).then(this._checkResponse);
 //       }
-  
+
 //     deleteCard(cardId) {
 //       return fetch(`${this._baseUrl}/cards/${cardId}`, {
 //         method: "DELETE",
 //         headers: this._headers,
 //         }).then(this._checkResponse);
 //       }
-  
+
 //     likeCard(cardId) {
 //       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 //         method: "PUT",
 //         headers: this._headers,
 //         }).then(this._checkResponse);
 //       }
-  
+
 //     unlikeCard(cardId) {
 //       return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
 //         method: "DELETE",
 //         headers: this._headers,
 //         }).then(this._checkResponse);
 //       }
-      
+
 //     updateAvatar(updatedAvatar) {
 //       return fetch(`${this._baseUrl}/users/me/avatar`, {
 //         method: "PATCH",
