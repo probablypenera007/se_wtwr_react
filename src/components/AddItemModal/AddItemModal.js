@@ -5,7 +5,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setimageUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
-//  const []
+  //  const []
 
   const handleAddItemNameChange = (e) => {
     //console.log(e, "this is handle add item name change in additemmodal")
@@ -22,7 +22,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const handleAddItemRadioWeatherType = (e) => {
     console.log(e.target.value, "Add Item RADIO BUTTON test target value");
     setSelectedWeatherType(e.target.value);
-  }
+  };
 
   const handleAddItemSubmit = (e) => {
     e.preventDefault();

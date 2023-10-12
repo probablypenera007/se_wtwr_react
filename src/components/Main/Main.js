@@ -5,7 +5,13 @@ import "./Main.css";
 import { useMemo, useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherTemp, onSelectCard, isDay, weatherForecast, clothingItems }) {
+function Main({
+  weatherTemp,
+  onSelectCard,
+  isDay,
+  weatherForecast,
+  clothingItems,
+}) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTempUnit] || 1000;
   const weatherType = useMemo(() => {
@@ -28,8 +34,7 @@ function Main({ weatherTemp, onSelectCard, isDay, weatherForecast, clothingItems
     }
   }, [currentTempUnit, temp]);
 
- // const allClothingItems = [...defaultClothingItems, ...clothingItems];
-
+  // const allClothingItems = [...defaultClothingItems, ...clothingItems];
   // const filteredCards = allClothingItems.filter((item) => {
   //   return item.weather.toLowerCase() === weatherType;
   // });
@@ -38,9 +43,9 @@ function Main({ weatherTemp, onSelectCard, isDay, weatherForecast, clothingItems
     return item.weather.toLowerCase() === weatherType;
   });
 
-//  const filteredClothingItems = clothingItems.filter((item) => {
-//    return item.weather.toLowerCase() === weatherType;
-//  });
+  //  const filteredClothingItems = clothingItems.filter((item) => {
+  //    return item.weather.toLowerCase() === weatherType;
+  //  });
 
   return (
     <main className="main">

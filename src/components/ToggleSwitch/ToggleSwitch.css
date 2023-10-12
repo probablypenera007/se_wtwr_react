@@ -8,10 +8,10 @@
 
 .switch:hover {
     color: #000;
-  }
+}
 
 .switch__box {
-    margin:0;
+    margin: 0;
     border-radius: 24px;
     border: 2px solid #7e7e7e;
     width: 56px;
@@ -23,7 +23,7 @@
 
 .switch__box:hover {
     border-color: #000;
-  }
+}
 
 .switch__slider {
     border-radius: 20px;
@@ -38,14 +38,13 @@
 
 .switch__slider:hover {
     width: 30px;
-  }
+}
 
 .switch__slider-F {
     top: 0;
     left: 0;
     color: rgba(0, 0, 0, 0.50);
 }
-
 
 .switch__slider-C {
     top: 0;
@@ -63,7 +62,7 @@
     font-size: 14px;
     top: 5px;
     left: 12px;
-   
+
 }
 
 .switch__temp-C {
@@ -72,5 +71,4 @@
     font-size: 14px;
     top: 5px;
     left: 37px;
-   
 }
