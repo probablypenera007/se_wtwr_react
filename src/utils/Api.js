@@ -30,7 +30,7 @@ export function addItem(item) {
 }
 
 
-// function request(url, options) {
+// function request(url, options) {    WILL UPDATE
 //   return fetch(url, options).then(checkResponse)
 // }
 

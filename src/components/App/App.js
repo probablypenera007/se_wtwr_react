@@ -73,10 +73,9 @@ function App() {
   const handleAddItemSubmit = (newItem) => {
     // e.preventDefault();
 
-  //  const [isLoading, setIsLoading] = React.useState(false);
+    //  const [isLoading, setIsLoading] = React.useState(false);
 
-  //buttonText={isLoading? 'Saving...' : 'Save'}
-
+    //buttonText={isLoading? 'Saving...' : 'Save'}
 
     api
       .addItem(newItem)
@@ -107,17 +106,16 @@ function App() {
   //     .finally(() => setIsLoading(false));
   // }
 
- // here is an example
-//  function handleProfileFormSubmit(inputValues) {
-//   // here we create a function that returns a promise 
-//   function makeRequest() {
-//     // `return` lets us use a promise chain `then, catch, finally`
-//     return api.editProfile(inputValues).then(setCurrentUser);
-//   }
-//   // here we call handleSubmit passing the request
-//   handleSubmit(makeRequest);
-// }
-
+  // here is an example
+  //  function handleProfileFormSubmit(inputValues) {
+  //   // here we create a function that returns a promise
+  //   function makeRequest() {
+  //     // `return` lets us use a promise chain `then, catch, finally`
+  //     return api.editProfile(inputValues).then(setCurrentUser);
+  //   }
+  //   // here we call handleSubmit passing the request
+  //   handleSubmit(makeRequest);
+  // }
 
   const handleDeleteCard = (card) => {
     api
