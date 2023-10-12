@@ -22,13 +22,17 @@ export function getItems() {
 
 
 // POST https://localhost:3001/items
-export function addItem(item) {
+export function addItem(items) {
   return fetch(`${baseUrl}/items`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-        'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(item),
+    body: JSON.stringify({
+      name: items.name,
+      weather: items.weather,
+      imageUrl: items.imageUrl,
+    }),
   }).then(checkResponse);
 }
 
@@ -38,7 +42,7 @@ export function deleteItem(itemId) {
     })
       .then(checkResponse)
       .catch((err) => {
-        console.error(`Error deleting item with ID ${itemId}:`, err);
+        console.error(`Error DELETING: ${itemId}`, err);
       });
   }
 

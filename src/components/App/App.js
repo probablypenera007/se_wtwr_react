@@ -58,6 +58,7 @@ function App() {
      api
       .addItem(newItem)
       .then((addedItem) => {
+
         if (addedItem) {
           //logic for taking the data from the form
           //const setClothingItems = (values);
@@ -65,6 +66,7 @@ function App() {
           setSelectedCard({});
           handleCloseModal();
         }
+        return addedItem;
       })
       .catch((err) => {
         console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
@@ -157,7 +159,7 @@ const handleDeleteCard = (card) => {
               onSelectCard={handleSelectedCard}
               onCreateModal={handleCreateModal}
             />
-            hello i'm profile in App.js
+  
           </Route>
         </Switch>
         <Footer />

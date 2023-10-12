@@ -38,3 +38,20 @@
     margin-bottom: 28px;
     margin-left: 32px;
 }
+
+.button__delete-preview {
+    position: absolute;
+    color: red;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+    transition: opacity linear 0.2s 0.1s;
+    cursor: pointer;
+    bottom: 68px;
+    right: 39px;
+}
+
+.button__delete-preview:hover {
+    opacity: .6;
+}
