@@ -33,7 +33,12 @@
 .header__name, .header__name:link, .header__name:visited {
   text-decoration: none ;
   color: #000; 
+  transition: opacity linear 0.2s 0.1s;
   cursor: pointer;
+}
+
+.header__name:hover{
+  opacity: .6;
 }
 
 .header__avatar-logo {
