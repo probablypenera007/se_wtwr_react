@@ -52,7 +52,7 @@ function Main({
       <WeatherCard day={isDay} type={weatherForecast} weatherTemp={temp} />
       <section className="card__section">
         <p className="card__section-title">
-          Today is {temp} / You may want to wear:
+          Today is {temp} º{currentTempUnit} / You may want to wear:
         </p>
         <div className="card__items">
           {filteredCards.map((item) => {
