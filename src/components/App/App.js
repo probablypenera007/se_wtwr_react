@@ -130,7 +130,7 @@ function App() {
   // console.log(temp, "this is set temp");
   // console.log(weatherLocation, "this is APP.js current location");
   // console.log(weatherForecast, "this is current weather forecast");
-  console.log(isDay, "this is App.js is it day time???");
+  //console.log(isDay, "this is App.js is it day time???");
 
   return (
     <div className="page">

@@ -30,14 +30,26 @@
   opacity: .6;
 }
 
-.header__name, .header__name:link, .header__name:visited {
-  color: #000; 
+.header__name,
+.header__name:link,
+.header__name:visited {
+  color: #000;
   transition: opacity linear 0.2s 0.1s;
   cursor: pointer;
   text-decoration: none;
 }
 
-.header__name:hover{
+.link__container {
+  text-decoration: none;
+  color: #000;
+}
+
+.link__container a {
+  text-decoration: none;
+  color: #000;
+}
+
+.header__name:hover {
   opacity: .6;
 }
 
