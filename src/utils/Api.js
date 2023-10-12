@@ -22,17 +22,14 @@ export function getItems() {
 
 
 // POST https://localhost:3001/items
-export function addItem(items) {
+export function addItem(item) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      name: items.name,
-      weather: items.weather,
-      imageUrl: items.imageUrl,
-    }),
+    body: JSON.stringify(item)
+    
   }).then(checkResponse);
 }
 

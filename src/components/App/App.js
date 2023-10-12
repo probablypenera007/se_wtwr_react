@@ -62,11 +62,10 @@ function App() {
         if (addedItem) {
           //logic for taking the data from the form
           //const setClothingItems = (values);
-          setClothingItems([newItem, ...clothingItems]);
+          setClothingItems([addedItem, ...clothingItems]);
           setSelectedCard({});
           handleCloseModal();
         }
-        return addedItem;
       })
       .catch((err) => {
         console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
