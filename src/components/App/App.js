@@ -148,9 +148,7 @@ function App() {
         console.log(items, "mock up server items");
         setClothingItems(items);
       })
-      .catch((err) => {
-        console.error("Error:", err);
-      });
+      .catch(console.error);
     //console.log(clothingItems, "add item setclothing items testing in app.js");
   }, []);
 
