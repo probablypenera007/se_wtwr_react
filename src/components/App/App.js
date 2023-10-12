@@ -30,7 +30,14 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState([]);
+  const [clothingItems, setClothingItems] = useState([
+    {
+      _id: 0,
+      name: "",
+      weather: "",
+      imageUrl: "",
+    }
+  ]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -43,23 +50,43 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+    console.log(card, "check value of card if ID is present")
   };
 
   const handleAddItemSubmit = (newItem) => {
-   // e.preventDefault();
-    console.log(newItem, "checking value in app.js add item submit")
-    // const newClothes = {
-    //   name: values.name,
-    //   imageUrl: values.imageUrl,
-    //   weather: values.weather,
-    // };
-    //logic for taking the data from the form
-    //const setClothingItems = (values);
-    
-    setClothingItems([newItem, ...clothingItems]);
-    
-    setSelectedCard({});
-  };
+    // e.preventDefault();
+     api
+      .addItem(newItem)
+      .then((addedItem) => {
+        if (addedItem) {
+          //logic for taking the data from the form
+          //const setClothingItems = (values);
+          setClothingItems([newItem, ...clothingItems]);
+          setSelectedCard({});
+          handleCloseModal();
+        }
+      })
+      .catch((err) => {
+        console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
+      });
+ };
+
+
+const handleDeleteCard = (card) => {
+  api.deleteItem(card._id) 
+    .then(() => {
+      console.log(card._id, "card.id value check DELETE CARD")
+      const updatedItems = clothingItems.filter(item => item._id !== card._id);
+      setClothingItems(updatedItems);
+      setSelectedCard({});
+      handleCloseModal();
+    })
+    .catch(err => {
+      console.error("Error: DELETE ITEM IS NOT WORKING!!!", err);
+    });
+};
+
+
 
   const handleToggleSwitchChange = () => {
     if (currentTempUnit === "C") setCurrentTempUnit("F");
@@ -102,7 +129,7 @@ function App() {
   // console.log(temp, "this is set temp");
   // console.log(weatherLocation, "this is APP.js current location");
   // console.log(weatherForecast, "this is current weather forecast");
-  // console.log(isDay, "this is App.js is it day time???");
+   console.log(isDay, "this is App.js is it day time???");
 
   return (
     <div className="page">
@@ -142,7 +169,7 @@ function App() {
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} onDeleteCard={handleDeleteCard} />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

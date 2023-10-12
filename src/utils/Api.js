@@ -22,6 +22,26 @@ export function getItems() {
 
 
 // POST https://localhost:3001/items
+export function addItem(item) {
+  return fetch(`${baseUrl}/items`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(item),
+  }).then(checkResponse);
+}
+
+export function deleteItem(itemId) {
+    return fetch(`${baseUrl}/items/${itemId}`, {
+      method: 'DELETE',
+    })
+      .then(checkResponse)
+      .catch((err) => {
+        console.error(`Error deleting item with ID ${itemId}:`, err);
+      });
+  }
+
 // Pass name, imageUrl, and weather to the request body. 
 // Modify the corresponding handler for adding a new item in App.js.
 
@@ -34,6 +54,13 @@ export function getItems() {
 //       this._baseUrl = baseUrl;
 //       this._headers = headers;
 //     }
+// const api = new Api({
+//     baseUrl: "https://around-api.en.tripleten-services.com/v1",
+//     headers: {
+//       authorization: "b6ce0d00-402e-481d-9dba-ef02482eb8ce",
+//       "Content-Type": "application/json",
+//     },
+//   });
 //   _checkResponse(res){
 //     if (res.ok) {
 //       return res.json();
