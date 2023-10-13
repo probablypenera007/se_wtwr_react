@@ -20,6 +20,8 @@ import { Switch, Route } from "react-router-dom/cjs/react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import * as api from "../../utils/Api";
+//json-server --watch db.json --id _id --port 3001   REFERENCE FOR RUNNING DB
+
 
 function App() {
   //const weatherTemp = "121541512 ºF";
@@ -30,6 +32,8 @@ function App() {
   const [weatherForecast, setWeatherForecast] = useState("");
   const [isDay, setIsDay] = useState(true);
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
+  const [isLoading, setIsLoading] = useState(false);
+//  const [currentUser, setCurrentUser] = useState("");
   const [clothingItems, setClothingItems] = useState([
     {
       _id: 0,
@@ -70,19 +74,25 @@ function App() {
     console.log(card, "check value of card if ID is present");
   };
 
+  // const handleSubmit = (request) => {
+  //   setIsLoading(true);
+
+  //   request
+  //   .then(() => {
+
+  //   })
+
+  // }
+
   const handleAddItemSubmit = (newItem) => {
-    // e.preventDefault();
-
-    //  const [isLoading, setIsLoading] = React.useState(false);
-
-    //buttonText={isLoading? 'Saving...' : 'Save'}
+    setIsLoading(true);
+   // const  buttonText={isLoading? 'Saving...' : 'Save'}
 
     api
       .addItem(newItem)
       .then((addedItem) => {
         if (addedItem) {
           //logic for taking the data from the form
-          //const setClothingItems = (values);
           setClothingItems([addedItem, ...clothingItems]);
           setSelectedCard({});
           handleCloseModal();
@@ -90,23 +100,26 @@ function App() {
       })
       .catch((err) => {
         console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
-  // function handleSubmit(request) {  WILL UPDATE
-  //   // start loading
-  //   setIsLoading(true);
-  //   request()
-  //     // we need to close only in `then`
-  //     .then(closeAllPopups)
-  //     // we need to catch possible errors
-  //     // console.error is used to handle errors if you don’t have any other ways for that
-  //     .catch(console.error)
-  //     // and in finally we need to stop loading
-  //     .finally(() => setIsLoading(false));
-  // }
+  function handleSubmit(request) { 
+    // start loading
+    setIsLoading(true);
+    request()
+      // we need to close only in `then`
+      .then(handleCloseModal)
+      // we need to catch possible errors
+      // console.error is used to handle errors if you don’t have any other ways for that
+      .catch(console.error)
+      // and in finally we need to stop loading
+      .finally(() => setIsLoading(false));
+  }
 
-  // here is an example
+
   //  function handleProfileFormSubmit(inputValues) {
   //   // here we create a function that returns a promise
   //   function makeRequest() {
@@ -210,6 +223,8 @@ function App() {
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
             onAddItem={handleAddItemSubmit}
+            isLoading={isLoading}
+            handleSubmit={handleSubmit}
           />
         )}
         {activeModal === "preview" && (
