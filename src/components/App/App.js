@@ -22,7 +22,6 @@ import Profile from "../Profile/Profile";
 import * as api from "../../utils/Api";
 //json-server --watch db.json --id _id --port 3001   REFERENCE FOR RUNNING DB
 
-
 function App() {
   //const weatherTemp = "121541512 ºF";
   const [activeModal, setActiveModal] = useState("");
@@ -33,15 +32,7 @@ function App() {
   const [isDay, setIsDay] = useState(true);
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [isLoading, setIsLoading] = useState(false);
-//  const [currentUser, setCurrentUser] = useState("");
-  const [clothingItems, setClothingItems] = useState([
-    {
-      _id: 0,
-      name: "",
-      weather: "",
-      imageUrl: "",
-    },
-  ]);
+  const [clothingItems, setClothingItems] = useState([{}]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -51,74 +42,48 @@ function App() {
     setActiveModal("");
   };
 
-  // useEffect(() => {
-
-  //   if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
-
-  //   const handleEscClose = (e) => {  // define the function inside useEffect not to lose the reference on rerendering
-  //     if (e.key === "Escape") {
-  //       handleCloseModal();
-  //     }
-  //   };
-
-  //   document.addEventListener("keydown", handleEscClose);
-
-  //   return () => {  // don't forget to add a clean up function for removing the listener
-  //     document.removeEventListener("keydown", handleEscClose);
-  //   };
-  // }, [activeModal]);  // watch activeModal here
-
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
     console.log(card, "check value of card if ID is present");
   };
 
-  // const handleSubmit = (request) => {
-  //   setIsLoading(true);
-
-  //   request
-  //   .then(() => {
-
-  //   })
-
-  // }
-
-  const handleAddItemSubmit = (newItem) => {
-    setIsLoading(true);
-   // const  buttonText={isLoading? 'Saving...' : 'Save'}
-
-    api
-      .addItem(newItem)
-      .then((addedItem) => {
-        if (addedItem) {
-          //logic for taking the data from the form
-          setClothingItems([addedItem, ...clothingItems]);
-          setSelectedCard({});
-          handleCloseModal();
-        }
-      })
-      .catch((err) => {
-        console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
-  function handleSubmit(request) { 
-    // start loading
+  function handleSubmit(request) {
     setIsLoading(true);
     request()
-      // we need to close only in `then`
       .then(handleCloseModal)
-      // we need to catch possible errors
-      // console.error is used to handle errors if you don’t have any other ways for that
       .catch(console.error)
-      // and in finally we need to stop loading
       .finally(() => setIsLoading(false));
   }
 
+  const handleAddItemSubmit = (newItem) => {
+    //   setIsLoading(true);
+    //  // const  buttonText={isLoading? 'Saving...' : 'Save'}
+    //   api
+    //     .addItem(newItem)
+    //     .then((addedItem) => {
+    //       if (addedItem) {
+    //         //logic for taking the data from the form
+    //         setClothingItems([addedItem, ...clothingItems]);
+    //         setSelectedCard({});
+    //         handleCloseModal();
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
+    //     })
+    //     .finally(() => {
+    //       setIsLoading(false);
+    //     });
+    function requestAddItem() {
+      return api.addItem(newItem).then((addedItem) => {
+        if (addedItem) {
+          setClothingItems([addedItem, ...clothingItems]);
+        }
+      });
+    }
+    handleSubmit(requestAddItem);
+  };
 
   //  function handleProfileFormSubmit(inputValues) {
   //   // here we create a function that returns a promise
@@ -131,20 +96,30 @@ function App() {
   // }
 
   const handleDeleteCard = (card) => {
-    api
-      .deleteItem(card._id)
-      .then(() => {
+    // api
+    //   .deleteItem(card._id)
+    //   .then(() => {
+    //     console.log(card._id, "card.id value check DELETE CARD");
+    //     const updatedItems = clothingItems.filter(
+    //       (item) => item._id !== card._id
+    //     );
+    //     setClothingItems(updatedItems);
+    //     setSelectedCard({});
+    //     handleCloseModal();
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error: DELETE ITEM IS NOT WORKING!!!", err);
+    //   });
+    function requestDeleteItem() {
+      return api.deleteItem(card._id).then(() => {
         console.log(card._id, "card.id value check DELETE CARD");
         const updatedItems = clothingItems.filter(
           (item) => item._id !== card._id
         );
         setClothingItems(updatedItems);
-        setSelectedCard({});
-        handleCloseModal();
-      })
-      .catch((err) => {
-        console.error("Error: DELETE ITEM IS NOT WORKING!!!", err);
       });
+    }
+    handleSubmit(requestDeleteItem);
   };
 
   const handleToggleSwitchChange = () => {
@@ -153,10 +128,22 @@ function App() {
   };
 
   useEffect(() => {
+    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]); // watch activeModal here
+
+  useEffect(() => {
     api
       .getItems()
       .then((items) => {
-        console.log(items, "mock up server items");
         setClothingItems(items);
       })
       .catch(console.error);
@@ -167,22 +154,15 @@ function App() {
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeatherData(data);
-
         setTemp(temperature);
-
         const location = parseLocationData(data);
         setWeatherLocation(location);
-
         const weatherForecast = parseWeatherForecastData(data);
         setWeatherForecast(weatherForecast);
-
         const isDay = parseTimeOfDay(data);
         setIsDay(isDay);
       })
       .catch(console.error);
-    //   .cactch((err) => {
-    //     console.error("Error:", err);
-    //   })
   }, []);
   //  console.log(temp, "this is set temp");
   //  console.log(weatherLocation, "this is APP.js current location");
@@ -223,7 +203,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
             onAddItem={handleAddItemSubmit}
-            isLoading={isLoading}
+            buttonText={isLoading ? "Saving..." : "Add Garment"}
             handleSubmit={handleSubmit}
           />
         )}
@@ -232,6 +212,7 @@ function App() {
             selectedCard={selectedCard}
             onClose={handleCloseModal}
             onDeleteCard={handleDeleteCard}
+            buttonText={isLoading ? "Deleting..." : "Delete Item"}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

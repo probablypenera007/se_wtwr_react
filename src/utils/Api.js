@@ -10,6 +10,10 @@ export function checkResponse(res) {
   }
 }
 
+export const request = (url, options) => {
+  return fetch(url, options).then(checkResponse)
+}
+
 // GET https://localhost:3001/items
 export function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
