@@ -121,34 +121,10 @@
       "_id": 24
     },
     {
-      "name": "Eilane",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-      "weather": "cold",
-      "_id": 25
-    },
-    {
       "name": "test isloading",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-      "weather": "cold",
-      "_id": 26
-    },
-    {
-      "name": "test",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
       "weather": "hot",
-      "_id": 29
-    },
-    {
-      "name": "test",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-      "weather": "cold",
-      "_id": 30
-    },
-    {
-      "name": "test",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-      "weather": "cold",
-      "_id": 34
+      "_id": 25
     }
   ]
 }

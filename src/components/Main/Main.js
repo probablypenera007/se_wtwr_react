@@ -1,6 +1,5 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-//import defaultClothingItems from "../../utils/DefaultClothing";
 import "./Main.css";
 import { useMemo, useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -34,18 +33,11 @@ function Main({
     }
   }, [currentTemperatureUnit, temp]);
 
-  // const allClothingItems = [...defaultClothingItems, ...clothingItems];
-  // const filteredCards = allClothingItems.filter((item) => {
-  //   return item.weather.toLowerCase() === weatherType;
-  // });
-
   const filteredCards = clothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
+    // const weather = item.weather;
+    // return weather && typeof weather === 'string' && weather.toLowerCase() === weatherType;
   });
-
-  //  const filteredClothingItems = clothingItems.filter((item) => {
-  //    return item.weather.toLowerCase() === weatherType;
-  //  });
 
   return (
     <main className="main">

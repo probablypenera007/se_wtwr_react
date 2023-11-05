@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
-//import WeatherCard from '../WeatherCard/WeatherCard';
-//import defaultClothingItems from "../../utils/DefaultClothing";
-//import ItemCard from '../ItemCard/ItemCard';
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-//import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import "./App.css";
 import {
@@ -23,7 +19,6 @@ import * as api from "../../utils/Api";
 //json-server --watch db.json --id _id --port 3001   REFERENCE FOR RUNNING DB
 
 function App() {
-  //const weatherTemp = "121541512 ºF";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
@@ -57,24 +52,7 @@ function App() {
   }
 
   const handleAddItemSubmit = (newItem) => {
-    //   setIsLoading(true);
-    //  // const  buttonText={isLoading? 'Saving...' : 'Save'}
-    //   api
-    //     .addItem(newItem)
-    //     .then((addedItem) => {
-    //       if (addedItem) {
-    //         //logic for taking the data from the form
-    //         setClothingItems([addedItem, ...clothingItems]);
-    //         setSelectedCard({});
-    //         handleCloseModal();
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.error("Error: ADDING ITEM DID NOT WORK!!!!", err);
-    //     })
-    //     .finally(() => {
-    //       setIsLoading(false);
-    //     });
+
     function requestAddItem() {
       return api.addItem(newItem).then((addedItem) => {
         if (addedItem) {
@@ -85,31 +63,8 @@ function App() {
     handleSubmit(requestAddItem);
   };
 
-  //  function handleProfileFormSubmit(inputValues) {
-  //   // here we create a function that returns a promise
-  //   function makeRequest() {
-  //     // `return` lets us use a promise chain `then, catch, finally`
-  //     return api.editProfile(inputValues).then(setCurrentUser);
-  //   }
-  //   // here we call handleSubmit passing the request
-  //   handleSubmit(makeRequest);
-  // }
-
   const handleDeleteCard = (card) => {
-    // api
-    //   .deleteItem(card._id)
-    //   .then(() => {
-    //     console.log(card._id, "card.id value check DELETE CARD");
-    //     const updatedItems = clothingItems.filter(
-    //       (item) => item._id !== card._id
-    //     );
-    //     setClothingItems(updatedItems);
-    //     setSelectedCard({});
-    //     handleCloseModal();
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error: DELETE ITEM IS NOT WORKING!!!", err);
-    //   });
+
     function requestDeleteItem() {
       return api.deleteItem(card._id).then(() => {
         console.log(card._id, "card.id value check DELETE CARD");
