@@ -4,7 +4,7 @@ import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
-const Header = ({ onCreateModal, weatherLocation }) => {
+const Header = ({ onCreateModal, weatherLocation, isLoggedIn, onLogInModal }) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -24,6 +24,7 @@ const Header = ({ onCreateModal, weatherLocation }) => {
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch />
+        
         <div>
           <button
             className="header__button-addClothes"

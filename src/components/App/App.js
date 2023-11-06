@@ -12,10 +12,14 @@ import {
   parseTimeOfDay,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { Switch, Route } from "react-router-dom/cjs/react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import * as api from "../../utils/Api";
+import * as auth from "../../utils/Auth";
+//import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import LogInModal from "../LogInModal/LogInModal";
 //json-server --watch db.json --id _id --port 3001   REFERENCE FOR RUNNING DB
 
 function App() {
@@ -27,11 +31,21 @@ function App() {
   const [isDay, setIsDay] = useState(true);
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [isLoading, setIsLoading] = useState(false);
-  const [clothingItems, setClothingItems] = useState([{}]);
+  const [clothingItems, setClothingItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({})
 
   const handleCreateModal = () => {
     setActiveModal("create");
   };
+
+ const handleLogInModal = () => { // for headers login button
+  setActiveModal("login-signin");
+ } 
+
+ const handleRegisterModal = () => { // for headers register button
+  setActiveModal("register-signup");
+ } 
 
   const handleCloseModal = () => {
     setActiveModal("");
@@ -63,6 +77,31 @@ function App() {
     handleSubmit(requestAddItem);
   };
 
+  const handleLogInSubmit = (email, password) => {
+    const requestLogIn = () => {
+      return auth.logIn(email, password).then((logged) => {
+        if (logged) {
+          localStorage.setItem('jwt', logged.jwt);
+          // Assuming auth.checkToken should receive the jwt
+          return auth.checkToken(logged.jwt).then((user) => {
+            setCurrentUser(user);
+            setIsLoggedIn(true);
+          });
+        } else {
+          // Handle the case where `logged` is undefined or null
+          throw new Error("login failed");
+        }
+      });
+    };
+  
+    handleSubmit(requestLogIn);
+  };
+
+  // const handleLogOut = () => {
+  //   localStorage.removeItem('jwt');
+  //   setIsLoggedIn(false);
+  // };
+  
   const handleDeleteCard = (card) => {
 
     function requestDeleteItem() {
@@ -100,12 +139,16 @@ function App() {
       .getItems()
       .then((items) => {
         setClothingItems(items);
+        console.log('Fetched clothing items:', items);
       })
       .catch(console.error);
     //console.log(clothingItems, "add item setclothing items testing in app.js");
   }, []);
 
+  // useEffect for users
+
   useEffect(() => {
+  
     getForecastWeather()
       .then((data) => {
         const temperature = parseWeatherData(data);
@@ -123,8 +166,9 @@ function App() {
   //  console.log(weatherLocation, "this is APP.js current location");
   //  console.log(weatherForecast, "this is current weather forecast");
   // console.log(isDay, "this is App.js is it day time???");
-
+  console.log('Clothing items state in App:', clothingItems);
   return (
+    <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -133,9 +177,12 @@ function App() {
           weatherLocation={weatherLocation}
           onCreateModal={handleCreateModal}
           temp={temp}
+          isLoggedIn={isLoggedIn}
+          onLogInModal={handleLogInModal}
         />
         <Switch>
           <Route exact path="/">
+
             <Main
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
@@ -170,8 +217,20 @@ function App() {
             buttonText={isLoading ? "Deleting..." : "Delete Item"}
           />
         )}
+    {activeModal === "login-signin" && (
+      <LogInModal
+      handleCloseModal={handleCloseModal}
+      isOpen={activeModal === "login-signin"}
+      buttonText={isLoading ? "meow.." : "Log In"} 
+      onSubmit={handleLogInSubmit}
+      />
+    )}
+    {activeModal === "register-signup" && (
+      
+    )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
+    </CurrentUserContext.Provider>
   );
 }
 
