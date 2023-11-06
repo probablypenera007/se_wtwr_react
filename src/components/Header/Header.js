@@ -4,7 +4,14 @@ import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
-const Header = ({ onCreateModal, weatherLocation, isLoggedIn, onLogInModal }) => {
+const Header = ({
+  onCreateModal,
+  weatherLocation,
+  isLoggedIn,
+  onLogInModal,
+  onRegisterModal,
+  currentUser,
+}) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -24,26 +31,44 @@ const Header = ({ onCreateModal, weatherLocation, isLoggedIn, onLogInModal }) =>
       </div>
       <div className="header__avatar-logo">
         <ToggleSwitch />
-        
-        <div>
-          <button
-            className="header__button-addClothes"
-            type="text"
-            onClick={onCreateModal}
-          >
-            + Add Clothes
-          </button>
+
+        <div className="header__button-container">
+          {isLoggedIn ? (
+            <button
+              className="header__button-addClothes"
+              type="text"
+              onClick={onCreateModal}
+            >
+              + Add Clothes
+            </button>
+          ) : (
+            <button
+              className="header__button-register"
+              type="button"
+              onClick={onRegisterModal}
+            >
+              Sign Up
+            </button>
+          )}
         </div>
-        {/* <Link to="/profile" style={{ textDecoration: 'none', color: 'black' }}>
-          <h3 className="header__name">Terrence Tegegne</h3>
-        </Link> */}
+
         <div className="link__container">
-        <Link to="/profile">
-          <h3 className="header__name">Terrence Tegegne</h3>
-        </Link>
-        </div>
-        <div>
-          <img src={avatar} alt="avatar" />
+          {isLoggedIn ? (
+            <Link to="/profile">
+              <h3 className="header__name">Terrence Tegegne</h3>
+              <div>
+                <img src={avatar || currentUser.avatar} alt="avatar" />
+              </div>
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="header__login-link"
+              onClick={onLogInModal}
+            >
+              Log In
+            </Link>
+          )}
         </div>
       </div>
     </header>

@@ -7,7 +7,7 @@ export const register = (name, avatar, email, password) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name, avatar, email, password })
+        body: JSON.stringify({ email, password, name, avatar })
     })
     // .then(api.checkResponse)
     .then(response => {
