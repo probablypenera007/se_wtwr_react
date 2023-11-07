@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-// import { useState } from "react";
+import { useState } from "react";
 
-const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText, email, setEmail, password, setPassword, name, setName, avatar, setAvatar }) => {
-
+const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
 
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -75,12 +78,13 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText, email,
           </label>
         </div>
         {/* <button className="button__submit-modal_register">{buttonText}</button> */}
-      </ModalWithForm>
-      <div className="register__tologin">
+        <div className="register__tologin">
         <Link to="/login" className="login__link">
           or Log In
         </Link>
       </div>
+      </ModalWithForm>
+     
     </div>
   );
 };

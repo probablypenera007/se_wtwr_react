@@ -21,7 +21,7 @@ import * as auth from "../../utils/Auth";
 //import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import LogInModal from "../LogInModal/LogInModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
-//json-server --watch db.json --id _id --port 3001   REFERENCE FOR RUNNING DB
+
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -35,12 +35,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerName, setRegisterName] = useState("");
-  const [registerAvatar, setRegisterAvatar] = useState("");
+  
+
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -86,48 +82,33 @@ function App() {
   };
 
   const handleRegisterSubmit = (email, password, name, avatar) => {
-
-    const requestRegister = () => {
-      return auth.register(email, password, name, avatar).then((registered) => {
-        if (registered) {
-          localStorage.setItem("jwt", registered.jwt);
-          return auth.checkToken(registered.jwt).then((user) => {
-            setCurrentUser(user);
+     auth.register(email, password, name, avatar)
+        .then((data) => {
+          if(data.token) {
+            setCurrentUser(data.user);
             setIsLoggedIn(true);
-          });
-        } 
-        // else {
-        //   throw new Error("registration failed");
-        // }
-      });
-    };
-    handleSubmit(requestRegister);
+          }
+        }) 
+        handleSubmit(handleRegisterSubmit);
   };
 
   const handleLogInSubmit = (email, password) => {
-    
-    const requestLogIn = () => {
-      return auth.logIn(email, password).then((logged) => {
-        if (logged) {
-          localStorage.setItem("jwt", logged.jwt);
-          return auth.checkToken(logged.jwt).then((user) => {
-            setCurrentUser(user);
-            setIsLoggedIn(true);
-          });
-        }
-        // } else {
-        //   // throw new Error("login failed");
-        // }
-      });
-    };
+     auth.logIn(email, password)
+     .then((data) => {
+      if(data.token) {
+        setCurrentUser(data.user);
+        setIsLoggedIn(true);
+      }
+    }) 
+    handleSubmit(handleLogInSubmit);
+};
 
-    handleSubmit(requestLogIn);
+
+  const handleLogOut = () => {
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    setCurrentUser("/");
   };
-
-  // const handleLogOut = () => {
-  //   localStorage.removeItem('jwt');
-  //   setIsLoggedIn(false);
-  // };
 
   const handleDeleteCard = (card) => {
     function requestDeleteItem() {
@@ -161,37 +142,27 @@ function App() {
   }, [activeModal]); // watch activeModal here
 
   useEffect(() => {
-    api
-      .getItems()
-      .then((items) => {
-        setClothingItems(items);
-        console.log("Fetched clothing items with no authorization:", items);
-      })
-      .catch(console.error);
-    //console.log(clothingItems, "add item setclothing items testing in app.js");
-  }, []);
+    if (isLoggedIn) {
+      api.getItems()
+        .then(setClothingItems)
+        .catch(console.error);
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      setIsLoggedIn(true);
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
       auth
-        .checkToken(token)
-        .then((user) => {
-          setCurrentUser(user);
-          return api.getItems();
-        })
-        .then((items) => {
-          setClothingItems(items);
-          console.log("fetched clothing items with authorization: ", items);
+        .checkToken(jwt)
+        .then((res) => {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
         })
         .catch((err) => {
-          console.error(err.message);
-          setIsLoggedIn(false);
+          // Handle error, remove token if it's invalid
+          localStorage.removeItem("jwt");
+          console.error("Token verification failed:", err);
         });
-    } else {
-      setIsLoggedIn(false);
-      console.log("No JWT found, user is not logged in.");
     }
   }, []);
 
@@ -246,6 +217,8 @@ function App() {
                 clothingItems={clothingItems}
                 onSelectCard={handleSelectedCard}
                 onCreateModal={handleCreateModal}
+                onLogOut={handleLogOut}
+                isLoggedIn={isLoggedIn}
               />
             </Route>
           </Switch>
@@ -273,10 +246,6 @@ function App() {
             isOpen={activeModal === "login-signin"}
             buttonText={isLoading ? "Logging In..." : "Log In"}
             onSubmit={handleLogInSubmit}
-            email={loginEmail}
-            setEmail={setLoginEmail}
-            password={loginPassword}
-            setPassword={setLoginPassword}
             />
           )}
           {activeModal === "register-signup" && (
@@ -285,14 +254,6 @@ function App() {
             isOpen={activeModal === "register-signup"}
             buttonText={isLoading ? "Signing Up.." : "Next"}
             onSubmit={handleRegisterSubmit}
-            email={registerEmail}
-            setEmail={setRegisterEmail}
-            password={registerPassword}
-            setPassword={setRegisterPassword}
-            name={registerName}
-            setName={setRegisterName}
-            avatar={registerAvatar}
-            setAvatar={setRegisterAvatar}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
