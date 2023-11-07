@@ -35,6 +35,12 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerName, setRegisterName] = useState("");
+  const [registerAvatar, setRegisterAvatar] = useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -80,6 +86,7 @@ function App() {
   };
 
   const handleRegisterSubmit = (email, password, name, avatar) => {
+
     const requestRegister = () => {
       return auth.register(email, password, name, avatar).then((registered) => {
         if (registered) {
@@ -88,28 +95,29 @@ function App() {
             setCurrentUser(user);
             setIsLoggedIn(true);
           });
-        } else {
-          throw new Error("registration failed");
-        }
+        } 
+        // else {
+        //   throw new Error("registration failed");
+        // }
       });
     };
     handleSubmit(requestRegister);
   };
 
   const handleLogInSubmit = (email, password) => {
+    
     const requestLogIn = () => {
       return auth.logIn(email, password).then((logged) => {
         if (logged) {
           localStorage.setItem("jwt", logged.jwt);
-          // Assuming auth.checkToken should receive the jwt
           return auth.checkToken(logged.jwt).then((user) => {
             setCurrentUser(user);
             setIsLoggedIn(true);
           });
-        } else {
-          // Handle the case where `logged` is undefined or null
-          throw new Error("login failed");
         }
+        // } else {
+        //   // throw new Error("login failed");
+        // }
       });
     };
 
@@ -261,18 +269,30 @@ function App() {
           )}
           {activeModal === "login-signin" && (
             <LogInModal
-              handleCloseModal={handleCloseModal}
-              isOpen={activeModal === "login-signin"}
-              buttonText={isLoading ? "Logging In..." : "Log In"}
-              onSubmit={handleLogInSubmit}
+            handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "login-signin"}
+            buttonText={isLoading ? "Logging In..." : "Log In"}
+            onSubmit={handleLogInSubmit}
+            email={loginEmail}
+            setEmail={setLoginEmail}
+            password={loginPassword}
+            setPassword={setLoginPassword}
             />
           )}
           {activeModal === "register-signup" && (
             <RegisterModal
-              handleCloseModal={handleCloseModal}
-              isOpen={activeModal === "register-signup"}
-              buttonText={isLoading ? "Signing Up.." : "Next"}
-              onSubmit={handleRegisterSubmit}
+            handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "register-signup"}
+            buttonText={isLoading ? "Signing Up.." : "Next"}
+            onSubmit={handleRegisterSubmit}
+            email={registerEmail}
+            setEmail={setRegisterEmail}
+            password={registerPassword}
+            setPassword={setRegisterPassword}
+            name={registerName}
+            setName={setRegisterName}
+            avatar={registerAvatar}
+            setAvatar={setRegisterAvatar}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

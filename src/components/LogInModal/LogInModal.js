@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
+//import { useState } from "react";
 
-const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+const LogInModal = ({
+  handleCloseModal,
+  isOpen,
+  onSubmit,
+  buttonText,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}) => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -15,7 +21,8 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
   };
 
   const handleFormSubmitLogIn = (e) => {
-    onSubmit(email, password);
+    e.preventDefault();
+    onSubmit( email, password);
   };
 
   return (
@@ -53,7 +60,7 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
             />
           </label>
         </div>
-        <button className="button__submit-modal_login">{buttonText}</button>
+        {/* <button className="button__submit-modal_login">{buttonText}</button> */}
       </ModalWithForm>
       <div className="login__toregister">
         <Link to="/register" className="register__link">
