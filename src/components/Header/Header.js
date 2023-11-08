@@ -10,7 +10,7 @@ const Header = ({
   isLoggedIn,
   onLogInModal,
   onRegisterModal,
-  currentUser,
+  //currentUser,
 }) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -55,9 +55,13 @@ const Header = ({
         <div className="link__container">
           {isLoggedIn ? (
             <Link to="/profile">
-              <h3 className="header__name">Terrence Tegegne</h3>
+              <h3 className="header__name">{
+            //  currentUser.name || 
+              "Terrence Tegegne"} </h3>
               <div>
-                <img src={avatar || currentUser.avatar} alt="avatar" />
+                <img src={
+                //  currentUser.avatar || 
+                  avatar} alt="avatar" />
               </div>
             </Link>
           ) : (

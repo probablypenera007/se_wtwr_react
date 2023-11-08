@@ -3,10 +3,20 @@ import ClothesSection from "./ClothesSection/ClothesSection";
 
 import "./Profile.css";
 
-function Profile({ clothingItems, onSelectCard, onCreateModal, onLogOut, isLoggedIn }) {
+function Profile({ 
+  clothingItems, 
+  onSelectCard, 
+  onCreateModal, 
+  onLogOut, 
+  isLoggedIn, 
+  //currentUser 
+}) {
   return (
     <section className="profile">
-      <SideBar onLogOut={onLogOut}/>
+      <SideBar 
+      onLogOut={onLogOut} 
+      //currentUser={currentUser}
+      />
       <div>
         <ClothesSection
           clothingItems={clothingItems}

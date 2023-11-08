@@ -12,8 +12,8 @@ import {
   parseTimeOfDay,
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { Switch, Route } from "react-router-dom/cjs/react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { Switch, Route, useHistory } from "react-router-dom/cjs/react-router-dom";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import * as api from "../../utils/Api";
@@ -36,7 +36,29 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   
+  const history = useHistory();
 
+  useEffect(() => {
+    handleTokenCheck();
+  }, []);
+
+  const handleTokenCheck = () => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth.checkToken(jwt).then((res) => {
+        if (res) {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+          history.push("/profile"); 
+        }
+      }).catch((err) => {
+        console.error("Token verification failed:", err);
+        localStorage.removeItem("jwt");
+        setIsLoggedIn(false);
+        setCurrentUser({});
+      });
+    }
+  };
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -65,9 +87,9 @@ function App() {
   function handleSubmit(request) {
     setIsLoading(true);
     request()
-    .then((result) => {
+    .then((data) => {
       handleCloseModal();
-      return result;
+      return data;
     })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -85,39 +107,49 @@ function App() {
   };
 
   const handleRegisterSubmit = (email, password, name, avatar) => {
-
-    function requestRegister() {
-     auth.register(email, password, name, avatar)
-        .then((res) => {
-          if(res.token) {
-            setCurrentUser(res.data.user);
-            setIsLoggedIn(true);
-          }
-        }) 
-       }
-        handleSubmit(requestRegister);
+    setIsLoading(true);
+    auth
+      .register(email, password, name, avatar)
+      .then((data) => {
+        if (data.token) {
+          setCurrentUser(data.user);
+          setIsLoggedIn(true);
+          history.push("/profile");
+        } else {
+          console.error("Registration was successful but no token received.");
+        }
+      })
+      .catch((err) => {
+        console.error("Registration failed:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        handleCloseModal();
+      });
   };
 
   const handleLogInSubmit = (email, password) => {
-    const requestLogIn = () => 
-     auth.logIn(email, password)
-     .then((data) => {
-      if (data.token) {
-        localStorage.setItem("jwt", data.token);
-        setCurrentUser(data.user);
-        setIsLoggedIn(true);
-      }
-      return data
-    }) 
   
-    handleSubmit(requestLogIn);
-};
+    auth.logIn(email, password).then((data) => {
+      if (data.jwt) {
+        localStorage.setItem("jwt", data.jwt);
+        setCurrentUser(data.user); 
+        setIsLoggedIn(true);
+        history.push("/profile");
+        handleCloseModal(); 
+      }
+    }).catch((err) => {
+      console.error("Login error:", err);
+    });
+  };
+
 
 
   const handleLogOut = () => {
     localStorage.removeItem('jwt');
     setIsLoggedIn(false);
-    setCurrentUser("/");
+    setCurrentUser("");
+    history.push("/")
   };
 
   const handleDeleteCard = (card) => {
@@ -159,24 +191,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth
-        .checkToken(jwt)
-        .then((res) => {
-          setCurrentUser(res.user);
-          setIsLoggedIn(true);
-        })
-        .catch((err) => {
-          // Handle error, remove token if it's invalid
-          console.error("Token verification failed:", err);
-          localStorage.removeItem("jwt");
-          setIsLoggedIn(false);
-          setCurrentUser({});
-        });
-    }
-  }, []);
+
 
   // useEffect for users
 
@@ -200,7 +215,7 @@ function App() {
   // console.log(isDay, "this is App.js is it day time???");
   console.log("Clothing items state in App:", clothingItems);
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, setIsLoggedIn, setCurrentUser }}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -212,7 +227,7 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLogInModal={handleLogInModal}
             onRegisterModal={handleRegisterModal}
-            currentUser={currentUser}
+           // currentUser={currentUser}
          />
           <Switch>
             <Route exact path="/">
@@ -231,6 +246,7 @@ function App() {
                 onCreateModal={handleCreateModal}
                 onLogOut={handleLogOut}
                 isLoggedIn={isLoggedIn}
+               // currentUser={currentUser}
               />
             </Route>
           </Switch>

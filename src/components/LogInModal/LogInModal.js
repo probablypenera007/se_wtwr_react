@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import * as auth from "../../utils/Auth.js";
 
-const LogInModal = ({
-  handleCloseModal,
-  isOpen,
-  onSubmit,
-  buttonText,
-}) => {
+const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -20,9 +19,22 @@ const LogInModal = ({
 
   const handleFormSubmitLogIn = (e) => {
     e.preventDefault();
-    onSubmit( email, password);
+    if (!email || !password) {
+      return;
+    }
+    auth
+      .logIn(email, password)
+      .then((data) => {
+        if (data.jwt) {
+          setEmail("");
+          setPassword("");
+          history.push("/profile");
+        }
+      })
+      .catch((err) => {
+        console.error("LogIn error: ", err);
+      });
   };
-
   return (
     <div className="login">
       <ModalWithForm
@@ -60,12 +72,11 @@ const LogInModal = ({
         </div>
         {/* <button className="button__submit-modal_login">{buttonText}</button> */}
         <div className="login__toregister">
-        <Link to="/register" className="register__link">
-          or Register
-        </Link>
-      </div>
+          <Link to="/register" className="register__link">
+            or Register
+          </Link>
+        </div>
       </ModalWithForm>
-
     </div>
   );
 };

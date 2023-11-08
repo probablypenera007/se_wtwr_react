@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom";
+import { Link , useHistory} from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
@@ -7,6 +7,7 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+  const history = useHistory();
 
 
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -16,7 +17,14 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
 
   const handleFormSubmitRegister = (e) => {
     e.preventDefault();
-    onSubmit(email, password, name, avatar);
+    onSubmit(email, password, name, avatar)
+    .then(() => {
+      history.push("/login");
+      handleCloseModal();
+    })
+    .catch(err=> {
+      console.error("Registration error: ", err);
+    });
   };
 
   return (
