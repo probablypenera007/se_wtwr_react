@@ -22,15 +22,15 @@ export const logIn = (email, password) => {
       // 'Accept': 'application/json',
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(email, password),
+    body: JSON.stringify({email, password}),
   })
     .then(api.checkResponse)
     .then((data) => {
       if (data.token) {
         localStorage.setItem("jwt", data.token);
+        console.log("this is data login: ", data);
+        return data;
       }
-      console.log("this is data login: ", data);
-      return data;
     });
 };
 

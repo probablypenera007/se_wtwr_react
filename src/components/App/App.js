@@ -65,7 +65,10 @@ function App() {
   function handleSubmit(request) {
     setIsLoading(true);
     request()
-      .then(handleCloseModal)
+    .then((result) => {
+      handleCloseModal();
+      return result;
+    })
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }
@@ -85,26 +88,28 @@ function App() {
 
     function requestRegister() {
      auth.register(email, password, name, avatar)
-        .then((data) => {
-          if(data.token) {
-            setCurrentUser(data.user);
+        .then((res) => {
+          if(res.token) {
+            setCurrentUser(res.data.user);
             setIsLoggedIn(true);
           }
         }) 
-      }
+       }
         handleSubmit(requestRegister);
   };
 
   const handleLogInSubmit = (email, password) => {
-    function requestLogIn() {
+    const requestLogIn = () => 
      auth.logIn(email, password)
      .then((data) => {
-      if(data.token) {
+      if (data.token) {
+        localStorage.setItem("jwt", data.token);
         setCurrentUser(data.user);
         setIsLoggedIn(true);
       }
+      return data
     }) 
-  }
+  
     handleSubmit(requestLogIn);
 };
 
@@ -160,13 +165,15 @@ function App() {
       auth
         .checkToken(jwt)
         .then((res) => {
-          setCurrentUser(res);
+          setCurrentUser(res.user);
           setIsLoggedIn(true);
         })
         .catch((err) => {
           // Handle error, remove token if it's invalid
-          localStorage.removeItem("jwt");
           console.error("Token verification failed:", err);
+          localStorage.removeItem("jwt");
+          setIsLoggedIn(false);
+          setCurrentUser({});
         });
     }
   }, []);
