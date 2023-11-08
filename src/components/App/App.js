@@ -82,6 +82,8 @@ function App() {
   };
 
   const handleRegisterSubmit = (email, password, name, avatar) => {
+
+    function requestRegister() {
      auth.register(email, password, name, avatar)
         .then((data) => {
           if(data.token) {
@@ -89,10 +91,12 @@ function App() {
             setIsLoggedIn(true);
           }
         }) 
-        handleSubmit(handleRegisterSubmit);
+      }
+        handleSubmit(requestRegister);
   };
 
   const handleLogInSubmit = (email, password) => {
+    function requestLogIn() {
      auth.logIn(email, password)
      .then((data) => {
       if(data.token) {
@@ -100,7 +104,8 @@ function App() {
         setIsLoggedIn(true);
       }
     }) 
-    handleSubmit(handleLogInSubmit);
+  }
+    handleSubmit(requestLogIn);
 };
 
 
