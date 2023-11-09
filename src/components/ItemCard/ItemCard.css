@@ -23,4 +23,42 @@
   font-style: normal;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.60);
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
+
+.like__button-container {
+  position: relative;
+}
+
+.like__button {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../images/State=Default.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border: none;
+  align-self: center;
+  margin-top: -313px;
+  margin-left: 233px;
+  margin-right: -58px;
+  margin-bottom: 54px;
+  height: 17px;
+  width: 20px;
+
+}
+
+.like__button:hover{
+  cursor: pointer;
+}
+
+/* .like__button_active {
+   
+}
+
+.like__button_inactive {
+
+} */

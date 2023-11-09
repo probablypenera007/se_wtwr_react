@@ -10,6 +10,10 @@ const ItemCard = ({ item, onSelectCard }) => {
         alt={item.name}
       />
       <h2 className="card__item-name">{item.name}</h2>
+      <div className="like__button-container">
+        <button className="like__button"></button>
+
+      </div>
     </div>
   );
 };

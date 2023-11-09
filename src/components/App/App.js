@@ -125,7 +125,7 @@ const handleEditProfileSubmit = (data) => {
   const jwt = localStorage.getItem("jwt");
   return auth.editProfile(jwt, data)
   .then((update) => {
-    setCurrentUser(update.data);
+    setCurrentUser(update.user);
     handleCloseModal();
   })
   .catch(console.error)
@@ -139,7 +139,7 @@ const handleEditProfileSubmit = (data) => {
       setIsLoggedIn(true)
       if (res.token) {
         localStorage.setItem("jwt", res.token);
-        auth.checkToken(res.token).then((user) => setCurrentUser(user.data))
+        auth.checkToken(res.token).then((user) => setCurrentUser(user))
         history.push("/profile");
       }
     })
