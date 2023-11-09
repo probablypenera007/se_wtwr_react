@@ -3,8 +3,9 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import * as auth from "../../utils/Auth.js";
+//import RegisterModal from "../RegisterModal/RegisterModal.js";
 
-const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => {
+const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText, onClick }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -29,6 +30,7 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => {
         isOpen={isOpen}
         onSubmit={handleFormSubmitLogIn}
         buttonText={buttonText}
+     //    onClick={RegisterModal} 
       >
         <div className="login__container">
           <label className="modal__label">
@@ -58,7 +60,9 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => {
         </div>
         {/* <button className="button__submit-modal_login">{buttonText}</button> */}
         <div className="login__toregister">
-          <Link to="/signup" className="register__link">
+          <Link to="/signup" className="register__link" 
+          // onClick={RegisterModal} 
+          >
             or Register
           </Link>
         </div>

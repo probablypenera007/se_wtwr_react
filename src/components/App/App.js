@@ -21,6 +21,7 @@ import * as auth from "../../utils/Auth";
 //import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import LogInModal from "../LogInModal/LogInModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 
 
 function App() {
@@ -72,6 +73,10 @@ function App() {
     setActiveModal("register-signup");
   };
 
+  const handleEditProfileModal = () => {
+    setActiveModal("edit-profile");
+  };
+
   const handleCloseModal = () => {
     setActiveModal("");
   };
@@ -105,14 +110,30 @@ function App() {
   };
 
   const handleRegisterSubmit = (data) => {
+    setIsLoading(true);
     return auth.register(data)
       .then((res) => {
         handleLogInSubmit(data)
         handleCloseModal();
-      });
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
+const handleEditProfileSubmit = (data) => {
+  setIsLoading(true)
+  const jwt = localStorage.getItem("jwt");
+  return auth.editProfile(jwt, data)
+  .then((update) => {
+    setCurrentUser(update.data);
+    handleCloseModal();
+  })
+  .catch(console.error)
+  .finally(() => setIsLoading(false)); 
+}
+
   const handleLogInSubmit = (data) => {
+    setIsLoading(true)
     return auth.logIn(data)
     .then((res) => {
       setIsLoggedIn(true)
@@ -122,7 +143,8 @@ function App() {
         history.push("/profile");
       }
     })
-    .catch((err) => console.log("ERROR LOG-IN App.js"))
+    .catch(console.error)
+    .finally(() => setIsLoading(false));
   };
   
   const handleLogOut = () => {
@@ -237,6 +259,7 @@ function App() {
                 onLogOut={handleLogOut}
                 isLoggedIn={isLoggedIn}
                 currentUser={currentUser}
+                onEditProfile={handleEditProfileModal}
               />
             </Route>
           </Switch>
@@ -266,6 +289,7 @@ function App() {
             isOpen={activeModal === "login-signin"}
             buttonText={isLoading ? "Logging In..." : "Log In"}
             onSubmit={handleLogInSubmit}
+            // onClick={handleRegisterModal}
             />
           )}
           {/* </Route>
@@ -274,12 +298,19 @@ function App() {
             <RegisterModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "register-signup"}
-            buttonText={isLoading ? "Signing Up.." : "Next"}
+            buttonText={isLoading ? "Signing Up..." : "Next"}
             onSubmit={handleRegisterSubmit}
+            // onClick={handleLogInModal}
             />
           )}
-            {/* </Route>
-          </Switch> */}
+          {activeModal === "edit-profile" && (
+            <EditProfileModal 
+            handleCloseModal={handleCloseModal}
+            isOpen={activeModal === "edit-profile"}
+            buttonText={isLoading ? "Saving..." : "Save Changes"}
+            onSubmit={handleEditProfileSubmit}
+            />
+          )}
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>

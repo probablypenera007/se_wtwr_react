@@ -9,13 +9,16 @@ function Profile({
   onCreateModal, 
   onLogOut, 
   isLoggedIn, 
-  currentUser 
+  currentUser,
+  onEditProfile, 
 }) {
   return (
     <section className="profile">
       <SideBar 
       onLogOut={onLogOut} 
       currentUser={currentUser}
+      isLoggedIn={isLoggedIn}
+      onEditProfile={onEditProfile}
       />
       <div>
         <ClothesSection

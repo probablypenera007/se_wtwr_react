@@ -23,6 +23,17 @@ export const logIn = ({email, password}) => {
   .then(response => api.checkResponse(response))
 };
 
+export const editProfile = ({name, avatar}) => {
+  return fetch(`${api.baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, avatar }),
+  })
+  .then(response => api.checkResponse(response))
+};
+
 export const checkToken = (token) => {
   return fetch(`${api.baseUrl}/users/me`, {
     method: "GET",
