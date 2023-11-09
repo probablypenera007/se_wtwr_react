@@ -17,14 +17,11 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
 
   const handleFormSubmitRegister = (e) => {
     e.preventDefault();
-    onSubmit(email, password, name, avatar)
-    .then(() => {
-      history.push("/login");
-      handleCloseModal();
-    })
-    .catch(err=> {
-      console.error("Registration error: ", err);
-    });
+    onSubmit({email, password, name, avatar})
+    .then((res) => 
+      history.push("/login"),
+      handleCloseModal()
+    )
   };
 
   return (
@@ -87,7 +84,7 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
         </div>
         {/* <button className="button__submit-modal_register">{buttonText}</button> */}
         <div className="register__tologin">
-        <Link to="/login" className="login__link">
+        <Link to="/signin" className="login__link">
           or Log In
         </Link>
       </div>

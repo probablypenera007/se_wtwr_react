@@ -39,18 +39,15 @@ function App() {
   const history = useHistory();
 
   useEffect(() => {
-    handleTokenCheck();
-  }, []);
-
-  const handleTokenCheck = () => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      auth.checkToken(jwt).then((res) => {
-        if (res) {
-          setCurrentUser(res);
-          setIsLoggedIn(true);
+      setIsLoggedIn(true);
+      auth.checkToken(jwt).then((user) => {
+        console.log("Value of CurrentUser: ", user)
+        console.log("Value of CurrentUser's Name: ", user.data.name)
+        console.log("Value of CurrentUser's Avatar: ", user.data.avatar)
+          setCurrentUser(user.data);
           history.push("/profile"); 
-        }
       }).catch((err) => {
         console.error("Token verification failed:", err);
         localStorage.removeItem("jwt");
@@ -58,7 +55,8 @@ function App() {
         setCurrentUser({});
       });
     }
-  };
+  }, []);
+
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -106,45 +104,27 @@ function App() {
     handleSubmit(requestAddItem);
   };
 
-  const handleRegisterSubmit = (email, password, name, avatar) => {
-    setIsLoading(true);
-    auth
-      .register(email, password, name, avatar)
-      .then((data) => {
-        if (data.token) {
-          setCurrentUser(data.user);
-          setIsLoggedIn(true);
-          history.push("/profile");
-        } else {
-          console.error("Registration was successful but no token received.");
-        }
-      })
-      .catch((err) => {
-        console.error("Registration failed:", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
+  const handleRegisterSubmit = (data) => {
+    return auth.register(data)
+      .then((res) => {
+        handleLogInSubmit(data)
         handleCloseModal();
       });
   };
 
-  const handleLogInSubmit = (email, password) => {
-  
-    auth.logIn(email, password).then((data) => {
-      if (data.jwt) {
-        localStorage.setItem("jwt", data.jwt);
-        setCurrentUser(data.user); 
-        setIsLoggedIn(true);
+  const handleLogInSubmit = (data) => {
+    return auth.logIn(data)
+    .then((res) => {
+      setIsLoggedIn(true)
+      if (res.token) {
+        localStorage.setItem("jwt", res.token);
+        auth.checkToken(res.token).then((user) => setCurrentUser(user.data))
         history.push("/profile");
-        handleCloseModal(); 
       }
-    }).catch((err) => {
-      console.error("Login error:", err);
-    });
+    })
+    .catch((err) => console.log("ERROR LOG-IN App.js"))
   };
-
-
-
+  
   const handleLogOut = () => {
     localStorage.removeItem('jwt');
     setIsLoggedIn(false);
@@ -185,8 +165,14 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      api.getItems()
-        .then(setClothingItems)
+      api
+        .getItems()
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setClothingItems(data);
+          } else {
+          }
+        })
         .catch(console.error);
     }
   }, [isLoggedIn]);
@@ -215,7 +201,9 @@ function App() {
   // console.log(isDay, "this is App.js is it day time???");
   console.log("Clothing items state in App:", clothingItems);
   return (
-    <CurrentUserContext.Provider value={{ currentUser, setIsLoggedIn, setCurrentUser }}>
+    <CurrentUserContext.Provider 
+    value={currentUser}
+    >
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -227,7 +215,7 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLogInModal={handleLogInModal}
             onRegisterModal={handleRegisterModal}
-           // currentUser={currentUser}
+           currentUser={currentUser}
          />
           <Switch>
             <Route exact path="/">
@@ -246,7 +234,7 @@ function App() {
                 onCreateModal={handleCreateModal}
                 onLogOut={handleLogOut}
                 isLoggedIn={isLoggedIn}
-               // currentUser={currentUser}
+                currentUser={currentUser}
               />
             </Route>
           </Switch>
@@ -268,6 +256,8 @@ function App() {
               buttonText={isLoading ? "Deleting..." : "Delete Item"}
             />
           )}
+          {/* <Switch>
+          <Route path="/signin"> */}
           {activeModal === "login-signin" && (
             <LogInModal
             handleCloseModal={handleCloseModal}
@@ -276,6 +266,8 @@ function App() {
             onSubmit={handleLogInSubmit}
             />
           )}
+          {/* </Route>
+          <Route path="/signup"> */}
           {activeModal === "register-signup" && (
             <RegisterModal
             handleCloseModal={handleCloseModal}
@@ -284,6 +276,8 @@ function App() {
             onSubmit={handleRegisterSubmit}
             />
           )}
+            {/* </Route>
+          </Switch> */}
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>

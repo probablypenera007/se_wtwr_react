@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import * as auth from "../../utils/Auth.js";
 
-const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
+const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -19,21 +19,7 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
 
   const handleFormSubmitLogIn = (e) => {
     e.preventDefault();
-    if (!email || !password) {
-      return;
-    }
-    auth
-      .logIn(email, password)
-      .then((data) => {
-        if (data.jwt) {
-          setEmail("");
-          setPassword("");
-          history.push("/profile");
-        }
-      })
-      .catch((err) => {
-        console.error("LogIn error: ", err);
-      });
+    onSubmit({email, password}).then((res) => handleCloseModal())
   };
   return (
     <div className="login">
@@ -72,7 +58,7 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit, buttonText }) => {
         </div>
         {/* <button className="button__submit-modal_login">{buttonText}</button> */}
         <div className="login__toregister">
-          <Link to="/register" className="register__link">
+          <Link to="/signup" className="register__link">
             or Register
           </Link>
         </div>

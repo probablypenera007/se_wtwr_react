@@ -2,13 +2,6 @@ import ItemCard from "../../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
 const ClothesSection = ({ clothingItems, onSelectCard, onCreateModal }) => {
-  
-  if (!Array.isArray(clothingItems)) {
-    return
-  }
-
-  
-  
   return (
     <section className="clothes__section">
       <div className="clothes__section-title">Your Item</div>
