@@ -97,7 +97,7 @@ function App() {
     function requestAddItem() {
       return api.addItem(newItem).then((addedItem) => {
         if (addedItem) {
-          setClothingItems([addedItem, ...clothingItems]);
+          setClothingItems(addedItem => [...addedItem,clothingItems]);
         }
       });
     }
@@ -167,10 +167,12 @@ function App() {
     if (isLoggedIn) {
       api
         .getItems()
-        .then((data) => {
-          if (Array.isArray(data)) {
-            setClothingItems(data);
+        .then((res) => {
+          console.log("getItems data value: ", res)
+          if (Array.isArray(res.data)) {
+            setClothingItems(res.data);
           } else {
+            console.error('Data received is not an array:', res.data);
           }
         })
         .catch(console.error);
@@ -195,10 +197,10 @@ function App() {
       })
       .catch(console.error);
   }, []);
-  //  console.log(temp, "this is set temp");
-  //  console.log(weatherLocation, "this is APP.js current location");
-  //  console.log(weatherForecast, "this is current weather forecast");
-  // console.log(isDay, "this is App.js is it day time???");
+   console.log(temp, "this is set temp");
+   console.log(weatherLocation, "this is APP.js current location");
+   console.log(weatherForecast, "this is current weather forecast");
+  console.log(isDay, "this is App.js is it day time???");
   console.log("Clothing items state in App:", clothingItems);
   return (
     <CurrentUserContext.Provider 

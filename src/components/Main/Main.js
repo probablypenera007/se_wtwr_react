@@ -37,15 +37,9 @@ function Main({
   console.log('weatherType:', weatherType);
   console.log('clothingItems after weathertype:', clothingItems);
 
-  const filteredCards = Array.isArray(clothingItems) ? clothingItems?.filter((item) => {
-    console.log("Filtering item with weatherType:", weatherType, "Item's weather:", item.weather);
-    return item.weather.toLowerCase() === weatherType;
-   
-
-    // const weather = item.weather;
-    // return weather && typeof weather === 'string' && weather.toLowerCase() === weatherType;
-  }) : [];
-
+  const filteredCards = clothingItems.filter((item) => {
+    return item.weather && item.weather.toLowerCase() === weatherType;
+  });
   return (
     <main className="main">
       <WeatherCard day={isDay} type={weatherForecast} weatherTemp={temp} />
@@ -53,17 +47,18 @@ function Main({
         <p className="card__section-title">
           Today is {temp} º{currentTemperatureUnit} / You may want to wear:
         </p>
-        <div className="card__items">
-          {filteredCards.map((item) => {
-            return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onSelectCard={onSelectCard}
-              />
-            );
-          })}
-        </div>
+
+
+  <div className="card__items">
+    {filteredCards.map((item) => (
+      <ItemCard
+        key={item._id}
+        item={item}
+        onSelectCard={onSelectCard}
+      />
+    ))}
+  </div>
+
       </section>
     </main>
   );
