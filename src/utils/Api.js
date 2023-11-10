@@ -49,7 +49,8 @@ export function addCardLike(itemId, token) {
   return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
     headers: {
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+     "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+   // "Authorization": `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
@@ -59,6 +60,7 @@ export function removeCardLike(itemId, token) {
     method: "DELETE",
     headers: {
       "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+   // "Authorization": `Bearer ${token}`,
     },
   }).then(checkResponse);
 }

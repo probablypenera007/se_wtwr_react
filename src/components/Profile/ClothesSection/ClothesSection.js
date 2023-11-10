@@ -28,7 +28,7 @@ const ClothesSection = ({
       </button>
       <ul className="clothes__section-gallery">
         {/* {userClothingItems.map((item) => { */}
-        {clothingItems.map((item) => {
+         {clothingItems.map((item) => {
         //  console.log("value of item in clothesSection.map, check item id: ",item)
           return (
             <ItemCard
