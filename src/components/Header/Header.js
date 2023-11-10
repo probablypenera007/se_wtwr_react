@@ -58,7 +58,7 @@ const currentUser = React.useContext(CurrentUserContext)
 
       
           {isLoggedIn ? (
-            <Link to="/profile">
+            <Link className="link__container"  to="/profile">
               <h3 className="header__name">{
               currentUser.name  
             //  "Terrence Tegegne"
