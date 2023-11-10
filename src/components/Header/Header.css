@@ -69,6 +69,19 @@
   gap: 20px;
 }
 
+.header__button-register {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  transition: opacity linear 0.2s 0.1s;
+  margin-left: -158px;
+  margin-top: -5px;
+}
+
+.header__button-register:hover{
+  opacity: .6;
+}
 
 .header__avatar-img{
   display: flex;
