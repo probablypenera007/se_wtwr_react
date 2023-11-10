@@ -20,13 +20,15 @@ const SideBar = ({
         <p className="sidebar__name">{ 
         currentUser.name
        }</p>
-        <button className="sidebar__button-logout" type="button" onClick={onLogOut} >
-          Log Out
-        </button>
-        <button className="sidebar__button-edit" type="button" onClick={onEditProfile} >
+          </div>
+          <button className="sidebar__button-edit" type="button" onClick={onEditProfile} >
           Change Profile Data
         </button>
-      </div>
+   
+        <button className="sidebar__button-logout" type="button" onClick={onLogOut} >
+          Log out
+        </button>
+
     </section>
   );
 };

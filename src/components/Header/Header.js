@@ -33,7 +33,7 @@ const currentUser = React.useContext(CurrentUserContext)
           {currentDate}, {weatherLocation}
         </div>
       </div>
-      <div className="header__avatar-logo">
+  
         <ToggleSwitch />
 
         <div className="header__button-container">
@@ -56,7 +56,7 @@ const currentUser = React.useContext(CurrentUserContext)
           )}
         </div>
 
-        <div className="link__container">
+      
           {isLoggedIn ? (
             <Link to="/profile">
               <h3 className="header__name">{
@@ -79,8 +79,8 @@ const currentUser = React.useContext(CurrentUserContext)
               Log In
             </Link>
           )}
-        </div>
-      </div>
+
+  
     </header>
   );
 };
