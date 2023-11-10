@@ -60,11 +60,12 @@ function Main({
     {filteredCards.map((item) => (
       <ItemCard
       //id={item._id || item.id} 
-        key={item._id || item.id}
+       key={item._id || item.id}
         item={item}
         onSelectCard={onSelectCard}
-        currentUser={currentUser}
+      //  currentUser={currentUser}
         onLikeClick={onLikeClick}
+        itemId={item._id || item.id }
       />
     ))}
   </ul>
