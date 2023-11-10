@@ -2,7 +2,7 @@ import React from "react";
 
 
 const CurrentUserContext = React.createContext({
-    // currentUser: null,
+    currentUser: {}
     // setCurrentUSer: () => {},
     // isLoggedIn: false,
     // setIsLoggedIn: () => {}

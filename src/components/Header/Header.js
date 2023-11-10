@@ -4,7 +4,7 @@ import wtwrlogo from "../../images/wtwrlogo.svg";
 //import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-//import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const Header = ({
   onCreateModal,
@@ -12,15 +12,15 @@ const Header = ({
   isLoggedIn,
   onLogInModal,
   onRegisterModal,
-  currentUser,
+ // currentUser,
 }) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-console.log("currentUser in header.js: ",currentUser)
-///const currentUser = React.useContext(currentUser)
 
+const currentUser = React.useContext(CurrentUserContext)
+console.log("currentUser in header.js: ",currentUser)
   return (
     <header className="header">
       <div className="header__logo">

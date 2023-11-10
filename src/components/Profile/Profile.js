@@ -10,7 +10,8 @@ function Profile({
   onLogOut, 
   isLoggedIn, 
   currentUser,
-  onEditProfile, 
+  onEditProfile,
+  onLikeClick, 
 }) {
   return (
     <section className="profile">
@@ -26,6 +27,7 @@ function Profile({
           onSelectCard={onSelectCard}
           onCreateModal={onCreateModal}
           isLoggedIn={isLoggedIn}
+          onLikeClick={onLikeClick}
         />
       </div>
     </section>

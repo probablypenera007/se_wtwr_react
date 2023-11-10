@@ -35,7 +35,6 @@
 .like__button {
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
-  background-image: url(../../images/State=Default.svg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -55,10 +54,10 @@
   cursor: pointer;
 }
 
-/* .like__button_active {
-   
+.like__button_inactive {
+  background-image: url(../../images/State=Default.svg);
 }
 
-.like__button_inactive {
-
-} */
+.like__button_active {
+background-image: url(../../images/State=Likedstate-liked.svg);
+}

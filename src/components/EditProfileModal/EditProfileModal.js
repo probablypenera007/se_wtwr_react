@@ -1,12 +1,16 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import * as auth from "../../utils/Auth.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText,currentUser }) => {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => {
+  const currentUser = React.useContext(CurrentUserContext)
+  const [name, setName] = useState(currentUser.name);
+  const [avatar, setAvatar] = useState(currentUser.avatar);
   const history = useHistory();
+
+console.log("value of currentuser in Edit profile for .name and .avatar: ",currentUser.name , currentUser.avatar);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -18,7 +22,9 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText,curren
 
   const handleFormSubmitEdit = (e) => {
     e.preventDefault();
-    onSubmit({name, avatar}).then((res) => handleCloseModal())
+    onSubmit({name, avatar}).then((res) => {
+      handleCloseModal();
+    })
   };
   return (
     <div className="edit__profile">

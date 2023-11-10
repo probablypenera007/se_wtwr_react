@@ -1,8 +1,9 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
-import { useMemo, useContext } from "react";
+import  React, { useMemo, useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Main({
   weatherTemp,
@@ -10,8 +11,14 @@ function Main({
   isDay,
   weatherForecast,
   clothingItems,
+ // currentUser,
+  onLikeClick,
 }) {
-  console.log('Main clothingItems at start:', clothingItems);
+
+  const currentUser = React.useContext(CurrentUserContext)
+  console.log('currentUser in Main:', currentUser);
+
+ // console.log('Main clothingItems at start:', clothingItems);
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 1000;
   const weatherType = useMemo(() => {
@@ -34,8 +41,8 @@ function Main({
     }
 
   }, [currentTemperatureUnit, temp]);
-  console.log('weatherType:', weatherType);
-  console.log('clothingItems after weathertype:', clothingItems);
+  // console.log('weatherType:', weatherType);
+  // console.log('clothingItems after weathertype:', clothingItems);
 
   const filteredCards = clothingItems.filter((item) => {
     return item.weather && item.weather.toLowerCase() === weatherType;
@@ -55,6 +62,8 @@ function Main({
         key={item._id}
         item={item}
         onSelectCard={onSelectCard}
+        currentUser={currentUser}
+        onLikeClick={onLikeClick}
       />
     ))}
   </div>

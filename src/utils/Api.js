@@ -22,22 +22,25 @@ export function getItems() {
 }
 
 // POST https://localhost:3001/items
-export function addItem(item) {
+export function addItem(item, token) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      "Authorization": `Bearer ${token}`,
     },
-    body: JSON.stringify(item),
-  }).then(checkResponse);
-}
+    body: JSON.stringify(item, token),
 
-export function deleteItem(itemId) {
+  }).then(checkResponse);
+}  
+//  console.log(item, ":  this item api", token,": this token api ")
+
+
+export function deleteItem(itemId, token) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
-      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
+      "Authorization": `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
