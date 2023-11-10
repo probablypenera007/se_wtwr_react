@@ -143,7 +143,7 @@ function App() {
             console.log('Like response updatedCard data:', updatedCard);
             setClothingItems((cards) => {
               console.log("LIKE setclothingitem for cards after .then updatedCard", cards)
-             return cards.map((c) => (c._id === id ? updatedCard : c))
+             return cards.map((c) => (c._id === id ? updatedCard.data : c))
           });
           })
           .catch((err) => console.log(err))
@@ -155,7 +155,7 @@ function App() {
             //console.log('Unlike response updatedCard data:', updatedCard);
             setClothingItems((cards) => {
             //  console.log("unlike setclothingitem for cards after .then updatedCard", cards)
-            return cards.map((c) => (c._id === id ? updatedCard : c))
+            return cards.map((c) => (c._id === id ? updatedCard.data : c))
           });
           })
           .catch((err) => console.log(err));
@@ -207,7 +207,7 @@ const handleEditProfileSubmit = (data) => {
   const jwt = localStorage.getItem("jwt");
   return auth.editProfile(jwt, data)
   .then((update) => {
-    setCurrentUser(update.user);
+    setCurrentUser(update.data);
     handleCloseModal();
   })
   .catch(console.error)

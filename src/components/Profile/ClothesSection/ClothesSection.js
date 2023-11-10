@@ -38,7 +38,7 @@ const ClothesSection = ({
               onSelectCard={onSelectCard}
               //currentUser={currentUser}
               onLikeClick={onLikeClick}
-              itemId={item._id || item.id }
+              //itemId={item._id || item.id }
             />
           );
         })}
