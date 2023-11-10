@@ -27,7 +27,7 @@ export function addItem(item, token) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify(item, token),
 
@@ -40,7 +40,7 @@ export function deleteItem(itemId, token) {
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 }
@@ -49,7 +49,7 @@ export function addCardLike(itemId, token) {
   return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
     headers: {
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 }
@@ -58,7 +58,7 @@ export function removeCardLike(itemId, token) {
   return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: {
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 }

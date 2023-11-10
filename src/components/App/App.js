@@ -104,7 +104,7 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    console.log(card, "check value of card if ID is present");
+    // console.log(card, "check value of card if ID is present");
   };
 
   const handleAddItemSubmit = (newItem) => {
@@ -134,7 +134,7 @@ function App() {
   const handleLikeClick = ({ id, isLiked }) => {
     const jwt = localStorage.getItem("jwt");
     // Check if this card is now liked
-    isLiked
+    !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
         api
           // the first argument is the card's id
@@ -188,10 +188,6 @@ function App() {
       .catch(console.error)
       .finally(() => setIsLoading(false));
   }
-
-
-
-
 
 // USER HANDLERS 
 

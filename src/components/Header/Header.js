@@ -20,7 +20,7 @@ const Header = ({
   });
 
 const currentUser = React.useContext(CurrentUserContext)
-console.log("currentUser in header.js: ",currentUser)
+// console.log("currentUser in header.js: ",currentUser)
   return (
     <header className="header">
       <div className="header__logo">

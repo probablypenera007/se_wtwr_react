@@ -1,5 +1,8 @@
+import React from "react";
 import SideBar from "./SideBar/SideBar";
 import ClothesSection from "./ClothesSection/ClothesSection";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 
 import "./Profile.css";
 
@@ -9,10 +12,10 @@ function Profile({
   onCreateModal, 
   onLogOut, 
   isLoggedIn, 
-  currentUser,
   onEditProfile,
   onLikeClick, 
 }) {
+  const currentUser = React.useContext(CurrentUserContext)
   return (
     <section className="profile">
       <SideBar 

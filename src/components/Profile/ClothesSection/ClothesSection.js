@@ -1,15 +1,17 @@
+import React from "react";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 import ItemCard from "../../ItemCard/ItemCard";
 import "./ClothesSection.css";
-// import * as currentUser from "../../../contexts/CurrentUserContext";
+
 
 const ClothesSection = ({
   clothingItems,
   onSelectCard,
   onCreateModal,
   onLikeClick,
-  currentUser,
 }) => {
-
+  const currentUser = React.useContext(CurrentUserContext)
+// console.log("value of item, check item id: " , clothingItems)
   // const userClothingItems = clothingItems.filter((item) => {
   //   return item.owner === currentUser.id;
   // })
@@ -25,10 +27,12 @@ const ClothesSection = ({
         + Add items
       </button>
       <ul className="clothes__section-gallery">
+        {/* {userClothingItems.map((item) => { */}
         {clothingItems.map((item) => {
+          console.log("value of item in clothesSection.map, check item id: ",item)
           return (
             <ItemCard
-              key={item._id}
+              key={item.id || item._id}
               item={item}
               onSelectCard={onSelectCard}
               currentUser={currentUser}

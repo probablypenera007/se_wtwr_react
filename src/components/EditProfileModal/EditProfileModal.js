@@ -10,7 +10,7 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
   const [avatar, setAvatar] = useState(currentUser.avatar);
   const history = useHistory();
 
-console.log("value of currentuser in Edit profile for .name and .avatar: ",currentUser.name , currentUser.avatar);
+//console.log("value of currentuser in Edit profile for .name and .avatar: ",currentUser.name , currentUser.avatar);
 
   const handleNameChange = (e) => {
     setName(e.target.value);

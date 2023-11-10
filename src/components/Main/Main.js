@@ -16,7 +16,7 @@ function Main({
 }) {
 
   const currentUser = React.useContext(CurrentUserContext)
-  console.log('currentUser in Main:', currentUser);
+ // console.log('currentUser in Main:', currentUser);
 
  // console.log('Main clothingItems at start:', clothingItems);
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
@@ -59,7 +59,7 @@ function Main({
   <div className="card__items">
     {filteredCards.map((item) => (
       <ItemCard
-        key={item._id}
+        key={item._id || item.id}
         item={item}
         onSelectCard={onSelectCard}
         currentUser={currentUser}
