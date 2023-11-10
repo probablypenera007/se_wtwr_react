@@ -36,6 +36,7 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText, onClick }) 
           <label className="modal__label">
             Email:
             <input
+            id="login-email"
               className="modal__input-text"
               type="email"
               name="email"
@@ -48,6 +49,7 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText, onClick }) 
           <label className="modal__label">
             Password:
             <input
+            id="login-password"
               className="modal__input-text"
               type="password"
               name="password"

@@ -37,6 +37,7 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
           <label className="modal__label">
             Email:
             <input
+            id="register-email"
               className="modal__input-text"
               type="email"
               name="email"
@@ -49,6 +50,7 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
           <label className="modal__label">
             Password:
             <input
+            id="register-password"
               className="modal__input-text"
               type="password"
               name="password"
@@ -61,6 +63,7 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
           <label className="modal__label">
             Name:
             <input
+            id="register-name"
               className="modal__input-text"
               type="text"
               name="name"
@@ -72,6 +75,7 @@ const RegisterModal = ({  handleCloseModal, isOpen, onSubmit, buttonText}) => {
           <label className="modal__label">
             Avatar URL:
             <input
+            id="register-avatar"
               className="modal__input-text"
               type="url"
               name="avatar"

@@ -35,10 +35,11 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
         onSubmit={handleFormSubmitEdit}
         buttonText={buttonText}
       >
-        <div className="login__container">
+        <div className="edit__container">
           <label className="modal__label">
             Name:
             <input
+            id="edit-name"
               className="modal__input-text"
               type="text"
               name="name"
@@ -51,6 +52,7 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
           <label className="modal__label">
             Avatar:
             <input
+            id="edit-avatar"
               className="modal__input-text"
               type="url"
               name="avatar"

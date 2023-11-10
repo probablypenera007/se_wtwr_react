@@ -56,9 +56,10 @@ function Main({
         </p>
 
 
-  <div className="card__items">
+  <ul className="card__items">
     {filteredCards.map((item) => (
       <ItemCard
+      //id={item._id || item.id} 
         key={item._id || item.id}
         item={item}
         onSelectCard={onSelectCard}
@@ -66,7 +67,7 @@ function Main({
         onLikeClick={onLikeClick}
       />
     ))}
-  </div>
+  </ul>
 
       </section>
     </main>
