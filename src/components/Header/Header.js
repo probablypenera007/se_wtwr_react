@@ -5,6 +5,7 @@ import wtwrlogo from "../../images/wtwrlogo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
+import AvatarPlaceHolder from "../AvatarPlaceHolder/AvatarPlaceHolder";
 
 const Header = ({
   onCreateModal,
@@ -63,11 +64,15 @@ const Header = ({
             }
           </h3>
           <div>
+            {currentUser.avatar ? (
             <img
               src={currentUser.avatar}
               className="header__avatar-img"
               alt="avatar"
             />
+            ) : (
+              <AvatarPlaceHolder />
+            )}
           </div>
         </Link>
       ) : (

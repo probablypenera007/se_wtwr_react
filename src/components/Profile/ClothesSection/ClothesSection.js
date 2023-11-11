@@ -33,7 +33,7 @@ const userClothingItems = clothingItems.filter((item) => {
       </button>
       <div className="clothes__section-gallery">
         {userClothingItems.map((item) => {
-          console.log("value of item: looking for id and owner: ", item)
+          //console.log("value of item: looking for id and owner: ", item)
           return (
             <ItemCard
              // id={item._id || item.id} 

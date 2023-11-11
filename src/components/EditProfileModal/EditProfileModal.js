@@ -22,9 +22,7 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
 
   const handleFormSubmitEdit = (e) => {
     e.preventDefault();
-    onSubmit({name, avatar}).then((res) => {
-      handleCloseModal();
-    })
+    onSubmit({name, avatar})
   };
   return (
     <div className="edit__profile">
