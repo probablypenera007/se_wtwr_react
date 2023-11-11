@@ -53,11 +53,12 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
       isOpen={isOpen}
       onSubmit={handleAddItemSubmit}
       buttonText={buttonText}
+      modalName={"AddItem_Modal"}
     >
-      <label className="modal__label">
+      <label className="modal__label modal__label-add">
         Name
         <input
-          className="modal__input-text"
+          className="modal__input-text modal__input-text-add"
           placeholder="Name"
           type="text"
           name="name"
@@ -65,13 +66,14 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
           maxLength="30"
           value={name}
           onChange={handleAddItemNameChange}
+          autoComplete="off"
           required
         />
       </label>
-      <label className="modal__label">
+      <label className="modal__label modal__label-add">
         Image
         <input
-          className="modal__input-text"
+          className="modal__input-text modal__input-text-add"
           placeholder="Image URL"
           type="url"
           name="link"
@@ -79,10 +81,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
           maxLength="1000"
           value={imageUrl}
           onChange={handleAddItemUrlChange}
+          autoComplete="off"
           required
         />
       </label>
-      <label className="modal__label">Select the Weather Type:</label>
+      <label className="modal__label modal__label-add">Select the Weather Type:</label>
       <div>
         <div>
           <input

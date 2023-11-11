@@ -34,8 +34,9 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
         isOpen={isOpen}
         onSubmit={handleFormSubmitEdit}
         buttonText={buttonText}
+        modalName={"EditProfile_Modal"}
       >
-        <div className="modal__content modal__content-edit">
+      
           <label className="modal__label  modal__label_edit">
             Name:
             <input
@@ -62,7 +63,7 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
               required
             />
           </label>
-        </div>
+       
       </ModalWithForm>
     </div>
   );
