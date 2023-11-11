@@ -1,5 +1,6 @@
 //import avatar from "../../../images/avatar.svg";
 import "./SideBar.css";
+import AvatarPlaceHolder from "../../AvatarPlaceHolder/AvatarPlaceHolder";
 
 const SideBar = ({
   onLogOut, 
@@ -10,13 +11,18 @@ const SideBar = ({
   return (
     <section className="sidebar">
       <div className="sidebar__content">
-        <img
+        {currentUser.avatar ? (
+          <img
           className="sidebar__avatar"
           src={ 
             currentUser.avatar 
             }
           alt="sidebar avatar icon"
         />
+        ) : (
+          <AvatarPlaceHolder name={currentUser.name}/>
+        )}
+        
         <p className="sidebar__name">{ 
         currentUser.name
        }</p>

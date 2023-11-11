@@ -295,7 +295,7 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLogInModal={handleLogInModal}
             onRegisterModal={handleRegisterModal}
-            currentUser={currentUser}
+            //currentUser={currentUser}
           />
           <Switch>
             <Route exact path="/">

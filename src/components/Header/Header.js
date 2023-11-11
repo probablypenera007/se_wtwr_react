@@ -71,7 +71,7 @@ const Header = ({
               alt="avatar"
             />
             ) : (
-              <AvatarPlaceHolder />
+              <AvatarPlaceHolder name={currentUser.name}/>
             )}
           </div>
         </Link>
