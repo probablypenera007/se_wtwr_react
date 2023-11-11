@@ -3,12 +3,9 @@ import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const ItemCard = ({ 
-   // key, 
-  //id,
   item, 
   onSelectCard, 
-  // currentUser, 
-  onLikeClick ,
+  onLikeClick,
   itemId
 }) => {
   const currentUser = React.useContext(CurrentUserContext);
@@ -29,7 +26,7 @@ const ItemCard = ({
   };
 
   return (
-    <li 
+    <div
      //key={key} 
     //key={id}
     className="card"
@@ -50,7 +47,7 @@ const ItemCard = ({
           ></button>
         )}
       </div>
-    </li>
+    </div>
   );
 };
 

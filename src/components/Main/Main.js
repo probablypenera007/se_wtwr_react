@@ -56,7 +56,7 @@ function Main({
         </p>
 
 
-  <ul className="card__items">
+  <div className="card__items">
     {filteredCards.map((item) => (
       <ItemCard
       //id={item._id || item.id} 
@@ -68,7 +68,7 @@ function Main({
        // itemId={item._id || item.id }
       />
     ))}
-  </ul>
+  </div>
 
       </section>
     </main>

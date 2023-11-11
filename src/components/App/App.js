@@ -40,67 +40,61 @@ function App() {
   
   const history = useHistory();
 
-// TOKEN 
+// -------------------------
+// MODALS
+// -------------------------
 
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      setIsLoggedIn(true);
-      auth.checkToken(jwt).then((user) => {
-        // console.log("Value of CurrentUser: ", user)
-        // console.log("Value of CurrentUser's Name: ", user.data.name)
-        // console.log("Value of CurrentUser's ID: ", user.data._id)
-          setCurrentUser(user.data);
-          history.push("/profile"); 
-      }).catch((err) => {
-        console.error("Token verification failed:", err);
-        localStorage.removeItem("jwt");
-        setIsLoggedIn(false);
-        setCurrentUser({});
-      });
+useEffect(() => {
+  if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+  const handleEscClose = (e) => {
+    if (e.key === "Escape") {
+      handleCloseModal();
     }
-  }, []);
+  };
+  document.addEventListener("keydown", handleEscClose);
+  return () => {
+    document.removeEventListener("keydown", handleEscClose);
+  };
+}, [activeModal]); // watch activeModal here
 
-  // console.log("currentUsers legit VaLUE:",currentUser)
-  // console.log("LEGIT value of Clothingitems :", clothingItems.owner);
-// MODAL HANDLERS
+const handleCloseModal = () => {
+  setActiveModal("");
+};
+
+function handleSubmit(request) {
+  setIsLoading(true);
+  request()
+  .then((data) => {
+    handleCloseModal();
+    return data;
+  })
+    .catch(console.error)
+    .finally(() => setIsLoading(false));
+}
+
+// -------------------------
+// CLOTHING ITEMS
+// -------------------------
+
+useEffect(() => {
+  if (isLoggedIn) {
+    api
+      .getItems()
+      .then((res) => {
+       // console.log("getItems data value: ", res)
+        if (Array.isArray(res.data)) {
+          setClothingItems(res.data);
+        } else {
+          console.error('Data received is not an array:', res.data);
+        }
+      })
+      .catch(console.error);
+  }
+}, [isLoggedIn]);
 
   const handleCreateModal = () => {
     setActiveModal("create");
   };
-
-  const handleLogInModal = () => {
-    setActiveModal("login-signin");
-  };
-
-  const handleRegisterModal = () => {
-    setActiveModal("register-signup");
-  };
-
-  const handleEditProfileModal = () => {
-    setActiveModal("edit-profile");
-  };
-
-  const handleCloseModal = () => {
-    setActiveModal("");
-  };
-
-  useEffect(() => {
-    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
-    const handleEscClose = (e) => {
-      if (e.key === "Escape") {
-        handleCloseModal();
-      }
-    };
-    document.addEventListener("keydown", handleEscClose);
-    return () => {
-      document.removeEventListener("keydown", handleEscClose);
-    };
-  }, [activeModal]); // watch activeModal here
-
-
-
-// CLOTHING ITEMS HANDLERS
 
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
@@ -163,34 +157,67 @@ function App() {
   };
 
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      api
-        .getItems()
-        .then((res) => {
-         // console.log("getItems data value: ", res)
-          if (Array.isArray(res.data)) {
-            setClothingItems(res.data);
-          } else {
-            console.error('Data received is not an array:', res.data);
-          }
-        })
-        .catch(console.error);
-    }
-  }, [isLoggedIn]);
+// -------------------------
+//         USERS
+// -------------------------
 
-  function handleSubmit(request) {
+  const handleLogInModal = () => {
+    setActiveModal("login-signin");
+  };
+
+  const handleLogInSubmit = (data) => {
     setIsLoading(true);
-    request()
-    .then((data) => {
-      handleCloseModal();
-      return data;
-    })
-      .catch(console.error)
+    return auth.logIn(data)
+      .then((res) => {
+        setIsLoggedIn(true);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          auth.checkToken(res.token).then((user) => setCurrentUser(user));
+          history.push("/profile");
+        }
+      })
+      .catch((error) => {
+        const errorMessage = error.message || "";
+        if (errorMessage.includes("invalid email")) { 
+          setInputError("Invalid Email")
+        } else if (errorMessage.includes("incorrect password")) { 
+          setInputError("Incorrect Password")
+        } else {
+          console.error(error); 
+          setInputError("Login Failed. Please Try Again");
+        }
+      })
       .finally(() => setIsLoading(false));
-  }
+  };
 
-// USER HANDLERS 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      setIsLoggedIn(true);
+      auth.checkToken(jwt).then((user) => {
+          setCurrentUser(user.data);
+          history.push("/profile"); 
+      }).catch((err) => {
+        console.error("Token verification failed:", err);
+        localStorage.removeItem("jwt");
+        setIsLoggedIn(false);
+        setCurrentUser({});
+      });
+    }
+  }, []);
+  
+
+  const handleLogOut = () => {
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    history.push("/")
+  };
+
+
+  const handleRegisterModal = () => {
+    setActiveModal("register-signup");
+  };
 
   const handleRegisterSubmit = (data) => {
     setIsLoading(true);
@@ -203,6 +230,11 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
+
+  const handleEditProfileModal = () => {
+    setActiveModal("edit-profile");
+  };
+
 const handleEditProfileSubmit = (data) => {
   setIsLoading(true)
   const jwt = localStorage.getItem("jwt");
@@ -210,50 +242,38 @@ const handleEditProfileSubmit = (data) => {
   .then((update) => {
     setCurrentUser(update.data);
     handleCloseModal();
+    history.push("/profile");
+    console.log("value of updated user in app.js: ", update.data)
   })
   .catch(console.error)
   .finally(() => setIsLoading(false)); 
 }
 
-const handleLogInSubmit = (data) => {
-  setIsLoading(true);
-  return auth.logIn(data)
-    .then((res) => {
-      setIsLoggedIn(true);
-      if (res.token) {
-        localStorage.setItem("jwt", res.token);
-        auth.checkToken(res.token).then((user) => setCurrentUser(user));
-        history.push("/profile");
-      }
-    })
-    .catch((error) => {
-      const errorMessage = error.message || "";
-      if (errorMessage.includes("invalid email")) { 
-        setInputError("Invalid Email")
-      } else if (errorMessage.includes("incorrect password")) { 
-        setInputError("Incorrect Password")
-      } else {
-        console.error(error); 
-        setInputError("Login Failed. Please Try Again");
-      }
-    })
-    .finally(() => setIsLoading(false));
-};
-  
-  const handleLogOut = () => {
-    localStorage.removeItem('jwt');
-    setIsLoggedIn(false);
-    setCurrentUser({});
-    history.push("/")
-  };
 
- // ** WEATHER-RELATED **// 
+// useEffect(() => {
+//   const jwt = localStorage.getItem("jwt");
+//   if (jwt && updateUser) {
+//     setIsLoggedIn(true)
+//     auth.checkToken(jwt).then((user) => {
+//       setCurrentUser(user.data);
+//     }).catch((err) => {
+//       console.error("Failed to update user data:", err);
+//       localStorage.removeItem("jwt");
+//       setIsLoggedIn(false);
+//       setCurrentUser({});
+//     });
+//   }
+// }, [updateUser]);
+
+
+ // -------------------------
+//     WEATHER - RELATED
+// -------------------------
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTempUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTempUnit("C");
   };
-
 
   useEffect(() => {
     getForecastWeather()
@@ -274,6 +294,7 @@ const handleLogInSubmit = (data) => {
   //  console.log(weatherForecast, "this is current weather forecast");
   // console.log(isDay, "this is App.js is it day time???");
   // console.log("Clothing items state in App:", clothingItems);
+
   return (
     <CurrentUserContext.Provider 
     value={currentUser}

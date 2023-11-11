@@ -11,10 +11,15 @@ const ClothesSection = ({
   onLikeClick,
 }) => {
   const currentUser = React.useContext(CurrentUserContext)
-// console.log("value of item, check item id: " , clothingItems)
-  // const userClothingItems = clothingItems.filter((item) => {
-  //   return item.owner === currentUser.id;
-  // })
+const userClothingItems = clothingItems.filter((item) => {
+  return item.owner === currentUser._id;
+});
+
+// console.log("value of item.owner._id: " , item.owner._id)
+// console.log("value of item.owner.id: " , item.owner.id)
+// console.log("value of currentUser._id: " , currentUser._id)
+// console.log("value of currentUer.id: " , currentUser.id)
+
 
   return (
     <section className="clothes__section">
@@ -26,10 +31,9 @@ const ClothesSection = ({
       >
         + Add items
       </button>
-      <ul className="clothes__section-gallery">
-        {/* {userClothingItems.map((item) => { */}
-         {clothingItems.map((item) => {
-        //  console.log("value of item in clothesSection.map, check item id: ",item)
+      <div className="clothes__section-gallery">
+        {userClothingItems.map((item) => {
+          console.log("value of item: looking for id and owner: ", item)
           return (
             <ItemCard
              // id={item._id || item.id} 
@@ -42,7 +46,7 @@ const ClothesSection = ({
             />
           );
         })}
-      </ul>
+      </div>
     </section>
   );
 };
