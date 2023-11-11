@@ -12,15 +12,14 @@ const Header = ({
   isLoggedIn,
   onLogInModal,
   onRegisterModal,
- // currentUser,
 }) => {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-const currentUser = React.useContext(CurrentUserContext)
-// console.log("currentUser in header.js: ",currentUser)
+  const currentUser = React.useContext(CurrentUserContext);
+
   return (
     <header className="header">
       <div className="header__logo">
@@ -33,54 +32,49 @@ const currentUser = React.useContext(CurrentUserContext)
           {currentDate}, {weatherLocation}
         </div>
       </div>
-  
-        <ToggleSwitch />
 
-        <div className="header__button-container">
-          {isLoggedIn ? (
-            <button
-              className="header__button-addClothes"
-              type="text"
-              onClick={onCreateModal}
-            >
-              + Add Clothes
-            </button>
-          ) : (
-            <button
-              className="header__button-register"
-              type="button"
-              onClick={onRegisterModal}
-            >
-              Sign Up
-            </button>
-          )}
-        </div>
+      <ToggleSwitch />
 
-      
-          {isLoggedIn ? (
-            <Link className="link__container"  to="/profile">
-              <h3 className="header__name">{
-              currentUser.name  
-            //  "Terrence Tegegne"
-              } </h3>
-              <div>
-                <img src={
-                  currentUser.avatar 
-               
-                  } className="header__avatar-img" alt="avatar" />
-              </div>
-            </Link>
-          ) : (
-            <Link
-              to="/signin"
-              className="header__login-link"
-              onClick={onLogInModal}
-            >
-              Log In
-            </Link>
-          )}
+      <div className="header__button-container">
+        {isLoggedIn ? (
+          <button
+            className="header__button-addClothes"
+            type="text"
+            onClick={onCreateModal}
+          >
+            + Add Clothes
+          </button>
+        ) : (
+          <button
+            className="header__button-register"
+            type="button"
+            onClick={onRegisterModal}
+          >
+            Sign Up
+          </button>
+        )}
+      </div>
 
-  
+      {isLoggedIn ? (
+        <Link className="link__container" to="/profile">
+          <h3 className="header__name">
+            {
+              currentUser.name
+            }
+          </h3>
+          <div>
+            <img
+              src={currentUser.avatar}
+              className="header__avatar-img"
+              alt="avatar"
+            />
+          </div>
+        </Link>
+      ) : (
+        <Link to="/" className="header__login-link" onClick={onLogInModal}>
+          Log In
+        </Link>
+      )}
     </header>
   );
 };

@@ -1,4 +1,6 @@
-/* MODAL WITH FORM */
+/* ==============================
+   MODAL WITH FORM STYLES
+   ============================== */
 
 .modal {
     position: fixed;
@@ -91,7 +93,9 @@
     font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
 }
 
-/* ADD ITEMS */
+/* ==============================
+   ADD ITEMS MODAL STYLES
+   ============================== */
 
 .modal__input-radio {
     margin-top: 8px;
@@ -106,8 +110,10 @@
 }
 
 
-/* EDIT MODAL */
-.modal__content-edit {
+/* ==============================
+   EDIT PROFILE MODAL STYLES
+   ============================== */
+.modal__content-edit {  
     max-width: 353px;
     max-height: 130px;
     padding-bottom: 60px;
@@ -125,24 +131,18 @@
     font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
 }
 
-/*REGISTER MODAL*/
-
-.modal_type_Register_Modal .modal__content{
+/* ==============================
+   REGISTER MODAL STYLES
+   ============================== */
+.modal_type_Register_Modal .modal__content {
     max-width: 496px;
     max-height: 456px;
-}
-
-.modal__content-register {
-    max-width: 353px;
-    max-height: 130px;
-    padding-bottom: 60px;
-    border: none;
 }
 
 .modal__label_register {
     margin-top: 24px;
     margin-bottom: 10px;
-    
+
 }
 
 .modal__input_text-register {
@@ -152,7 +152,7 @@
     padding-bottom: 0;
 }
 
-.button__submit-modal_Register_Modal{
+.button__submit-modal_Register_Modal {
     margin-top: 30px;
     width: 79px;
     height: 37px;
@@ -186,5 +186,59 @@
 }
 
 .login__link:hover {
+    opacity: 1;
+}
+/* ==============================
+   LOG IN MODAL STYLES
+   ============================== */
+.modal_type_LogIn_Modal .modal__content {
+    max-width: 496px;
+    max-height: 304px;
+}
+
+.modal__label_login {
+    margin-top: 24px;
+    margin-bottom: 10px;
+}
+
+.modal__input_text-login {
+    height: 40px;
+    padding-top: 10px;
+    padding-left: 0px;
+    padding-bottom: 0;
+}
+
+.button__submit-modal_LogIn_Modal {
+    margin-top: 30px;
+    width: 79px;
+    height: 37px;
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
+    border: none;
+    border-radius: 4px;
+    background-color: #000;
+    transition: opacity linear 0.3s 0.1s;
+    cursor: pointer;
+}
+
+.button__submit-modal_LogIn_Modal:hover {
+    opacity: 0.3;
+}
+
+.register__link {
+    margin-right: -176px;
+    margin-left: 87px;
+    text-decoration: none;
+    color: #000;
+    opacity: .5;
+    transition: opacity linear 0.3s 0.1s;
+    cursor: pointer;
+}
+
+.register__likn:hover {
     opacity: 1;
 }

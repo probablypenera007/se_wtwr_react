@@ -2,10 +2,16 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import * as auth from "../../utils/Auth.js";
+// import * as auth from "../../utils/Auth.js";
 //import RegisterModal from "../RegisterModal/RegisterModal.js";
 
-const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText, onClick }) => {
+const LogInModal = ({
+  handleCloseModal,
+  isOpen,
+  onSubmit,
+  buttonText,
+  openRegisterModal,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -20,8 +26,14 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText, onClick }) 
 
   const handleFormSubmitLogIn = (e) => {
     e.preventDefault();
-    onSubmit({email, password}).then((res) => handleCloseModal())
+    onSubmit({ email, password }).then((res) => handleCloseModal());
   };
+
+  const handleOpenRegisterModal = (e) => {
+    e.preventDefault();
+    openRegisterModal();
+  };
+
   return (
     <div className="login">
       <ModalWithForm
@@ -30,44 +42,46 @@ const LogInModal = ({ handleCloseModal, isOpen, onSubmit,buttonText, onClick }) 
         isOpen={isOpen}
         onSubmit={handleFormSubmitLogIn}
         buttonText={buttonText}
-     //    onClick={RegisterModal} 
+        modalName={"LogIn_Modal"}
       >
-        <div className="login__container">
-          <label className="modal__label">
-            Email:
-            <input
+        <label className="modal__label modal__label_login">
+          Email
+          <input
             id="login-email"
-              className="modal__input-text"
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleEmailChange}
-              minLength="1"
-              required
-            />
-          </label>
-          <label className="modal__label">
-            Password:
-            <input
+            className="modal__input-text modal__input_text-login"
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={handleEmailChange}
+            minLength="1"
+            required
+            autoComplete="email"
+          />
+        </label>
+        <label className="modal__label modal__label_login">
+          Password
+          <input
             id="login-password"
-              className="modal__input-text"
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-              minLength="1"
-              required
-            />
-          </label>
-        </div>
-        {/* <button className="button__submit-modal_login">{buttonText}</button> */}
-        <div className="login__toregister">
-          <Link to="/signup" className="register__link" 
-          // onClick={RegisterModal} 
-          >
-            or Register
-          </Link>
-        </div>
+            className="modal__input-text modal__input_text-login"
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+            minLength="1"
+            autoComplete="off"
+            required
+          />
+        </label>
+
+        <Link
+          to="/"
+          className="register__link"
+          onClick={handleOpenRegisterModal}
+        >
+          or Register
+        </Link>
       </ModalWithForm>
     </div>
   );

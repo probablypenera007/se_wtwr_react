@@ -319,36 +319,32 @@ const handleEditProfileSubmit = (data) => {
               selectedCard={selectedCard}
               onClose={handleCloseModal}
               onDeleteCard={handleDeleteCard}
-              buttonText={isLoading ? "Deleting..." : "Delete Item"}
+              buttonText={isLoading ? "Removing..." : "Delete Item"}
             />
           )}
-          {/* <Switch>
-          <Route path="/signin"> */}
           {activeModal === "login-signin" && (
             <LogInModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "login-signin"}
-            buttonText={isLoading ? "Logging In..." : "Log In"}
+            buttonText={isLoading ? "🧭" : "Log In"}
             onSubmit={handleLogInSubmit}
-            // onClick={handleRegisterModal}
+            openRegisterModal={handleRegisterModal}
             />
           )}
-          {/* </Route>
-          <Route path="/signup"> */}
           {activeModal === "register-signup" && (
             <RegisterModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "register-signup"}
-            buttonText={isLoading ? "Signing Up..." : "Next"}
+            buttonText={isLoading ? "🧭" : "Next"}
             onSubmit={handleRegisterSubmit}
-            // onClick={handleLogInModal}
+            openLogInModal={handleLogInModal}
             />
           )}
           {activeModal === "edit-profile" && (
             <EditProfileModal 
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "edit-profile"}
-            buttonText={isLoading ? "Saving..." : "Save Changes"}
+            buttonText={isLoading ? "Saving.." : "Save Changes"}
             onSubmit={handleEditProfileSubmit}
             />
           )}
