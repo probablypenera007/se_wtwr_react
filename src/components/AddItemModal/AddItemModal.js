@@ -30,12 +30,12 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
 
   const handleAddItemUrlChange = (e) => {
     //console.log(e, "this is handle add item name change in additemmodal")
-    console.log(e.target.value, "Add Item test target value");
+    //console.log(e.target.value, "Add Item test target value");
     setimageUrl(e.target.value);
   };
 
   const handleAddItemRadioWeatherType = (e) => {
-    console.log(e.target.value, "Add Item RADIO BUTTON test target value");
+    //console.log(e.target.value, "Add Item RADIO BUTTON test target value");
     setSelectedWeatherType(e.target.value);
   };
 

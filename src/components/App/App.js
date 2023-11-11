@@ -36,6 +36,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [inputError, setInputError] = useState("");
   
   const history = useHistory();
 
@@ -214,20 +215,30 @@ const handleEditProfileSubmit = (data) => {
   .finally(() => setIsLoading(false)); 
 }
 
-  const handleLogInSubmit = (data) => {
-    setIsLoading(true)
-    return auth.logIn(data)
+const handleLogInSubmit = (data) => {
+  setIsLoading(true);
+  return auth.logIn(data)
     .then((res) => {
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
       if (res.token) {
         localStorage.setItem("jwt", res.token);
-        auth.checkToken(res.token).then((user) => setCurrentUser(user))
+        auth.checkToken(res.token).then((user) => setCurrentUser(user));
         history.push("/profile");
       }
     })
-    .catch(console.error)
+    .catch((error) => {
+      const errorMessage = error.message || "";
+      if (errorMessage.includes("invalid email")) { 
+        setInputError("Invalid Email")
+      } else if (errorMessage.includes("incorrect password")) { 
+        setInputError("Incorrect Password")
+      } else {
+        console.error(error); 
+        setInputError("Login Failed. Please Try Again");
+      }
+    })
     .finally(() => setIsLoading(false));
-  };
+};
   
   const handleLogOut = () => {
     localStorage.removeItem('jwt');
@@ -329,6 +340,7 @@ const handleEditProfileSubmit = (data) => {
             buttonText={isLoading ? "🧭" : "Log In"}
             onSubmit={handleLogInSubmit}
             openRegisterModal={handleRegisterModal}
+            inputError={inputError}
             />
           )}
           {activeModal === "register-signup" && (
