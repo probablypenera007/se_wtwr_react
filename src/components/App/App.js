@@ -3,7 +3,17 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import "./App.css";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import Profile from "../Profile/Profile";
+import LogInModal from "../LogInModal/LogInModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import {
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom";
 import {
   getForecastWeather,
   parseWeatherData,
@@ -13,19 +23,9 @@ import {
 } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
-import {
-  Switch,
-  Route,
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom";
-import AddItemModal from "../AddItemModal/AddItemModal";
-import Profile from "../Profile/Profile";
 import * as api from "../../utils/Api";
 import * as auth from "../../utils/Auth";
-import LogInModal from "../LogInModal/LogInModal";
-import RegisterModal from "../RegisterModal/RegisterModal";
-import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import "./App.css";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -48,7 +48,7 @@ function App() {
   // -------------------------
 
   useEffect(() => {
-    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+    if (!activeModal) return;
     const handleEscClose = (e) => {
       if (e.key === "Escape") {
         handleCloseModal();
@@ -58,7 +58,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
-  }, [activeModal]); // watch activeModal here
+  }, [activeModal]); 
 
   const handleCloseModal = () => {
     setActiveModal("");
@@ -155,37 +155,6 @@ function App() {
   // -------------------------
   //         USERS
   // -------------------------
-
-  const handleLogInModal = () => {
-    setActiveModal("login-signin");
-  };
-
-  const handleLogInSubmit = (data) => {
-    setIsLoading(true);
-    return auth
-      .logIn(data)
-      .then((res) => {
-        setIsLoggedIn(true);
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-          auth.checkToken(res.token).then((user) => setCurrentUser(user));
-          history.push("/profile");
-        }
-      })
-      .catch((error) => {
-        const errorMessage = error.message || "";
-        if (errorMessage.includes("invalid email")) {
-          setInputError("Invalid Email");
-        } else if (errorMessage.includes("incorrect password")) {
-          setInputError("Incorrect Password");
-        } else {
-          console.error(error);
-          setInputError("Login Failed. Please Try Again");
-        }
-      })
-      .finally(() => setIsLoading(false));
-  };
-
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
@@ -194,7 +163,6 @@ function App() {
         .checkToken(jwt)
         .then((user) => {
           setCurrentUser(user.data);
-          console.log("currentUser set in App.js:", user.data);
           history.push("/profile");
         })
         .catch((err) => {
@@ -205,6 +173,46 @@ function App() {
         });
     }
   }, []);
+
+  const handleAuthErrors = (error) => {
+    const errorMessage = error.message || "";
+    setInputError(
+      errorMessage.includes("invalid email")
+        ? "Invalid Email"
+        : errorMessage.includes("incorrect password")
+        ? "Incorrect Password"
+        : "Login Failed. Please Try Again"
+    );
+    console.error(error);
+    }
+
+    const handleLogInModal = () => {
+      setActiveModal("login-signin");
+    };
+
+    const handleLogInSubmit = (data) => {
+      setIsLoading(true);
+      return auth
+        .logIn(data)
+        .then((res) => {
+          setIsLoggedIn(true);
+          if (res.token) {
+            localStorage.setItem("jwt", res.token);
+            setIsLoggedIn(true);
+            return auth.checkToken(res.token);
+          } else {
+            throw new Error("No Token Received");
+          }
+        })
+        .then((user) => {
+          setCurrentUser(user);
+          handleCloseModal();
+          history.push("/profile");
+        })
+        .catch(handleAuthErrors)
+        .finally(() => setIsLoading(false));
+    };
+  
 
   const handleLogOut = () => {
     localStorage.removeItem("jwt");
@@ -222,8 +230,9 @@ function App() {
     return auth
       .register(data)
       .then((res) => {
-        handleLogInSubmit(data);
+        handleLogInSubmit(res.data);
         handleCloseModal();
+        history.push("/profile");
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -238,9 +247,7 @@ function App() {
     return auth
       .editProfile(data)
       .then((update) => {
-        setCurrentUser((data) => {
-          return 
-        })
+        setCurrentUser(update.data);
         handleCloseModal();
         //history.push("/profile");
         console.log("value of updated user in app.js: ", update.data)
@@ -249,26 +256,6 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
-
-  // .addCardLike(id, jwt)
-  // .then((updatedCard) => {
-  //   setClothingItems((cards) => {
-  //     return cards.map((c) => (c._id === id ? updatedCard.data : c));
-  //   });
-  // })
-  // useEffect(() => {
-  //   updateCurrentUser();
-  // }, []);
-
-  // .logIn(data)
-  // .then((res) => {
-  //   setIsLoggedIn(true);
-  //   if (res.token) {
-  //     localStorage.setItem("jwt", res.token);
-  //     auth.checkToken(res.token).then((user) => setCurrentUser(user));
-  //     history.push("/profile");
-  //   }
-  // })
   // -------------------------
   //     WEATHER - RELATED
   // -------------------------
@@ -292,11 +279,6 @@ function App() {
       })
       .catch(console.error);
   }, []);
-  //  console.log(temp, "this is set temp");
-  //  console.log(weatherLocation, "this is APP.js current location");
-  //  console.log(weatherForecast, "this is current weather forecast");
-  // console.log(isDay, "this is App.js is it day time???");
-  // console.log("Clothing items state in App:", clothingItems);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -361,7 +343,7 @@ function App() {
             <LogInModal
               handleCloseModal={handleCloseModal}
               isOpen={activeModal === "login-signin"}
-              buttonText={isLoading ? "🧭" : "Log In"}
+              buttonText={isLoading ? "Logging In..." : "Log In"}
               onSubmit={handleLogInSubmit}
               openRegisterModal={handleRegisterModal}
               inputError={inputError}
@@ -371,7 +353,7 @@ function App() {
             <RegisterModal
               handleCloseModal={handleCloseModal}
               isOpen={activeModal === "register-signup"}
-              buttonText={isLoading ? "🧭" : "Next"}
+              buttonText={isLoading ? "Signing Up..." : "Next"}
               onSubmit={handleRegisterSubmit}
               openLogInModal={handleLogInModal}
             />

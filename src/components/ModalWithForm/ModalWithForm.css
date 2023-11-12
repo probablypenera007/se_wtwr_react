@@ -213,7 +213,7 @@
 
 .button__submit-modal_Register_Modal {
     margin-top: 30px;
-    width: 79px;
+    min-width: 79px;
     height: 37px;
     color: #FFF;
     font-size: 16px;
@@ -235,8 +235,8 @@
 
 
 .login__link {
-    margin-right: -161px;
-    margin-left: 87px;
+    margin-right: -187px;
+    margin-left: 100px;
     text-decoration: none;
     color: #000;
     opacity: .5;
@@ -274,7 +274,7 @@
 
 .button__submit-modal_LogIn_Modal {
     margin-top: 30px;
-    width: 79px;
+    min-width: 79px;
     height: 37px;
     color: #FFF;
     font-size: 16px;
@@ -294,8 +294,8 @@
 }
 
 .register__link {
-    margin-right: -176px;
-    margin-left: 87px;
+    margin-right: -187px;
+    margin-left: 100px;
     text-decoration: none;
     color: #000;
     opacity: .5;

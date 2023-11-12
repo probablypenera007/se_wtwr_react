@@ -1,7 +1,7 @@
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import * as auth from "../../utils/Auth.js";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+//import { useHistory } from "react-router-dom/cjs/react-router-dom";
+//import * as auth from "../../utils/Auth.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => {
@@ -23,6 +23,7 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
     e.preventDefault();
     onSubmit({name, avatar})
   };
+  
   return (
     <div className="edit__profile">
       <ModalWithForm

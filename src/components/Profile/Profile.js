@@ -1,7 +1,8 @@
 import React from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import SideBar from "./SideBar/SideBar";
 import ClothesSection from "./ClothesSection/ClothesSection";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+
 
 
 import "./Profile.css";
@@ -20,7 +21,7 @@ function Profile({
     <section className="profile">
       <SideBar 
       onLogOut={onLogOut} 
-      currentUser={currentUser}
+      //currentUser={currentUser}
       isLoggedIn={isLoggedIn}
       onEditProfile={onEditProfile}
       />

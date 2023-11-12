@@ -21,7 +21,7 @@ const Header = ({
   });
 
   const currentUser = React.useContext(CurrentUserContext);
-
+  
   return (
     <header className="header">
       <div className="header__logo">

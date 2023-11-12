@@ -1,4 +1,3 @@
-
 import React from "react";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 import "./SideBar.css";
@@ -12,6 +11,7 @@ const SideBar = ({
   isLoggedIn
 }) => {
   const currentUser = React.useContext(CurrentUserContext)
+
   return (
     <section className="sidebar">
       <div className="sidebar__content">

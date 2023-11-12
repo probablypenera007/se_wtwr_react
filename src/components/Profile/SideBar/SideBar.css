@@ -4,11 +4,12 @@
   margin: 0;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   margin-right: 116px;
+  min-width: 195px;
 }
 
 .sidebar__content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
