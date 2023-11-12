@@ -15,17 +15,25 @@ const RegisterModal = ({
   const [avatar, setAvatar] = useState("");
   const history = useHistory();
 
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleAvatarChange = (e) => setAvatar(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
+  };
 
   const handleFormSubmitRegister = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, name, avatar }).then(
-      (res) => history.push("/profile"),
-      handleCloseModal()
-    );
+    onSubmit({ email, password, name, avatar })
   };
 
   const handleOpenLogin = (e) => {

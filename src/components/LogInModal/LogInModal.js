@@ -28,8 +28,8 @@ const LogInModal = ({
 
   const handleFormSubmitLogIn = (e) => {
     e.preventDefault();
-
-    onSubmit({ email, password }).then((res) => handleCloseModal())
+    onSubmit({ email, password })
+    // .then((res) => handleCloseModal())
   }
 
   const handleOpenRegisterModal = (e) => {

@@ -106,6 +106,7 @@ function App() {
   };
 
   const handleAddItemSubmit = (newItem) => {
+    console.log()
     function requestAddItem() {
       return api.addItem(newItem).then((addedItem) => {
         if (addedItem) {
@@ -155,21 +156,26 @@ function App() {
   // -------------------------
   //         USERS
   // -------------------------
+
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      setIsLoggedIn(true);
-      auth
-        .checkToken(jwt)
-        .then((user) => {
-          setCurrentUser(user.data);
-          history.push("/profile");
+      auth.checkToken(jwt)
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            setCurrentUser(res.data);
+          }
         })
-        .catch((err) => {
-          console.error("Token verification failed:", err);
-          localStorage.removeItem("jwt");
-          setIsLoggedIn(false);
-          setCurrentUser({});
+        .then(() => {
+          if (currentUser) {
+            history.push("/profile");
+          } else {
+            history.push("/");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
         });
     }
   }, []);
@@ -195,21 +201,21 @@ function App() {
       return auth
         .logIn(data)
         .then((res) => {
+         // console.log("value of res in app.js: ", res)
           if (res.token) {
             localStorage.setItem("jwt", res.token);
             setIsLoggedIn(true);
-            return auth.checkToken(res.token);
-          } else {
-            throw new Error("No Token Received");
+            auth.checkToken(res.token)
+            .then((user) => {
+              setCurrentUser(user.data)
+            //  console.log("value of user in app.js: ", data)
+              history.push("/profile");
+              handleCloseModal();
+            })
+            .catch(handleAuthErrors)
+            .finally(() => setIsLoading(false));
           }
-        })
-        .then((user) => {
-          setCurrentUser(user);
-          handleCloseModal();
-          history.push("/profile");
-        })
-        .catch(handleAuthErrors)
-        .finally(() => setIsLoading(false));
+        }) 
     };
   
 
@@ -225,13 +231,15 @@ function App() {
   };
 
   const handleRegisterSubmit = (data) => {
+    console.log("value of data top of RegisterSubmit app.js: ", data)
     setIsLoading(true);
     return auth
       .register(data)
       .then((res) => {
-        handleLogInSubmit(res.data);
-        handleCloseModal();
+        console.log("registration response in registersubmit: ", res);
+        handleLogInSubmit(data);
         history.push("/profile");
+        handleCloseModal();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -249,7 +257,7 @@ function App() {
         setCurrentUser(update.data);
         handleCloseModal();
         //history.push("/profile");
-        console.log("value of updated user in app.js: ", update.data)
+        // console.log("value of updated user in app.js: ", update.data)
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
