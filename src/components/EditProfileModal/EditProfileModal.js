@@ -8,7 +8,6 @@ const EditProfileModal = ({ handleCloseModal, isOpen, onSubmit,buttonText }) => 
   const currentUser = React.useContext(CurrentUserContext)
   const [name, setName] = useState(currentUser.name);
   const [avatar, setAvatar] = useState(currentUser.avatar);
-  const history = useHistory();
 
 //console.log("value of currentuser in Edit profile for .name and .avatar: ",currentUser.name , currentUser.avatar);
 

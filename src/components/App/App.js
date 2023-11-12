@@ -131,11 +131,9 @@ function App() {
 
   const handleLikeClick = ({ id, isLiked }) => {
     const jwt = localStorage.getItem("jwt");
-    // Check if this card is now liked
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
+      ? 
         api
-          // the first argument is the card's id
           .addCardLike(id, jwt)
           .then((updatedCard) => {
             setClothingItems((cards) => {
@@ -143,14 +141,11 @@ function App() {
             });
           })
           .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
+      :
         api
-          // the first argument is the card's id
           .removeCardLike(id, jwt)
           .then((updatedCard) => {
-            //console.log('Unlike response updatedCard data:', updatedCard);
             setClothingItems((cards) => {
-              //  console.log("unlike setclothingitem for cards after .then updatedCard", cards)
               return cards.map((c) => (c._id === id ? updatedCard.data : c));
             });
           })
@@ -240,19 +235,40 @@ function App() {
 
   const handleEditProfileSubmit = (data) => {
     setIsLoading(true);
-    const jwt = localStorage.getItem("jwt");
     return auth
-      .editProfile(jwt, data)
+      .editProfile(data)
       .then((update) => {
-        setCurrentUser(update.data);
+        setCurrentUser((data) => {
+          return 
+        })
         handleCloseModal();
-        history.push("/profile");
-        //console.log("value of updated user in app.js: ", update.data)
+        //history.push("/profile");
+        console.log("value of updated user in app.js: ", update.data)
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
   };
 
+
+  // .addCardLike(id, jwt)
+  // .then((updatedCard) => {
+  //   setClothingItems((cards) => {
+  //     return cards.map((c) => (c._id === id ? updatedCard.data : c));
+  //   });
+  // })
+  // useEffect(() => {
+  //   updateCurrentUser();
+  // }, []);
+
+  // .logIn(data)
+  // .then((res) => {
+  //   setIsLoggedIn(true);
+  //   if (res.token) {
+  //     localStorage.setItem("jwt", res.token);
+  //     auth.checkToken(res.token).then((user) => setCurrentUser(user));
+  //     history.push("/profile");
+  //   }
+  // })
   // -------------------------
   //     WEATHER - RELATED
   // -------------------------

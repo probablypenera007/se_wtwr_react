@@ -1,17 +1,21 @@
-//import avatar from "../../../images/avatar.svg";
+
+import React from "react";
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
 import "./SideBar.css";
-import AvatarPlaceHolder from "../../AvatarPlaceHolder/AvatarPlaceHolder";
+//import AvatarPlaceHolder from "../../AvatarPlaceHolder/AvatarPlaceHolder";
+
+
 
 const SideBar = ({
   onLogOut, 
-  currentUser,
   onEditProfile,
   isLoggedIn
 }) => {
+  const currentUser = React.useContext(CurrentUserContext)
   return (
     <section className="sidebar">
       <div className="sidebar__content">
-        {currentUser.avatar ? (
+        {/* {currentUser.avatar ? ( */}
           <img
           className="sidebar__avatar"
           src={ 
@@ -19,9 +23,9 @@ const SideBar = ({
             }
           alt="sidebar avatar icon"
         />
-        ) : (
-          <AvatarPlaceHolder name={currentUser.name}/>
-        )}
+        {/* // ) : (
+        //   <AvatarPlaceHolder name={currentUser.name}/>
+        // )} */}
         
         <p className="sidebar__name">{ 
         currentUser.name
