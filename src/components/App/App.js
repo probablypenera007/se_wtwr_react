@@ -87,6 +87,10 @@ function App() {
           // console.log("getItems data value: ", res)
           if (Array.isArray(res.data)) {
             setClothingItems(res.data);
+           // console.log("value of clothingItems inside api.getitems: ",clothingItems)
+          //  console.log("value of res.data inside api.getitems: ",res.data)
+          //  console.log("value of res in side getitems: ", res)
+          //  console.log("value of data in inside get items: ", data)
           } else {
             console.error("Data received is not an array:", res.data);
           }
@@ -94,6 +98,11 @@ function App() {
         .catch(console.error);
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    console.log("Updated clothingItems:", clothingItems);
+  }, [clothingItems]);
+  
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -105,17 +114,30 @@ function App() {
     // console.log(card, "check value of card if ID is present");
   };
 
+  // const handleAddItemSubmit = (newItem) => {
+  //   function requestAddItem() {
+  //     return api.addItem(newItem).then((addedItem) => {
+  //       if (addedItem) {
+  //         setClothingItems((previousItems) => [...previousItems, addedItem]);
+  //       }
+  //     });
+  //   }
+  //   handleSubmit(requestAddItem);
+  // };
+
   const handleAddItemSubmit = (newItem) => {
-    console.log()
+    const token = localStorage.getItem("jwt");
+
     function requestAddItem() {
-      return api.addItem(newItem).then((addedItem) => {
-        if (addedItem) {
-          setClothingItems((addedItem) => [...addedItem, clothingItems]);
-        }
-      });
+        return api.addItem(newItem, token).then((res) => {
+            if (res && res.data) {
+                setClothingItems(previousItems => [res.data, ...previousItems]);
+            }
+        });
     }
+
     handleSubmit(requestAddItem);
-  };
+};
 
   const handleDeleteCard = (card) => {
     function requestDeleteItem() {

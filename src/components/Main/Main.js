@@ -1,7 +1,7 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
-import  React, { useMemo, useContext } from "react";
+import React, { useMemo, useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -11,14 +11,14 @@ function Main({
   isDay,
   weatherForecast,
   clothingItems,
- // currentUser,
+  // currentUser,
   onLikeClick,
 }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  // console.log('currentUser in Main:', currentUser);
 
-  const currentUser = React.useContext(CurrentUserContext)
- // console.log('currentUser in Main:', currentUser);
+  console.log('Main clothingItems at start:', clothingItems);
 
- // console.log('Main clothingItems at start:', clothingItems);
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 1000;
   const weatherType = useMemo(() => {
@@ -39,10 +39,10 @@ function Main({
         return "cold";
       }
     }
-
   }, [currentTemperatureUnit, temp]);
   // console.log('weatherType:', weatherType);
-  // console.log('clothingItems after weathertype:', clothingItems);
+
+  console.log('Main clothingItems after temp logic :', clothingItems);
 
   const filteredCards = clothingItems.filter((item) => {
     return item.weather && item.weather.toLowerCase() === weatherType;
@@ -55,21 +55,19 @@ function Main({
           Today is {temp} º{currentTemperatureUnit} / You may want to wear:
         </p>
 
-
-  <div className="card__items">
-    {filteredCards.map((item) => (
-      <ItemCard
-      //id={item._id || item.id} 
-       key={item._id || item.id}
-        item={item}
-        onSelectCard={onSelectCard}
-      //  currentUser={currentUser}
-        onLikeClick={onLikeClick}
-       // itemId={item._id || item.id }
-      />
-    ))}
-  </div>
-
+        <div className="card__items">
+          {filteredCards.map((item) => (
+            <ItemCard
+              //id={item._id || item.id}
+              key={item._id || item.id}
+              item={item}
+              onSelectCard={onSelectCard}
+              //  currentUser={currentUser}
+              onLikeClick={onLikeClick}
+              // itemId={item._id || item.id }
+            />
+          ))}
+        </div>
       </section>
     </main>
   );

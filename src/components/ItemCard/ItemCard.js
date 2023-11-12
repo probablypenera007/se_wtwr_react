@@ -30,7 +30,7 @@ const ItemCard = ({
      //key={key} 
     //key={id}
     className="card"
-    key={itemId}
+   // key={itemId}
     >
       <img
         src={item.imageUrl}
