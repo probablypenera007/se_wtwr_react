@@ -195,7 +195,6 @@ function App() {
       return auth
         .logIn(data)
         .then((res) => {
-          setIsLoggedIn(true);
           if (res.token) {
             localStorage.setItem("jwt", res.token);
             setIsLoggedIn(true);
