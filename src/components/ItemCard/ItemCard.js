@@ -2,19 +2,10 @@ import React from "react";
 import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const ItemCard = ({ 
-  item, 
-  onSelectCard, 
-  onLikeClick,
-  itemId
-}) => {
+const ItemCard = ({ item, onSelectCard, onLikeClick }) => {
   const currentUser = React.useContext(CurrentUserContext);
   const isLiked =
     currentUser && item.likes ? item.likes.includes(currentUser._id) : false;
-  //const id = currentUser._id;
-//console.log("this is isLiked value from ItemCard: ",isLiked)
-  // console.log(id, "value of user ID in itemCard")
-  // console.log(item.likes, "value of item for clothes dapat to!")
 
   const likeButtonClassName = `like__button ${
     isLiked ? "like__button_active" : "like__button_inactive"
@@ -26,12 +17,7 @@ const ItemCard = ({
   };
 
   return (
-    <div
-     //key={key} 
-    //key={id}
-    className="card"
-   // key={itemId}
-    >
+    <div className="card">
       <img
         src={item.imageUrl}
         className="card__item-image"

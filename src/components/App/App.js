@@ -111,19 +111,7 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-    // console.log(card, "check value of card if ID is present");
   };
-
-  // const handleAddItemSubmit = (newItem) => {
-  //   function requestAddItem() {
-  //     return api.addItem(newItem).then((addedItem) => {
-  //       if (addedItem) {
-  //         setClothingItems((previousItems) => [...previousItems, addedItem]);
-  //       }
-  //     });
-  //   }
-  //   handleSubmit(requestAddItem);
-  // };
 
   const handleAddItemSubmit = (newItem) => {
     const token = localStorage.getItem("jwt");
@@ -142,7 +130,6 @@ function App() {
   const handleDeleteCard = (card) => {
     function requestDeleteItem() {
       return api.deleteItem(card._id).then(() => {
-        //      console.log(card._id, "card.id value check DELETE CARD");
         const updatedItems = clothingItems.filter(
           (item) => item._id !== card._id
         );
@@ -223,14 +210,12 @@ function App() {
       return auth
         .logIn(data)
         .then((res) => {
-         // console.log("value of res in app.js: ", res)
           if (res.token) {
             localStorage.setItem("jwt", res.token);
             setIsLoggedIn(true);
             auth.checkToken(res.token)
             .then((user) => {
               setCurrentUser(user.data)
-            //  console.log("value of user in app.js: ", data)
               history.push("/profile");
               handleCloseModal();
             })
@@ -278,8 +263,6 @@ function App() {
       .then((update) => {
         setCurrentUser(update.data);
         handleCloseModal();
-        //history.push("/profile");
-        // console.log("value of updated user in app.js: ", update.data)
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -322,7 +305,6 @@ function App() {
             isLoggedIn={isLoggedIn}
             onLogInModal={handleLogInModal}
             onRegisterModal={handleRegisterModal}
-            //currentUser={currentUser}
           />
           <Switch>
             <Route exact path="/">

@@ -33,7 +33,7 @@ const RegisterModal = ({
 
   const handleFormSubmitRegister = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, name, avatar })
+    onSubmit({ email, password, name, avatar });
   };
 
   const handleOpenLogin = (e) => {

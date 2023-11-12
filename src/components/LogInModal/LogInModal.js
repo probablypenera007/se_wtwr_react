@@ -2,8 +2,6 @@ import { Link } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-// import * as auth from "../../utils/Auth.js";
-//import RegisterModal from "../RegisterModal/RegisterModal.js";
 
 const LogInModal = ({
   handleCloseModal,
@@ -28,9 +26,8 @@ const LogInModal = ({
 
   const handleFormSubmitLogIn = (e) => {
     e.preventDefault();
-    onSubmit({ email, password })
-    // .then((res) => handleCloseModal())
-  }
+    onSubmit({ email, password });
+  };
 
   const handleOpenRegisterModal = (e) => {
     e.preventDefault();
@@ -48,7 +45,7 @@ const LogInModal = ({
         modalName={"LogIn_Modal"}
       >
         <label className="modal__label modal__label_login">
-        Email
+          Email
           <input
             id="login-email"
             className="modal__input-text modal__input_text-login"
@@ -63,7 +60,7 @@ const LogInModal = ({
           />
         </label>
         <label className="modal__label modal__label_login">
-         Password
+          Password
           <input
             id="login-password"
             className="modal__input-text modal__input_text-login"

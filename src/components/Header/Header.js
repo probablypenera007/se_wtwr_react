@@ -2,7 +2,6 @@ import React from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Header.css";
 import wtwrlogo from "../../images/wtwrlogo.svg";
-//import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
@@ -21,7 +20,7 @@ const Header = ({
   });
 
   const currentUser = React.useContext(CurrentUserContext);
-  
+
   return (
     <header className="header">
       <div className="header__logo">
@@ -59,11 +58,7 @@ const Header = ({
 
       {isLoggedIn ? (
         <Link className="link__container" to="/profile">
-          <h3 className="header__name">
-            {
-              currentUser.name
-            }
-          </h3>
+          <h3 className="header__name">{currentUser.name}</h3>
           <div>
             {/* {currentUser.avatar ? ( */}
             <img

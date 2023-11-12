@@ -11,15 +11,11 @@ function Main({
   isDay,
   weatherForecast,
   clothingItems,
-  // currentUser,
   onLikeClick,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
-  // console.log('currentUser in Main:', currentUser);
-
-  console.log('Main clothingItems at start:', clothingItems);
-
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 1000;
   const weatherType = useMemo(() => {
     if (currentTemperatureUnit === "F") {
@@ -40,9 +36,6 @@ function Main({
       }
     }
   }, [currentTemperatureUnit, temp]);
-  // console.log('weatherType:', weatherType);
-
-  console.log('Main clothingItems after temp logic :', clothingItems);
 
   const filteredCards = clothingItems.filter((item) => {
     return item.weather && item.weather.toLowerCase() === weatherType;
@@ -58,13 +51,10 @@ function Main({
         <div className="card__items">
           {filteredCards.map((item) => (
             <ItemCard
-              //id={item._id || item.id}
               key={item._id || item.id}
               item={item}
               onSelectCard={onSelectCard}
-              //  currentUser={currentUser}
               onLikeClick={onLikeClick}
-              // itemId={item._id || item.id }
             />
           ))}
         </div>

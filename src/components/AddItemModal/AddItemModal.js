@@ -1,41 +1,20 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
+const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
   const [name, setName] = useState("");
   const [imageUrl, setimageUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
-  
-  // export function useForm(inputValues) { WILL UPDATE
-  //   const [values, setValues] = useState(inputValues);
-  
-  //   const handleChange = (event) => {
-  //     const {value, name} = event.target;
-  //     setValues({...values, [name]: value});
-  //   };
-  //   return {values, handleChange, setValues};
-  // }
-
-
-//const {values, handleChange, setValues} = useForm({})
-
-
-  
 
   const handleAddItemNameChange = (e) => {
-    //console.log(e, "this is handle add item name change in additemmodal")
-    //console.log(value, "Add Item test target value");
     setName(e.target.value);
   };
 
   const handleAddItemUrlChange = (e) => {
-    //console.log(e, "this is handle add item name change in additemmodal")
-    //console.log(e.target.value, "Add Item test target value");
     setimageUrl(e.target.value);
   };
 
   const handleAddItemRadioWeatherType = (e) => {
-    //console.log(e.target.value, "Add Item RADIO BUTTON test target value");
     setSelectedWeatherType(e.target.value);
   };
 
@@ -43,7 +22,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
     e.preventDefault();
     const newItem = { name, imageUrl, weather };
     onAddItem(newItem);
-
   };
 
   return (
@@ -85,7 +63,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText}) => {
           required
         />
       </label>
-      <label className="modal__label modal__label-add">Select the Weather Type:</label>
+      <label className="modal__label modal__label-add">
+        Select the Weather Type:
+      </label>
       <div>
         <div>
           <input
