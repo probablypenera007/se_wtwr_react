@@ -19,7 +19,6 @@ const ItemCard = ({ item, onSelectCard, onLikeClick }) => {
   };
 
   
-
   return (
     <div className="card">
       <img

@@ -80,7 +80,7 @@ function App() {
   // -------------------------
 
   useEffect(() => {
-    if (isLoggedIn) {
+    // if (isLoggedIn) {
       api
         .getItems()
         .then((res) => {
@@ -91,8 +91,7 @@ function App() {
           }
         })
         .catch(console.error);
-    }
-  }, [isLoggedIn]);
+  }, []);
 
   // useEffect(() => {
   //   console.log("Updated clothingItems:", clothingItems);

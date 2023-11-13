@@ -11,7 +11,8 @@ export function checkResponse(res) {
 export function getItems() {
   return fetch(`${baseUrl}/items`, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      "Content-Type": "application/json",
+      // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   }).then(checkResponse);
 }
