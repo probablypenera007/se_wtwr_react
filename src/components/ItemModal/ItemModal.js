@@ -10,6 +10,8 @@ const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
     onDeleteCard(selectedCard);
   };
 
+  const itemDeleteButtonClassName = `button__delete-preview ${isOwn ? 'button__delete-preview_visible' : 'button__delete-preview_hidden'}`;
+
   return (
     <div className={`modal`}>
       <div className="modal__content-preview">
@@ -27,9 +29,11 @@ const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
         <div className="modal__preview-weather">
           Weather: {selectedCard.weather}
         </div>
-        <button className="button__delete-preview" onClick={handleDeleteCard}>
+        {/* {isOwn && ( */}
+        <button className={itemDeleteButtonClassName} onClick={handleDeleteCard}>
           {buttonText}
         </button>
+          {/* )} */}
       </div>
     </div>
   );

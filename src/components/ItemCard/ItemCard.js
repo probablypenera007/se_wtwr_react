@@ -4,8 +4,10 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const ItemCard = ({ item, onSelectCard, onLikeClick }) => {
   const currentUser = React.useContext(CurrentUserContext);
-  const isLiked =
-    currentUser && item.likes ? item.likes.includes(currentUser._id) : false;
+  // const isLiked =
+  //   currentUser && item.likes ? item.likes.includes(currentUser._id) : false;
+
+  const isLiked = currentUser && item.likes && item.likes.includes(currentUser._id);
 
   const likeButtonClassName = `like__button ${
     isLiked ? "like__button_active" : "like__button_inactive"
@@ -15,6 +17,8 @@ const ItemCard = ({ item, onSelectCard, onLikeClick }) => {
     e.preventDefault();
     onLikeClick({ id: item._id, isLiked });
   };
+
+  
 
   return (
     <div className="card">
