@@ -4,7 +4,7 @@ import React from "react";
 
 const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
   const currentUser = React.useContext(CurrentUserContext);
-  const isOwn = selectedCard.owner._id === currentUser._id;
+  const isOwn = selectedCard.owner === currentUser._id;
 
   const handleDeleteCard = () => {
     onDeleteCard(selectedCard);
@@ -29,11 +29,11 @@ const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
         <div className="modal__preview-weather">
           Weather: {selectedCard.weather}
         </div>
-        {/* {isOwn && ( */}
+        {isOwn && (
         <button className={itemDeleteButtonClassName} onClick={handleDeleteCard}>
           {buttonText}
         </button>
-          {/* )} */}
+           )} 
       </div>
     </div>
   );

@@ -39,7 +39,7 @@
     margin-left: 32px;
 }
 
-/* .button__delete-preview {
+.button__delete-preview {
     position: absolute;
     color: red;
     background-color: transparent;
@@ -54,11 +54,11 @@
 
 .button__delete-preview:hover {
     opacity: .6;
-} */
+}
 
 .button__delete-preview_visible {
     visibility: visible;
-    position: absolute;
+    /* position: absolute;
     color: red;
     background-color: transparent;
     border: none;
@@ -67,12 +67,12 @@
     transition: opacity linear 0.2s 0.1s;
     cursor: pointer;
     bottom: 68px;
-    right: 39px;
+    right: 39px; */
 }
 
-.button__delete-preview_visible:hover {
+/* .button__delete-preview_visible:hover {
     opacity: .6;
-}
+} */
 
 .button__delete-preview_hidden {
     visibility: hidden;
