@@ -108,7 +108,7 @@ const RegisterModal = ({
             onChange={handleAvatarChange}
             minLength="1"
             autoComplete="off"
-            required
+            // required
           />
         </label>
         <Link to="/" className="login__link" onClick={handleOpenLogin}>

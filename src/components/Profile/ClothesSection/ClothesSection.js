@@ -23,6 +23,7 @@ const userClothingItems = clothingItems.filter((item) => {
 
   return (
     <section className="clothes__section">
+      <div className="clothes__section-heading-container">
       <div className="clothes__section-title">Your Item</div>
       <button
         className="clothes__section_add-button"
@@ -31,6 +32,7 @@ const userClothingItems = clothingItems.filter((item) => {
       >
         + Add items
       </button>
+      </div>
       <div className="clothes__section-gallery">
         {userClothingItems.map((item) => {
           //console.log("value of item: looking for id and owner: ", item)

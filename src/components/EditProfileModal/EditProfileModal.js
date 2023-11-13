@@ -58,7 +58,6 @@ const EditProfileModal = ({
             value={avatar}
             onChange={handleAvatarChange}
             minLength="1"
-            required
           />
         </label>
       </ModalWithForm>

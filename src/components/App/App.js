@@ -84,13 +84,8 @@ function App() {
       api
         .getItems()
         .then((res) => {
-          // console.log("getItems data value: ", res)
           if (Array.isArray(res.data)) {
             setClothingItems(res.data);
-           // console.log("value of clothingItems inside api.getitems: ",clothingItems)
-          //  console.log("value of res.data inside api.getitems: ",res.data)
-          //  console.log("value of res in side getitems: ", res)
-          //  console.log("value of data in inside get items: ", data)
           } else {
             console.error("Data received is not an array:", res.data);
           }
@@ -99,9 +94,9 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    console.log("Updated clothingItems:", clothingItems);
-  }, [clothingItems]);
+  // useEffect(() => {
+  //   console.log("Updated clothingItems:", clothingItems);
+  // }, [clothingItems]);
   
 
   const handleCreateModal = () => {
