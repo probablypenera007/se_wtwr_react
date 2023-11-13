@@ -45,7 +45,8 @@ const LogInModal = ({
         modalName={"LogIn_Modal"}
       >
         <label className="modal__label modal__label_login">
-          Email
+        {/* // {`modal__label modal__label_login ${inputError === "Invalid Email" ? "error" : ""}`}>
+        //   {inputError === "Invalid Email" ? "Invalid Email" : "Email"} */}
           <input
             id="login-email"
             className="modal__input-text modal__input_text-login"
@@ -59,8 +60,9 @@ const LogInModal = ({
             autoComplete="email"
           />
         </label>
-        <label className="modal__label modal__label_login">
-          Password
+        <label className="modal__label modal__label_login" >
+        {/* // {`modal__label modal__label_login ${inputError === "Incorrect Password" ? "error" : ""}`}>
+        //   {inputError === "Incorrect Password" ? "Incorrect Password" : "Password"} */}
           <input
             id="login-password"
             className="modal__input-text modal__input_text-login"

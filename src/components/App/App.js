@@ -194,7 +194,7 @@ function App() {
         : "Login Failed. Please Try Again"
     );
     console.error(error);
-    }
+  };
 
     const handleLogInModal = () => {
       setActiveModal("login-signin");

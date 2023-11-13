@@ -54,6 +54,16 @@
     margin-top: 24px;
     flex-direction: column;
 }
+
+.error {
+    color: red; 
+    border: 1px solid red; 
+}
+
+.error-label {
+    color: red; 
+}
+
 .modal__form {
     font-family: "CabinetGrotesk-Extrbold", Arial, sans-serif;
     font-size: 16px;
