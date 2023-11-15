@@ -1,4 +1,5 @@
 import "./ModalWithForm.css";
+import { Modal } from "../Modal/Modal";
 
 const ModalWithForm = ({
   children,
@@ -10,10 +11,13 @@ const ModalWithForm = ({
   onSubmit,
 }) => {
   return (
-    <div className={`modal modal_type_${modalName}`}>
-      <div className="modal__content">
+    <Modal name={modalName} 
+    onClose={onClose} 
+    //closeButtonStyle="button__close-modal-gray"
+    >
+     
         <button
-          className="button__close-modal"
+          className="button__close-modal-gray"
           type="button"
           onClick={onClose}
         />
@@ -24,8 +28,8 @@ const ModalWithForm = ({
             {buttonText}
           </button>
         </form>
-      </div>
-    </div>
+  
+    </Modal>
   );
 };
 

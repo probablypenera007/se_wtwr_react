@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
+import { useForm } from '../../hooks/useForm';
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const LogInModal = ({
@@ -11,8 +12,10 @@ const LogInModal = ({
   openRegisterModal,
   inputError,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { values, handleChange } = useForm({ email: '', password: '' });
+
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
   const history = useHistory();
 
@@ -26,8 +29,13 @@ const LogInModal = ({
 
   const handleFormSubmitLogIn = (e) => {
     e.preventDefault();
-    onSubmit({ email, password });
+    onSubmit(values);
   };
+
+  // const handleFormSubmitLogIn = (e) => {
+  //   e.preventDefault();
+  //   onSubmit({ email, password });
+  // };
 
   const handleOpenRegisterModal = (e) => {
     e.preventDefault();
@@ -53,8 +61,9 @@ const LogInModal = ({
             type="email"
             placeholder="Email"
             name="email"
-            value={email}
-            onChange={handleEmailChange}
+            value={values.email}
+            onChange={handleChange}
+            // onChange={handleEmailChange}
             minLength="1"
             required
             autoComplete="email"
@@ -69,8 +78,9 @@ const LogInModal = ({
             type="password"
             placeholder="Password"
             name="password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={values.password}
+            onChange={handleChange}
+            // onChange={handlePasswordChange}
             minLength="1"
             autoComplete="off"
             required

@@ -1,5 +1,7 @@
 export const baseUrl = "http://localhost:3001";
 
+
+
 export function checkResponse(res) {
   if (res.ok) {
     return res.json();
@@ -8,49 +10,53 @@ export function checkResponse(res) {
   }
 }
 
+export function request(url, options) {
+  return fetch(url, options).then(checkResponse);
+}
+
 export function getItems() {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     headers: {
       "Content-Type": "application/json",
       // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }).then(checkResponse);
+  })
 }
 
 export function addItem(item, token) {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify(item, token),
-  }).then(checkResponse);
+  })
 }
 
 export function deleteItem(itemId, token) {
-  return fetch(`${baseUrl}/items/${itemId}`, {
+  return request(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }).then(checkResponse);
+  })
 }
 
 export function addCardLike(itemId, token) {
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }).then(checkResponse);
+  })
 }
 
 export function removeCardLike(itemId, token) {
-  return fetch(`${baseUrl}/items/${itemId}/likes`, {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  }).then(checkResponse);
+  })
 }

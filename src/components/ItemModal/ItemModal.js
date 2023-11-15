@@ -1,6 +1,7 @@
 import "./ItemModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import React from "react";
+import { Modal } from "../Modal/Modal";
 
 const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
   const currentUser = React.useContext(CurrentUserContext);
@@ -13,8 +14,8 @@ const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
   const itemDeleteButtonClassName = `button__delete-preview ${isOwn ? 'button__delete-preview_visible' : 'button__delete-preview_hidden'}`;
 
   return (
-    <div className={`modal`}>
-      <div className="modal__content-preview">
+    <Modal name="item" onClose={onClose} closeButtonStyle={"button__close-modal-white"}>
+     
         <button
           className="button__close-modal-white"
           type="button"
@@ -34,8 +35,8 @@ const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
           {buttonText}
         </button>
            )} 
-      </div>
-    </div>
+    
+    </Modal>
   );
 };
 

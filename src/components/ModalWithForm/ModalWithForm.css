@@ -26,6 +26,11 @@
     font-family: "CabinetGrotesk-Medium", Arial, sans-serif;
 }
 
+.modal__content_modal {
+    background-color: transparent;
+    border: none;
+}
+
 .modal__title {
     color: #000;
     font-family: "CabinetGrotesk-Extrabold", Arial, sans-serif;
@@ -35,18 +40,20 @@
     line-height: 20px;
 }
 
-.button__close-modal {
+
+.button__close-modal-gray {   /* this button is in Modal.js*/
     position: absolute;
     background-image: url(../../images/group-119-gray-close-button.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
+    border: none;
     width: 20px;
     height: 20px;
     border: none;
     cursor: pointer;
-    right: 23px;
-    top: 16px;
+    right: 25px;
+    top: 21px;
 }
 
 .modal__label {
@@ -316,4 +323,33 @@
 
 .register__likn:hover {
     opacity: 1;
+}
+
+/* ==============================
+   ITEM MODAL STYLES
+   ============================== */
+
+
+.modal_type_item .modal__content {
+    max-width: 476px;
+    max-height: 592px;
+    position: relative;
+    font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+    background-color: white;
+    border-radius: 16px;
+    padding: 1px 21px 11px 1px;
+}
+
+
+.button__close-modal-white {
+    background-image: url(../../images/Group\ 119itemmodalwhiteclosebutton.svg);
+    position: absolute;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    right: 28px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
 }

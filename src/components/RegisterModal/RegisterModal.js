@@ -1,5 +1,6 @@
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from '../../hooks/useForm';
 import { useState } from "react";
 
 const RegisterModal = ({
@@ -9,32 +10,40 @@ const RegisterModal = ({
   buttonText,
   openLogInModal,
 }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const { values, handleChange } = useForm({ email: '', password: '', name: '', avatar: '' });
+
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [name, setName] = useState("");
+  // const [avatar, setAvatar] = useState("");
   const history = useHistory();
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  // };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  // };
 
-  const handleAvatarChange = (e) => {
-    setAvatar(e.target.value);
-  };
+  // const handleAvatarChange = (e) => {
+  //   setAvatar(e.target.value);
+  // };
+
+  // const handleFormSubmitRegister = (e) => {
+  //   e.preventDefault();
+  //   onSubmit({ email, password, name, avatar });
+  // };
 
   const handleFormSubmitRegister = (e) => {
     e.preventDefault();
-    onSubmit({ email, password, name, avatar });
+    onSubmit(values);
   };
+  
 
   const handleOpenLogin = (e) => {
     e.preventDefault();
@@ -59,8 +68,9 @@ const RegisterModal = ({
             type="email"
             name="email"
             placeholder="Email"
-            value={email}
-            onChange={handleEmailChange}
+            value={values.email}
+            onChange={handleChange}
+            // onChange={handleEmailChange}
             minLength="1"
             maxLength="30"
             autoComplete="off"
@@ -75,8 +85,9 @@ const RegisterModal = ({
             type="password"
             name="password"
             placeholder="Password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={values.password}
+            onChange={handleChange}
+            // onChange={handlePasswordChange}
             minLength="1"
             autoComplete="off"
             required
@@ -90,8 +101,9 @@ const RegisterModal = ({
             type="text"
             name="name"
             placeholder="Name"
-            value={name}
-            onChange={handleNameChange}
+            value={values.name}
+            onChange={handleChange}
+            // onChange={handleNameChange}
             autoComplete="off"
             required
           />
@@ -104,8 +116,9 @@ const RegisterModal = ({
             type="url"
             name="avatar"
             placeholder="Avatar URL"
-            value={avatar}
-            onChange={handleAvatarChange}
+            value={values.avatar}
+            onChange={handleChange}
+            // onChange={handleAvatarChange}
             minLength="1"
             autoComplete="off"
             // required

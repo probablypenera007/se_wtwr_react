@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
+import { useForm } from '../../hooks/useForm';
 
 const EditProfileModal = ({
   handleCloseModal,
@@ -9,20 +10,23 @@ const EditProfileModal = ({
   buttonText,
 }) => {
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = useState(currentUser.name);
-  const [avatar, setAvatar] = useState(currentUser.avatar);
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const { values, handleChange } = useForm({ name: currentUser.name, avatar: currentUser.avatar });
 
-  const handleAvatarChange = (e) => {
-    setAvatar(e.target.value);
-  };
+  // const [name, setName] = useState(currentUser.name);
+  // const [avatar, setAvatar] = useState(currentUser.avatar);
+
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  // };
+
+  // const handleAvatarChange = (e) => {
+  //   setAvatar(e.target.value);
+  // };
 
   const handleFormSubmitEdit = (e) => {
     e.preventDefault();
-    onSubmit({ name, avatar });
+    onSubmit(values);
   };
 
   return (
@@ -42,8 +46,9 @@ const EditProfileModal = ({
             className="modal__input-text modal__input-text-edit"
             type="text"
             name="name"
-            value={name}
-            onChange={handleNameChange}
+            value={values.name}
+            // onChange={handleNameChange}
+            onChange={handleChange}
             minLength="1"
             required
           />
@@ -55,8 +60,9 @@ const EditProfileModal = ({
             className="modal__input-text modal__input-text-edit"
             type="url"
             name="avatar"
-            value={avatar}
-            onChange={handleAvatarChange}
+            value={values.avatar}
+            // onChange={handleAvatarChange}
+            onChange={handleChange}
             minLength="1"
           />
         </label>

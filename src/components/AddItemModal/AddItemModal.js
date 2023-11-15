@@ -1,29 +1,40 @@
-import { useState } from "react";
+//import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-
 const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
-  const [name, setName] = useState("");
-  const [imageUrl, setimageUrl] = useState("");
-  const [weather, setSelectedWeatherType] = useState("");
+  // const [name, setName] = useState("");
+  // const [imageUrl, setimageUrl] = useState("");
+  // const [weather, setSelectedWeatherType] = useState("");
 
-  const handleAddItemNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleAddItemUrlChange = (e) => {
-    setimageUrl(e.target.value);
-  };
-
-  const handleAddItemRadioWeatherType = (e) => {
-    setSelectedWeatherType(e.target.value);
-  };
-
+  const { values, handleChange } = useForm({
+    name: "",
+    imageUrl: "",
+    weather: "",
+  });
   const handleAddItemSubmit = (e) => {
     e.preventDefault();
-    const newItem = { name, imageUrl, weather };
-    onAddItem(newItem);
+    onAddItem(values);
   };
+
+  // const handleAddItemNameChange = (e) => {
+  //   setName(e.target.value);
+  // };
+
+  // const handleAddItemUrlChange = (e) => {
+  //   setimageUrl(e.target.value);
+  // };
+
+  // const handleAddItemRadioWeatherType = (e) => {
+  //   setSelectedWeatherType(e.target.value);
+  // };
+
+  // const handleAddItemSubmit = (e) => {
+  //   e.preventDefault();
+  //   const newItem = { name, imageUrl, weather };
+  //   onAddItem(newItem);
+  // };
 
   return (
     <ModalWithForm
@@ -43,8 +54,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
           name="name"
           minLength="1"
           maxLength="30"
-          value={name}
-          onChange={handleAddItemNameChange}
+          value={values.name}
+          // onChange={handleAddItemNameChange}
+          onChange={handleChange}
           autoComplete="off"
           required
         />
@@ -55,12 +67,13 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
           className="modal__input-text modal__input-text-add"
           placeholder="Image URL"
           type="url"
-          name="link"
+          name="imageUrl"
           minLength="1"
           maxLength="1000"
-          value={imageUrl}
-          onChange={handleAddItemUrlChange}
-          autoComplete="off"
+          value={values.imageUrl}
+          // onChange={handleAddItemUrlChange}
+          onChange={handleChange}
+          // autoComplete="off"
           required
         />
       </label>
@@ -75,7 +88,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
             id="radioHot"
             value="hot"
             name="weather"
-            onChange={handleAddItemRadioWeatherType}
+            // onChange={handleAddItemRadioWeatherType}
+            onChange={handleChange}
+            checked={values.weather === "hot"}
           />
           <label className="modal__label-radio" htmlFor="radioHot">
             Hot
@@ -88,7 +103,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
             id="radioWarm"
             value="warm"
             name="weather"
-            onChange={handleAddItemRadioWeatherType}
+            // onChange={handleAddItemRadioWeatherType}
+            onChange={handleChange}
+            checked={values.weather === "warm"}
           />
           <label className="modal__label-radio" htmlFor="radioWarm">
             Warm
@@ -101,7 +118,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen, buttonText }) => {
             id="radioCold"
             value="cold"
             name="weather"
-            onChange={handleAddItemRadioWeatherType}
+            // onChange={handleAddItemRadioWeatherType}
+            onChange={handleChange}
+            checked={values.weather === "cold"}
           />
           <label className="modal__label-radio" htmlFor="radioCold">
             Cold
