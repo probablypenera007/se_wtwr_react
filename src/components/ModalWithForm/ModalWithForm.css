@@ -117,7 +117,7 @@
 
 .modal_type_AddItem_Modal .modal__content {
     max-width: 496px;
-    max-height: 436px;
+    max-height: 411px;
 }
 
 .modal__label-add {
@@ -270,7 +270,7 @@
    ============================== */
 .modal_type_LogIn_Modal .modal__content {
     max-width: 496px;
-    max-height: 304px;
+    max-height: 258px;
 }
 
 .modal__label_login {

@@ -16,11 +16,11 @@ const ItemModal = ({ selectedCard, onClose, onDeleteCard, buttonText }) => {
   return (
     <Modal name="item" onClose={onClose} closeButtonStyle={"button__close-modal-white"}>
      
-        <button
+        {/* <button
           className="button__close-modal-white"
           type="button"
           onClick={onClose}
-        ></button>
+        ></button> */}
         <img
           src={selectedCard.imageUrl}
           className="modal__image-preview"
