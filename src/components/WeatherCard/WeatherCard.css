@@ -1,6 +1,8 @@
 .weather__section {
   position: relative;
   align-content: center;
+  min-width: 343px;
+  min-height: 80px;
 }
 
 .weather__temp {
