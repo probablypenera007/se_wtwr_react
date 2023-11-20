@@ -1,6 +1,7 @@
-export const baseUrl = "http://localhost:3001";
-
-
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.isitrainingoutside.jumpingcrab.com"
+    : "http://localhost:3001";
 
 export function checkResponse(res) {
   if (res.ok) {
@@ -20,7 +21,7 @@ export function getItems() {
       "Content-Type": "application/json",
       // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  })
+  });
 }
 
 export function addItem(item, token) {
@@ -31,7 +32,7 @@ export function addItem(item, token) {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
     body: JSON.stringify(item, token),
-  })
+  });
 }
 
 export function deleteItem(itemId, token) {
@@ -40,7 +41,7 @@ export function deleteItem(itemId, token) {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  })
+  });
 }
 
 export function addCardLike(itemId, token) {
@@ -49,7 +50,7 @@ export function addCardLike(itemId, token) {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  })
+  });
 }
 
 export function removeCardLike(itemId, token) {
@@ -58,5 +59,5 @@ export function removeCardLike(itemId, token) {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  })
+  });
 }
