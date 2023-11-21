@@ -60,4 +60,4 @@ export function removeCardLike(itemId, token) {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   });
-}
+} 
