@@ -21,6 +21,7 @@ import {
   parseWeatherForecastData,
   parseTimeOfDay,
 } from "../../utils/weatherApi";
+//import getForecastWeather from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import * as api from "../../utils/Api";

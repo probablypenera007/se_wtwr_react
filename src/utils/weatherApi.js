@@ -1,15 +1,42 @@
 import { checkResponse } from "./Api";
 
-const latitude = 25.276987;
-const longitude = 55.296249;
+
+// const latitude = 25.276987;
+// const longitude = 55.296249;
 const APIkey = `830c7046b70053a5bb6012f04397d976`;
 
+
+navigator.geolocation.getCurrentPosition((position) => {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  console.log(`Latitude is: ${latitude}`);
+  console.log(`Longitude is: ${longitude}`);
+
+  getForecastWeather(latitude, longitude)
+    .then(data => {
+      const weather = parseWeatherData(data);
+      const location = parseLocationData(data);
+      const forecast = parseWeatherForecastData(data);
+      const isDaytime = parseTimeOfDay(data);
+
+      console.log("Weather:", weather);
+      console.log("Location:", location);
+      console.log("Forecast:", forecast);
+      console.log("Is Daytime:", isDaytime);
+    })
+    .catch(error => {
+      console.error("Error fetching weather data:", error);
+    });
+});
+
+const latitude = 25.276987;
+const longitude = 55.296249;
+
 export const getForecastWeather = () => {
-  const weatherApi = fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then(checkResponse)
-  return weatherApi;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
+  return fetch(url).then(checkResponse);
 };
+
 
 export const parseWeatherData = (data) => {
   const main = data.main;
