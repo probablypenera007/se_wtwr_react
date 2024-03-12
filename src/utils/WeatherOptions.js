@@ -45,6 +45,11 @@ export const weatherOptions = [
     type: "fog",
   },
   {
+    url: require("../images/night/foggy-night.svg").default,
+    day: false,
+    type: "mist",
+  },
+  {
     url: require("../images/night/rainy-night.svg").default,
     day: false,
     type: "rain",

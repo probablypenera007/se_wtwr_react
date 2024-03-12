@@ -273,19 +273,27 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather()
-      .then((data) => {
-        const temperature = parseWeatherData(data);
-        setTemp(temperature);
-        const location = parseLocationData(data);
-        setWeatherLocation(location);
-        const weatherForecast = parseWeatherForecastData(data);
-        setWeatherForecast(weatherForecast);
-        const isDay = parseTimeOfDay(data);
-        setIsDay(isDay);
-      })
-      .catch(console.error);
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      
+      setIsLoading(true); 
+      
+      getForecastWeather(latitude, longitude)
+        .then(data => {
+          const temperature = parseWeatherData(data);
+          setTemp(temperature);
+          const location = parseLocationData(data);
+          setWeatherLocation(location);
+          const weatherForecast = parseWeatherForecastData(data);
+          setWeatherForecast(weatherForecast);
+          const isDay = parseTimeOfDay(data);
+          setIsDay(isDay);
+        })
+        .catch(console.error)
+        .finally(() => setIsLoading(false)); 
+    });
   }, []);
+  
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

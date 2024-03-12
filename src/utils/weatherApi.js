@@ -6,6 +6,11 @@ import { checkResponse } from "./Api";
 const APIkey = `830c7046b70053a5bb6012f04397d976`;
 
 
+export const getForecastWeather = (latitude, longitude) => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
+  return fetch(url).then(checkResponse);
+};
+
 navigator.geolocation.getCurrentPosition((position) => {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -28,15 +33,6 @@ navigator.geolocation.getCurrentPosition((position) => {
       console.error("Error fetching weather data:", error);
     });
 });
-
-const latitude = 25.276987;
-const longitude = 55.296249;
-
-export const getForecastWeather = () => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`;
-  return fetch(url).then(checkResponse);
-};
-
 
 export const parseWeatherData = (data) => {
   const main = data.main;
