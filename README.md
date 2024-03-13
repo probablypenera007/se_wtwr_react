@@ -4,7 +4,7 @@
 - [Figma Design](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 
 # DOMAIN Link:
-https://www.isitrainingoutside.jumpingcrab.com 
+https://www.wtwr.app 
 
 # LINK FOR THE BACK-END:
 https://github.com/probablypenera007/se_project_express

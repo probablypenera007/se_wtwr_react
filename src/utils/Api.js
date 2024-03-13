@@ -1,6 +1,6 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.isitrainingoutside.jumpingcrab.com"
+    ? "https://api.wtwr.app"
     : "http://localhost:3001";
 
 export function checkResponse(res) {
