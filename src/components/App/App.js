@@ -94,11 +94,6 @@ function App() {
         .catch(console.error);
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Updated clothingItems:", clothingItems);
-  // }, [clothingItems]);
-  
-
   const handleCreateModal = () => {
     setActiveModal("create");
   };

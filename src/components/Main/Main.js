@@ -16,7 +16,7 @@ function Main({
   //const currentUser = React.useContext(CurrentUserContext);
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
-  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || "🤔";
+  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || "...";
   const weatherType = useMemo(() => {
     if (currentTemperatureUnit === "F") {
       if (temp >= 86) {
