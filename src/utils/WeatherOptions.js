@@ -20,6 +20,21 @@ export const weatherOptions = [
     type: "thunderstorm",
   },
   {
+    url: require("../images/day/stormy-day.svg").default,
+    day: true,
+    type: "tornado",
+  },
+  {
+    url: require("../images/day/stormy-day.svg").default,
+    day: true,
+    type: "squail",
+  },
+  {
+    url: require("../images/day/rainy-day.svg").default,
+    day: true,
+    type: "drizzle",
+  },
+  {
     url: require("../images/day/snowy-day.svg").default,
     day: true,
     type: "snow",
@@ -28,6 +43,36 @@ export const weatherOptions = [
     url: require("../images/day/foggy-day.svg").default,
     day: true,
     type: "mist",
+  },
+  {
+    url: require("../images/day/foggy-day.svg").default,
+    day: true,
+    type: "fog",
+  },
+  {
+    url: require("../images/day/foggy-day.svg").default,
+    day: true,
+    type: "smoke",
+  },
+  {
+    url: require("../images/day/foggy-day.svg").default,
+    day: true,
+    type: "haze",
+  },
+  {
+    url: require("../images/day/foggy-day.svg").default,
+    day: true,
+    type: "dust",
+  },
+  {
+    url: require("../images/day/foggy-day.svg").default,
+    day: true,
+    type: "sand",
+  },
+  {
+    url: require("../images/day/foggy-day.svg").default,
+    day: true,
+    type: "ash",
   },
   {
     url: require("../images/night/perfect-night.svg").default,
@@ -50,9 +95,39 @@ export const weatherOptions = [
     type: "mist",
   },
   {
+    url: require("../images/night/foggy-night.svg").default,
+    day: false,
+    type: "smoke",
+  },
+  {
+    url: require("../images/night/foggy-night.svg").default,
+    day: false,
+    type: "haze",
+  },
+  {
+    url: require("../images/night/foggy-night.svg").default,
+    day: false,
+    type: "dust",
+  },
+  {
+    url: require("../images/night/foggy-night.svg").default,
+    day: false,
+    type: "sand",
+  },
+  {
+    url: require("../images/night/foggy-night.svg").default,
+    day: false,
+    type: "ash",
+  },
+  {
     url: require("../images/night/rainy-night.svg").default,
     day: false,
     type: "rain",
+  },
+  {
+    url: require("../images/night/rainy-night.svg").default,
+    day: false,
+    type: "drizzle",
   },
   {
     url: require("../images/night/snowy-night.svg").default,
@@ -63,5 +138,15 @@ export const weatherOptions = [
     url: require("../images/night/stormy-night.svg").default,
     day: false,
     type: "thunderstorm",
+  },
+  {
+    url: require("../images/night/stormy-night.svg").default,
+    day: false,
+    type: "tornado",
+  },
+  {
+    url: require("../images/night/stormy-night.svg").default,
+    day: false,
+    type: "squail",
   },
 ];
