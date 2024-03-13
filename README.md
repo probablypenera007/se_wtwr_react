@@ -12,6 +12,7 @@ https://github.com/probablypenera007/se_project_express
 ## Functionality
 - **User Interface:** Sleek and responsive design for an engaging user experience.
 - **Interactive Elements:** Dynamic components for efficient user interaction.
+- **Geolocation Integration:** Now featuring geolocation-based weather forecasts for personalized clothing recommendations.
 
 ## Technologies
 - **React:** A powerful library for building user interfaces with reusable components.
